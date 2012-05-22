@@ -1,0 +1,195 @@
+<style type="text/css">
+  #content #detail #desc #root {
+    background-color: #BBB895;
+  }
+</style>
+
+<div id="campaing" style="width:785px; height: auto;">
+  <h3><%=  t("stats.title") %> <%=  @campaign.name %></h3>
+  <br /><br />
+  <%= render :partial => "campaign_data", :locals => {:campaign => @campaign} %> <br/>
+
+  <div class="charts">
+    <br/>
+    <div class="campaign_graph"id="charts_<%= @campaign.id %>">
+      <div class="campaign_title" style="width:100%; margin-bottom: 5px; height:420px">
+        <h2><%=  t("stats.trafic") %></h2>
+        <!-- No cambiar la distancia entre el div de apertura y el de cierre en los gráficos -->
+        <div class="campaign_charts" style="width:100%;  height: 400px" id="line_<%=  @campaign.id %>"></div>
+      </div>
+      
+      <br/>
+      <div class="campaign_title">
+        <h2><%=  t("stats.gender") %></h2>
+        <div class="campaign_charts" id="pie_<%=  @campaign.id %>"></div>
+      </div>
+      <div class="campaign_title">
+        <h2><%=  t("stats.click") %></h2>
+        <div class="campaign_charts" id="otro_<%=  @campaign.id %>"></div>
+      </div>
+      <div class="campaign_title">
+        <h2><%=  t("stats.hit") %></h2>
+        <div class="campaign_charts" id="segundo_otro_<%=  @campaign.id %>"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+  google.load('visualization', '1', {'packages':['annotatedtimeline','piechart']});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function()  {
+    $("#tree, #tree2").show();
+  });
+
+  function retrieveDataForCharts (campaign_id) {
+    
+    
+    if ( $("#line_"+campaign_id).html().length < 1 ) {
+      var url_line_chart = "<%= url_for :controller=> 'campaigns', :action=>'google_line_chart'   %>";
+      $.ajax({
+        complete:function(request){
+          drawChartLine(request,campaign_id);
+        },
+        data:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>') + '&campaign_id='+campaign_id,
+        dataType:'script',
+        type:'post',
+        url: url_line_chart });
+    }
+
+    if ( $("#pie_"+campaign_id).html().length < 1 ) {
+      var url_pie_chart = "<%= url_for  :controller=> 'campaigns', :action=>'google_pie_gender_chart' %>";
+      $.ajax({
+        complete:function(request){
+          drawChartPie(request,campaign_id);
+        },
+        data:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>') + '&campaign_id='+campaign_id,
+        dataType:'script',
+        type:'post',
+        url: url_pie_chart } );
+
+    }
+
+    if ( $("#otro_"+campaign_id).html().length < 1 ) {
+      var url_pie_chart_click_referer = "<%= url_for  :controller=> 'campaigns', :action=>'google_pie_click_referer_chart'%>";
+      $.ajax({
+        complete:function(request){
+          drawChartPieClickReferer(request,campaign_id);
+        },
+        data:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>') + '&campaign_id='+campaign_id,
+        dataType:'script',
+        type:'post',
+        url: url_pie_chart_click_referer } );
+
+    }
+
+    if ( $("#segundo_otro_"+campaign_id).html().length < 1 ) {
+      var url_pie_chart_hit_referer = "<%= url_for  :controller=> 'campaigns', :action=>'google_pie_hit_referer_chart'  %>";
+      $.ajax({
+        complete:function(request){
+          drawChartPieHitReferer(request,campaign_id);
+        },
+        data:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>') + '&campaign_id='+campaign_id,
+        dataType:'script',
+        type:'post',
+        url: url_pie_chart_hit_referer } );
+    }
+
+  }
+
+  function drawChartLine(request,campaign_id) {
+    var data = new google.visualization.DataTable();
+    data.addColumn('date', 'Date');
+    data.addColumn('number', 'Clicks');
+    data.addColumn('string', 'title1');
+    data.addColumn('string', 'text1');
+    data.addColumn('number', 'Hits');
+    data.addColumn('string', 'title2');
+    data.addColumn('string', 'text2');
+    data.addRows(eval("[" + request.responseText + "]")); //cambiar Eval por un Parser.
+    var div = document.getElementById("line_"+campaign_id);
+    var chart = new google.visualization.AnnotatedTimeLine(div);
+    chart.draw(data, { width: 600, height: 400, title: 'Info', displayAnnotations: true});
+  }
+
+  function drawChartPie(request,campaign_id,div) {
+    var data = new google.visualization.DataTable();
+    var gender_data = eval("(" + request.responseText + ')'); //cambiar Eval por un Parser.
+    data.addColumn('string', 'Gender');
+    data.addColumn('number', 'Proportion');
+    data.addRows(2);
+    data.setValue(0, 0, 'Male');
+    data.setValue(0, 1, gender_data['male']);
+    data.setValue(1, 0, 'Female');
+    data.setValue(1, 1, gender_data['female']);
+    var div = document.getElementById("pie_"+campaign_id);
+    var chart = new google.visualization.PieChart(div);
+    chart.draw(data, {width: 250,
+      height: 200,
+      is3D: false,
+      color: '#999',
+      fontName: 'Trebuchet', fontSize: 11,
+      legendTextStyle: {color:'#999'},
+      colors: ['#D95910', '#6D8EAD', '#FF9900', '#CFCDB4', '#1F3447']
+    })
+  }
+
+  function drawChartPieClickReferer(request,campaign_id,div) {
+    var data = new google.visualization.DataTable();
+    var data_click = eval("(" + request.responseText + ')'); //cambiar Eval por un Parser.
+    data.addColumn('string', 'Referer Name');
+    data.addColumn('number', 'Proportion');
+    data.addRows(3);
+    data.setValue(0, 0, 'facebook');
+    data.setValue(0, 1, data_click['facebook']);
+    data.setValue(1, 0, 'twitter');
+    data.setValue(1, 1, data_click['twitter']);
+    data.setValue(2, 0, 'tipdem');
+    data.setValue(2, 1, data_click['tipdem']);
+    var div = document.getElementById("otro_"+campaign_id);
+    var chart = new google.visualization.PieChart(div);
+    chart.draw(data, {width: 250,
+      height: 200,
+      is3D: false,
+      color: '#999',
+      fontName: 'Trebuchet', fontSize: 11,
+      legendTextStyle: {color:'#999'},
+      colors: ['#D95910', '#6D8EAD', '#FF9900', '#CFCDB4', '#1F3447']
+    });
+  }
+
+  function drawChartPieHitReferer(request,campaign_id) {
+    var data = new google.visualization.DataTable();
+    var data_hit = eval("(" + request.responseText + ')'); //cambiar Eval por un Parser.
+    data.addColumn('string', 'Referer Name');
+    data.addColumn('number', 'Proportion');
+    data.addRows(3);
+    data.setValue(0, 0, 'facebook');
+    data.setValue(0, 1, data_hit['facebook']);
+    data.setValue(1, 0, 'twitter');
+    data.setValue(1, 1, data_hit['twitter']);
+    data.setValue(2, 0, 'tipdem');
+    data.setValue(2, 1, data_hit['tipdem']);
+    var div = document.getElementById("segundo_otro_"+campaign_id);
+    var chart = new google.visualization.PieChart(div);
+    chart.draw(data, {width: 250, height: 200, is3D: false,color: '#999',
+      fontName: 'Trebuchet', fontSize: 11,
+      legendTextStyle: {color:'#999'},
+      colors: ['#D95910', '#6D8EAD', '#FF9900', '#CFCDB4', '#1F3447']
+    });
+  }
+
+
+
+  $(document).ready(function(){
+    
+    retrieveDataForCharts(<%= @campaign.id %>);
+
+  });
+
+</script>

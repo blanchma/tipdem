@@ -1,0 +1,113 @@
+<% content_for :header do %>
+  <%= render :partial => "two_header" %>
+<% end %>
+
+<div id="highlights"></div>
+<div id="detail">
+  <div id="desc"><h1><%= t("howitwork.prom.title") %></h1>
+    <br/><br/>
+    <h2><%= t("howitwork.prom.subtitle") %></h2>
+    <%= t("howitwork.prom.text") %>
+    <%= t("howitwork.prom.graph") %>
+    
+    <!-- #dialog is the id of a DIV defined in the code below -->
+    <a href="#dialog" name="modal"><h3><%= t("howitwork.prom.btn") %></h3></a><br/><br/>
+    <div id="boxes">
+
+
+    <!-- #customize your modal window here -->
+
+    <div id="dialog" class="window">
+        <%= image_tag 'benef_prom.png', :width => '402' %>
+
+        <!-- close button is defined as close class -->
+        <a href="#" class="close"><%= image_tag 'no.png', :width => '20', :border => '0' %></a>
+
+    </div>
+
+
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->
+    </div>
+
+  </div>
+  <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
+    <div id="register"><%= link_to t("register"), new_user_registration_path %></div>
+  </div>
+
+<script>
+
+$(document).ready(function() {
+
+    //select all the a tag with name equal to modal
+    $('a[name=modal]').click(function(e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        //Get the A tag
+        var id = $(this).attr('href');
+
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+        //transition effect
+        $('#mask').fadeIn(1000);
+        $('#mask').fadeTo("slow",0.5);
+
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //Set the popup window to center
+        $(id).css('top',  winH/2-$(id).height()/2);
+        $(id).css('left', winW/2-$(id).width()/2);
+
+        //transition effect
+        $(id).fadeIn(2000);
+
+    });
+
+    //if close button is clicked
+    $('.window .close').click(function (e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        $('#mask, .window').hide();
+    });
+
+    //if mask is clicked
+    $('#mask').click(function () {
+        $(this).hide();
+        $('.window').hide();
+    });
+
+});
+
+</script>
+<style>
+
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#CFCDB4;
+  display:none;
+}
+
+#boxes .window {
+  position:absolute;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:0px;
+}
+
+
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:402px;
+  height:363px;
+}
+</style>

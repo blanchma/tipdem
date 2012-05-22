@@ -1,0 +1,17 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'login'  %>
+<% end %>
+
+<div id="content">
+  <div id="detail">
+    <div id="desc">
+      
+    <p><%=t("confirm.ask.text1")%> <%= @user.email %> <%=t("confirm.ask.text2")%>. </p>
+  <p><%=t("confirm.ask.text3")%> <%= @authentication.provider.titleize %>, <%=t("confirm.ask.text4")%>  </p>
+  <%= link_to t("confirm.ask.link"), send_confirmation_authentications_path %>
+<br/>
+
+  <p> <%=t("confirm.ask.text5")%> <%= link_to t("confirm.ask.link2"), complete_signup_path %> <%=t("confirm.ask.text6")%> </p>
+    </div>
+  </div>
+</div>

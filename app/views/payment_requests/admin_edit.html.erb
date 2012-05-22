@@ -1,0 +1,117 @@
+<%= link_to "Retroceder", :back %>
+
+<% form_for @payment_request, :url => admin_update_payment_request_path, :html => { :multipart => true , :method => :put} do  |f|  %>
+  <div class="admin_edit_payment showable" >
+    <ul>
+      <li>
+        <%= f.label :user %>: <%= @payment_request.user.username %> - <%= @payment_request.user.email %>
+      </li>
+      <li>
+        <%= f.label :created_at %>: <%= @payment_request.created_at %>
+      </li>
+      <li>
+        <%= f.label :requested_money %>: <%= number_to_currency(@payment_request.requested_money, :unit => "$", :format => "%u%n") %>
+      </li>
+    </ul>
+  </div>
+
+<div class="admin_edit_payment editable" >
+    <ul>
+      <li>
+        <%= f.label :status, "Change status"  %>:
+        <%= f.select :status, options_for_select(PaymentRequestStatus.all.map {|p| [(t PaymentRequestStatus.get(p)) , PaymentRequestStatus.get(p) ] }, [(t @payment_request.status), @payment_request.status] ) %>
+      </li>
+      <li>
+        <%= f.label :paid_money %>:
+        <%= f.text_field :paid_money, :class => "currency", :size => 15 %>
+      </li>
+      <li>
+        <%= f.label :receipt %>:
+        <%= f.file_field :receipt %>
+      </li>
+      <li>
+        <%= f.label :paid_at, "Fecha de pago" %>
+        <%= select_date Time.now, :prefix => :paid_at %>
+      </li>
+
+      <li>
+        <%= f.submit "Modificar" %>
+      </li>
+
+    </ul>
+  </div>
+
+<% end %>
+
+
+  <div>
+    <h4>Origen de ingresos</h4>
+    <table class="admin_table_1" border="0" cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <%= content_tag :th, "Campaña" %>
+          <%= content_tag :th, "Origen" %>
+          <%= content_tag :th, "Ganancia" %>
+          <%= content_tag :th, "Comisión" %>
+          <%= content_tag :th, "Fecha" %>
+        </tr>
+      </thead>
+      <tbody id="mycamps">
+
+
+        <% @revenues.each do |revenue| %>
+          <tr style="border-bottom:solid; border-bottom-width: 1px; border-bottom-color: #09F;">
+            <td><%= revenue.campaign.name %></td>
+            <td><%= revenue.source_class %></td>
+            <td><%= revenue.money %></td>
+            <% if revenue.revenue_commission != nil %>
+               <td><%= revenue.revenue_commission.money %></td>
+            <% end %>
+            <td><%= revenue.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody >
+    </table>
+
+    <%= paginate @revenues %>
+    <br/>
+    <%= page_entries_info @revenues %>
+
+  </div>
+
+
+<script type="text/javascript">
+
+ $(document).ready(function() {
+      $('.currency').formatCurrency();
+
+      $('.currency').blur(function() {
+        $(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: 2 });
+      })
+      .keyup(function(e) {
+        var e = window.event || e;
+        var keyUnicode = e.charCode || e.keyCode;
+        if (e !== undefined) {
+          switch (keyUnicode) {
+            case 16: break; // Shift
+            case 27: this.value = ''; break; // Esc: clear entry
+            case 35: break; // End
+            case 36: break; // Home
+            case 37: break; // cursor left
+            case 38: break; // cursor up
+            case 39: break; // cursor right
+            case 40: break; // cursor down
+            case 78: break; // N (Opera 9.63+ maps the "." from the number key section to the "N" key too!) (See: http://unixpapa.com/js/key.html search for ". Del")
+            case 110: break; // . number block (Opera 9.63+ maps the "." from the number block to the "N" key (78) !!!)
+            case 190: break; // .
+            default: $(this).formatCurrency({ colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: -1, eventOnDecimalsEntered: true });
+          }
+        }
+      });
+
+      $('#budget_mode').change(showModeExplain);
+      showModeExplain();
+
+    });
+</script>
+

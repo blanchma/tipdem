@@ -1,0 +1,1256 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:extralight,light,regular,bold&subset=latin);
+*{
+    /* Universal page reset */
+    margin:0;
+    padding:0;
+}
+html, body {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    background-color: #FFF;
+    margin: 0px;
+    font-size: 18px;
+    background-image: url(../images/bg_header.jpg);
+    background-repeat: repeat-x;
+    background-position: left 150px;
+}
+
+textarea {
+    resize: none;
+}
+
+/*Inicio Estilos Contenido*/
+#container {
+    width: 1000px;
+    min-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+    margin-bottom: 30px;
+}
+/*Inicio Estilos Header*/
+#container  #head {
+    height: 90px;
+}
+#container #head #user_active   {
+    color: #FFF;
+    float: right;
+    height: 50px;
+    width: 250px;
+    text-align: center;
+    padding-top: 25px;
+    padding-right: 2px;
+    top: 0px;
+    right: 0px;
+    font-size: 15px;
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    background-image: url(../images/user_conected.png);
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 5px;
+    font-weight: bold;
+}
+#container #head #user_close_session   {
+    color: #FFF;
+    float: right;
+    height: 75px;
+    width: 60px;
+    text-align: center;
+    padding-top: 15px;
+    top: 0px;
+    right: 0px;
+    font-size: 18px;
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    background-image: url(../images/user_close_session.png);
+    background-repeat: no-repeat;
+    margin: 5px;
+}
+#container #head #logo {
+    float: left;
+    width: 250px;
+    margin-top: 2px;
+    height: 60px;
+    position: relative;
+}
+/*Fin Estilos Header*/
+/*Fin Estilos Contenido*/
+
+
+#container .middle #menu {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+
+ul.default li {
+    font-family: "Yanone Kaffeesatz Regular";
+    font-size: 20px;
+    color: #333;
+    display: inline-block;
+    padding-left: 5px;
+    list-style-type: none;
+    width: 175px;
+    height: 35px;
+    padding-top: 5px;
+    background-image: url(../images/panel_bck.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    font-weight: 300;
+}
+
+ul.default li img {
+    vertical-align: middle;
+}
+
+ul.default li a     {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 18px;
+    color: #333;
+    display: block;
+    vertical-align: middle;
+    line-height: 18px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#container #user #sign_up_btn {
+    text-align: right;
+    float: right;
+}
+
+#container input {
+    font-size: 16px;
+    color: #000;
+}
+
+#userpanel {
+    width: 1000px;
+    min-width: 750px;
+    min-height: 300px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chain-tab div.chains_bottom {
+    margin-top:10px;
+    background-color: yellow;
+}
+input {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 16px;
+    color: #000;
+
+}
+
+#container .middle #userpanel .email_tab .email.box .choose .image_sign {
+    float: left;
+    width: 49%;
+    border-left-style: dashed;
+    border-left-color: #999;
+    border-left-width: 1px;
+    height: 150px;
+}
+
+#container .email_tab .choose {
+    height: 170px;
+}
+
+#container .email_tab .render {
+    height: 120px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+
+}
+
+
+
+
+
+#container .middle #userpanel .email_tab .email.box .render #clip_container {
+    float: left;
+    width: 100%;
+}
+
+#footer {
+    height: 20px;
+    width: 100%;
+    font-size: 14px;
+    color: #FFF;
+    text-align: center;
+    background-color: #999;
+    float: left;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    top: 97%;
+}
+
+.databox {
+    width: 33%;
+    float: left;
+    height: 200px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-bottom-style: dashed;
+    border-left-style: dashed;
+    border-top-color: #666;
+    border-right-color: #666;
+    border-bottom-color: #666;
+    border-left-color: #666;
+}
+.tabla {
+    font-size:12px;
+    text-align: left;
+    width: 99%;
+
+
+}
+.tabla th {
+    padding: 5px;
+    font-size: 16px;
+    background-color: #6C8FA2;
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #558FA6;
+    border-bottom-color: #558FA6;
+    text-transform: uppercase;
+    background-image: url(../images/table_shade.png);
+    background-repeat: repeat-x;
+    background-position: top left;
+    text-align: center;
+}
+
+.tabla td {
+    text-align: center;
+    font-size: 14px;
+    height: 25px;
+}
+
+.tabla .modo1 {
+    font-size: 12px;
+    font-weight:bold;
+    background-color: #e2ebef;
+    background-image: url(../images/userpanel/fondo_tr01.png);
+    background-repeat: repeat-x;
+    color: #34484E;
+}
+.tabla .modo1 td {
+    padding: 5px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #A4C4D0;
+    border-bottom-color: #A4C4D0;
+    text-align:right;
+}
+
+#ajax-loading {
+    position: absolute;
+    display: none;
+    background-image: url(../images/icons/ajax-loader.gif) ;
+    top: 500px;
+    left: 150px;
+    width: 16px;
+    height: 16px;
+
+
+}
+
+
+.callback-contacts {
+    margin: 0 auto 0 auto;
+    text-align: left;
+}
+
+
+
+.tabla-contactos {
+    margin-left: 20%;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size:12px;
+    text-align: left;
+    width: 300px;
+
+
+
+}
+.tabla-contactos th {
+    padding: 5px;
+    font-size: 12px;
+    background-color: #036;
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #558FA6;
+    border-bottom-color: #558FA6;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    background-image: url(../images/bg_gradiant_stripe.png);
+    text-align: center;
+}
+
+.tabla-contactos td.email {
+    padding-left: 20px;
+}
+
+.tabla-contactos td.check {
+    width: 60px;
+    text-align: center;
+}
+
+.paginator_display {
+    margin-top: 5px;
+    padding: 3px;
+}
+
+.paginator_display td {
+    padding: 1px;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.paginator_display a {
+    text-decoration: none;
+    color: #FFF;
+    width: 50px;
+}
+
+.paginator_display td#current_and_max {
+    font-size: 12px;
+}
+
+.paginator_display a:hover {
+    color: #999;
+}
+
+#promotion_tab #campaign_details {
+    width: 330px;
+    height: 450px;
+    padding-bottom:20px;
+    margin-left: 630px;
+}
+
+
+ul.campaigns-list {
+    display: list-item;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color:  #558FA6;
+    list-style-type: none;
+
+
+}
+
+ul.campaigns-list li {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    vertical-align: middle;
+    line-height: 18px;
+    list-style-type: none;
+}
+
+ul.campaigns-list ul {
+    list-style-type: none;
+}
+
+ul.campaigns-list ul li.name {
+    font-weight: bold;
+    border-bottom: 1px solid  #558FA6;
+}
+
+ul.campaigns-list ul li.description {
+
+}
+
+.twitter-message {
+    position: relative;
+    font-size: 14px;
+    word-wrap: break-word;
+    text-align: left;
+    font-family: "Lucida Sans", sans-serif;
+    width:  564px;
+    list-style: none outside none;
+    color: #333333;
+
+
+}
+
+.twitter-message li {
+    position: relative;
+    padding: 10px 0 8px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+    line-height: 16px;
+
+}
+
+.twitter-message span.thumb {
+    display: block;
+    height: 50px;
+    width: 50px;
+    left: 0;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    position: absolute;
+    width: 50px;
+    padding: 0;
+    line-height: 16px;
+}
+
+
+.twitter-message .thumb a  {
+    text-decoration: none;
+    color: #2276BB;
+}
+
+
+.twitter-message .thumb a img  {
+    border: transparent 0;
+}
+
+
+.twitter-message span.status-body {
+    display: block;
+    overflow: visible;
+    margin-left: 56px;
+    min-height: 48px;
+    width: 425px;
+
+}
+
+.twitter-message span.status-content {
+    overflow: hidden;
+    height: auto;
+}
+
+
+a.user {
+    text-decoration: none;
+    color: #2276BB;
+
+}
+
+.twitter-message .meta {
+    color: #999999;
+    font-size: 11px;
+    display: block;
+    text-decoration: none;
+    margin-top: 2px;
+    height: auto;
+}
+
+
+.twitter-message .meta a, .twitter-message .meta a:visited, .twitter-message .meta a:active {
+    text-decoration: none;
+    color: #999999;
+}
+
+.twitter-message .meta a:hover {
+    text-decoration: underline;
+}
+
+
+.twitter-message a.link {
+    color: #2276BB;
+}
+
+.valid_msg {
+    font-size: 11px;
+    vertical-align: middle;
+    color: red;
+}
+
+#campaña_dinero {
+    display: none
+}
+
+#campaña_puntos {
+    display: none
+}
+
+#error_label {
+    border: 2px solid red;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #f0f0f0 ;
+    font: bold smaller sans-serif;
+}
+
+.form_layout fieldset {
+    padding:4px 6px 4px 6px;
+    margin-bottom:5px;
+}
+
+.form_layout ul {
+
+}
+
+.form_layout ul li {
+    list-style: none;
+    line-height: 1.2em;
+
+}
+
+.form_layout ul li label {
+    margin-right: 5px;
+    display:block;
+    margin-top:10px;
+    margin-bottom:5px;
+    font-weight: bold;
+}
+
+.form_layout ul li span {
+    margin-right: 5px;
+    display:inline-block;
+
+    font-weight: bold;
+}
+
+.form_layout ul li span.etiqueta {
+    margin-top:15px;
+    margin-bottom:5px;
+}
+
+.form_layout ul li input[type='text'] {
+    margin-bottom:5px;
+}
+
+.form_layout ul li input[type='submit'] {
+    display: block;
+    float: right;
+    margin-right: 5em;
+    margin-top: 20px;
+}
+
+.form_layout ul li input.side_submit {
+    margin:0 0 0 5px;
+    display:inline;
+
+    float:none;
+}
+
+.form_layout .recompensa_campos {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.form_layout .title_form {    
+    font-size: 26px;
+    color: #2daebf;
+    display: block;
+    vertical-align: middle;
+    line-height: 18px;
+    list-style-type: none;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.form_create ul {
+
+}
+
+.form_create ul li {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    vertical-align: middle;
+    line-height: 18px;
+    list-style-type: none;
+}
+
+.form_create ul li label {
+    display: block;
+}
+
+.form_message {
+    margin-bottom: 5px;
+    padding-left:25px;
+}
+
+.form_message span {
+    color: #505050;
+
+
+}
+#budget {
+    clear:both;
+    width: 125px;
+    background: #558FA6;
+    color: white;
+    font-weight: 300;
+    padding-left: 30px;
+    text-align: left;
+    padding-bottom: 5px;
+    list-style-type: none;
+    height:auto;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    background-image: url(../images/Money-Dollar-32.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+#profile li{
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    vertical-align: middle;
+    line-height: 18px;
+    list-style-type: none;
+}
+h3 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #333;
+    height: 35px;
+    width: 100%;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-top-color: #CCC;
+    border-right-color: #CCC;
+    border-bottom-color: #CCC;
+    border-left-color: #CCC;
+    float: left;
+    position: relative;
+    top: 0px;
+}
+#products {
+    width: 350px;
+    float: left;
+    display: block;
+    list-style-type: none;
+    font-size: 16px;
+}
+#products li{
+    display: block;
+    margin-left: -40px;
+    list-style-type: none;
+}
+
+
+.step {    
+    margin-top: 30px;
+    margin-bottom: 20px;
+    clear: both;
+    height:40px;
+    display:inline-block !important;
+
+}
+
+.step a, .step input {
+    color: White !important;
+    height: 28px;
+}
+
+.end_step {
+    clear: both;
+    margin-top: 30px;
+    float:right;
+}
+
+
+.item_producto {
+    padding: 0.5em;
+}
+
+.item_producto li {
+    list-style: none;
+    display: inline-block;
+}
+
+.opciones_productos {
+    float:left;
+}
+
+.opciones_productos li {
+    display: block;
+}
+
+.opciones_productos .product-name {
+    font-weight:bold;
+    font-size:1.1em;
+    line-height: 2em;
+}
+
+.item_producto .product-image {
+    float:left;
+    height:160px;
+    display:block;
+}
+
+#cart {
+    float:right;    
+    padding-bottom: 1em;
+    width: 14em;
+    background: #87CEEB ;
+    border: 1px solid 	#6A5ACD;
+
+}
+
+#cart .title {
+    margin-bottom:0.3em;
+    text-align: center;
+    color: White;
+    margin-left:3.5em;
+}
+
+#cart .item-cart {
+    color: #000080 ;
+    font-size: 0.9em;
+}
+
+#promotion_tab .left-side {
+    float: left;
+    width:350px;
+}
+#promotion_tab .left-side ul {
+    padding-left: 5px !important;
+}
+
+#promotion_tab .left-side ul li {
+    list-style: none;
+}
+
+#promotion_tab .right-side {
+    width:400px;
+    float:right;
+}
+
+
+.item-campaign {
+    display: inline-block;
+    height: 100%;
+}
+
+.item-campaign a {
+    text-decoration: none;
+    border: none;
+    color: black
+}
+
+.item-campaign .left-item-campaign {
+    float: left;
+}
+
+.item-campaign .right-item-campaign {
+    float: left;
+    margin-left: 5px;
+    width:300px;
+    margin-bottom: 10px;
+}
+
+.item-campaign .promote {
+    float:right;
+    margin-right:20px;
+    color:White;
+}
+h5 {
+    font-size: 16px;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: #999;
+    width: 90%;
+}
+/* Estilos para página de Promoción. Estilos vinculados a la hoja de estilo pag_styles.css que controla la paginación*/
+/* Listado de promociones*/
+#prom_prev{
+    width: 60%;
+    min-width: 585px;
+    height: 85px;
+    border-left-color: #C1E7FE;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    border-bottom-color: #C1E7FE;
+}
+#prom_img {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 5px;
+}
+#prom_details {
+    width: 	400px;
+    height: 75px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 5px;
+}
+#prom_title {
+    font-weight: 700;
+    font-size: 18px;
+}
+#prom_desc {
+    font-weight: 200;
+    font-size: 15px;
+}
+#prom_select {
+    width: 75px;
+    height: 75px;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+}
+#prom_btn {
+    margin-top: 0px;
+    color: #FFF;
+    font-weight: 800;
+}
+/* Detalles de Promoción*/
+#detail_prom {
+    width: 300px;
+    min-width: 230px;
+    height: 320px;
+    float: left;
+    /* CSS3 rounded corners */
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    -moz-box-shadow:0 0 6px #111111;
+    -webkit-box-shadow:0 0 6px #111111;
+    box-shadow:0 0 6px #111111;
+    background-color: #F4F4F4;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    padding: 10px;
+}
+#detail_prom_details {
+    width: 90%;
+    height: 100%;
+    float: left;
+}
+#prom_link {
+    font-weight: 200;
+    font-size: 14px;
+    color: #2276BB;
+}
+#details_prom_prev{
+    width: 100%;
+    min-width: 310px;
+    height: 75px;
+}
+#prom_points {
+    font-weight: 200;
+    font-size: 16px;
+}
+/* Detalles de Puntos Promoción*/
+#points_prom {
+    width: 49%;
+    min-width: 310px;
+    height: 95%;
+    float: left;
+}
+#promote_this {
+    clear: both;
+    margin: 0 auto 0 auto;
+    text-align: center;
+}
+
+
+/* Fin Estilos para página de Promoción*/
+/*Inicio estilos para Mis Campañas*/
+/*#mycamps {
+    background-image: ".../images/bg_header.jpg";
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+/*Fin estilos para Mis Campañas*/
+
+.form-fields {
+    float:left;
+    width:20em;
+}
+
+#facebook_feed {
+    float: right;
+}
+
+#create_landing_page label {
+    margin-top: 15px;
+    margin-bottom: 2px ;
+    font-weight: bold;
+
+}
+
+#choose-campaign-cols {
+    width: 45em;
+    margin: 0 auto 0 auto;
+    text-align: center;
+}
+
+#choose-campaign-cols ul {
+
+}
+
+#choose-campaign-cols ul li{
+    list-style: none;
+    display:inline;
+    width: 12em;
+}
+
+.choose-campaign-button {
+    width: 80px;
+    height: 50px;
+    display: inline;
+    margin-right:30px;
+}
+
+#point-choosed {
+    width: 42em;
+    margin: 0 auto 0 auto;
+    font-size: 0.8em;
+}
+
+#point-choosed label {
+    text-align: left;    
+    display: inline;
+}
+
+#point-choosed input {    
+    text-align: left;
+    height: 1.2em;
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+#point-choosed ul li {
+    line-height: 1.1em;
+
+}
+
+#mensaje-post {
+    margin-left: 12em;
+}
+
+#mensaje-post label {
+    display:block;
+}
+
+#left-promo {
+    float: left;
+    margin-left: 2em;
+}
+
+#right-promo {
+    float:right;
+    margin-right: 2em;
+}
+
+.end_step {
+    clear: both;
+    margin-top: 30px;
+    float:right;
+}
+
+.error-message {
+    color: blue;
+    line-height: 1.2em;
+    font-size: 0.9em;
+    display:inline;
+    margin-left:25px;
+}
+/** tooltips**/
+.tooltip {
+    background-color:#000;
+    border:1px solid #fff;
+    padding:10px 15px;
+    width:200px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font-size:16px;
+
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000;
+}
+
+#logo_img {
+    float: right;
+    margin-right: 20em;
+}
+
+.from_box {
+    float:left;
+    display:inline-block;
+    width:400px;
+    margin-top:5px;
+}
+
+.default_head_panel li a {
+    text-decoration: none;
+}
+
+#end_date_checkbox label {
+    display: inline-block !important;
+}
+
+#upload_button {
+    display: inline !important;
+    margin: 0 !important;
+}
+.steps {
+    display: inline !important;
+    float:right;
+}
+
+
+ul#brief_campaign_list  {
+    list-style:none;
+}
+
+ul#brief_campaign_list li {
+    margin-top: 15px;
+}
+
+ul#brief_campaign_list .title {
+    display:block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-style: italic;
+}
+
+#preview_campaign .left_column {
+    float:left;
+}
+
+#preview_campaign .right_column {
+    margin-left: 115px;
+}
+
+#post_form_create {
+    width: 350px;    
+}
+
+#post_submit {
+    color: White !important;
+    float: left;
+    display:block;
+}
+
+#wrapper_new_post {
+    width:450px;
+}
+
+.explain {
+    padding:10px;
+}
+
+
+/*Detalle de campañas*/
+#campaign_details { position: absolute; padding: .2em; width: 230px; overflow: hidden;}
+#campaign_details .ui-dialog-titlebar { padding: .4em 1em; position: relative;  }
+#campaign_details .ui-dialog-title { float: left; margin: .1em 16px .1em 0; }
+#campaign_details .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+#campaign_details .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+#campaign_details .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+#campaign_details .ui-dialog-content { position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+#campaign_details .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+#campaign_details .ui-dialog-buttonpane .ui-dialog-buttonset { float: right; }
+#campaign_details .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
+#campaign_details .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+#popup_container {
+    padding-left:100px;
+}
+
+.letra_chica {
+    font-size: 13px;
+    display:block;
+}
+
+
+#select_publish_hours {
+    display: inline;
+}
+
+.float_right {    
+    margin-left: 5px;
+}
+
+#payment_request_form {
+    width: 300px;
+    margin: 0 auto 0 auto;
+}
+
+#paid_form_submit {
+    text-align: center;    
+}
+
+.instructions_page {
+    width:70%;
+    margin: 40px auto 20px auto;
+
+}
+
+.rounded_box {
+    background-image: url(../images/boxes/box_rounded.png);
+    background-repeat: no-repeat;
+    height:250px;
+    width:350px;
+    margin: 0 auto 0 auto;
+    padding-top:20px;
+}
+
+.buttons_home {
+    display:inline-block;    
+    margin-top:15px;
+    width:100%;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.buttons_home .section_right {
+    float:right;
+}
+
+.panel_notice {
+    border:solid 1px #DEDEDE;
+    background:#EFEFEF;
+    color:#222222;
+    padding: 10px 4px 4px 25px;    
+    text-align:center;
+    width: 360px;
+    float: left;    
+    margin-left: 15px;
+    margin-top: 10px;
+    background:#FFFFCC url(../images/icons/info.png) 2px 10px no-repeat;
+    height: 45px;
+}
+
+ul.mini_panel li {
+    font-family: "Yanone Kaffeesatz Regular";
+    font-size: 20px;
+    color: #333;
+    display: inline-block;
+    padding-left: 5px;
+    list-style-type: none;
+    width: 175px;
+    height: 30px;
+    padding-top: 5px;
+    background-image: url(../images/panel_bck.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    font-weight: 300;
+}
+
+ul.mini_panel li img {
+    vertical-align: middle;
+}
+
+ul.mini_panel li a     {
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size: 18px;
+    color: #333;
+    display: block;
+    vertical-align: middle;
+    line-height: 14px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.popup_form {
+    width:350px;
+    padding:10px;
+
+}
+
+.popup_form fieldset {
+    padding: 10px 20px 10px 5px;
+}
+
+.charts {    
+    margin: 15px auto 20px auto;
+}
+
+.campaign_charts {
+    display:none;
+}
+
+.charts .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.chart_left {
+    float: left;
+    width: 600px;
+    height: 300px;
+}
+
+.chart_right {
+    float:right;
+    width:300px;
+    height: 200px;
+}
+
+.flash_error {
+    clear:both;
+    width: 400px;
+    float: right;
+    background: #FF6347;
+    position: relative;
+    top: 0px;
+    right: 0px;
+    color: white;
+    font-weight: 300;
+    padding-left: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+    list-style-type: none;
+    height:auto;
+    background-image: url(../images/Error-32.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+}
+
+.flash_ok {
+    clear:both;
+    width: 400px;
+    float: right;
+    background: #63a62f;
+    position: relative;
+    top: 0px;
+    right: 0px;
+    color: white;
+    font-weight: 300;
+    padding-left: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+    list-style-type: none;
+    height:auto;
+    background-image: url(../images/Accept-32.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+}

@@ -1,0 +1,13 @@
+  <div id="amount">
+    <h3><%=  t("amount.title") %></h3><br/>
+    <p>
+      <% if current_user.current_money > 0 %>
+        <%=  number_to_currency(current_user.current_money , :unit => "$", :format => "%u%n")%>
+      <% else %>
+        <%=  number_to_currency(0, :unit => "$", :format => "%u%n")%>
+      <% end %>
+    </p>
+
+    <%= render 'payment_requests/button' %>
+
+  </div>

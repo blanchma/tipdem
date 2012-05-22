@@ -1,0 +1,7 @@
+<p>
+  Su campaña <%= @campaign.name %>  se quedo sin fodos.
+  Hasta que no agregue fondos, la misma permanecera inactiva.
+</p>
+<p>
+  Visite <%= link_to "sus campañas", my_campaigns_path(:host => APP_CONFIG["domain"]) %>
+</p>

@@ -1,0 +1,32 @@
+<table width="50%" border="0" align="center" cellpadding="15">
+  <tr>
+    <td bgcolor="#6D8EAD"><table width="600" border="0" align="center" cellpadding="5" cellspacing="0" style="font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:12px">
+        <tr>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#CFCDB4"><a href="http://www.tipdem.com"><img src="http://tipdem.com/images/logo_lc.png" alt="Tipdem" border="0" /></a></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#FFFFFF">Hola <strong><%= @user.username %></strong></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#FFFFFF"><p>Tu cuenta fue aprobada.</p></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#FFFFFF"><p>
+              Ya puedes ingresar a conocer nuestras campañas y promocionar las que más le interesen:
+              <%= link_to "Inicio", user_root_url(:host => APP_CONFIG["domain"]), :target => "_blank" %>
+            </p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p></td>
+        </tr>
+        <tr>
+          <td width="372" bgcolor="#FFFFFF" style="font-size:9px; color:#666"><p>Recuerde agregar esta dirección a sus contactos para evitar ser recibidos como spam.<br />
+              Para consultas o dudas <a href="http://tipdem.com/welcome/contacto">haga clic aquí </a></p></td>
+          <td width="108" bgcolor="#FFFFFF" style="font-size:9px; color:#666">Siguenos también en:<br />
+            <a href="http://on.fb.me/tipdem"><img src="http://tipdem.com/images/fb16.png?1316127582" alt="Facebook" width="16" height="16" border="0" /></a> <a href="http://bit.ly/p0kwOs"><img src="http://tipdem.com/images/tw16.png?1316127582" alt="Twitter" width="16" height="16" border="0" /></a></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>

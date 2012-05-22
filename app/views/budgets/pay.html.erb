@@ -1,0 +1,16 @@
+<div id="campaing" style="width:785px;">
+<h3><%=  t("payment.title") %></h3>
+<br/><br/>
+
+<div>
+  <%= render :file => "campaigns/show"  %>
+</div>
+<br/>
+<p>
+<h4><%=  t("payment.total") %>:</h4><br/> <%= @campaign.budget.total %>
+</p>
+<br/>
+<p>
+  <%= render :partial => "campaigns/dinero_mail_button" %>
+</p>
+</div>

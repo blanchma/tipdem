@@ -1,0 +1,535 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Carme&v2);
+*{
+    /* Universal page reset */
+    margin:0;
+    padding:0;
+}
+body {
+	background-image:url(../images/bck.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+#content {
+	width: 1000px;
+	min-height:600px;!important
+	margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*Header*/
+#content #header {
+	height: 50px;
+	display: inline-block;
+}
+
+#content #header #logo {
+	background-color: #CFCDB4;
+	height: 50px;
+	width: 220px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	float: left;
+	text-align: left;
+}
+#content #header #menu {
+	background-image: url(../images/bck_menu_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	height: 50px;
+	width: 548px;
+	float: left;
+	background-color: #CFCDB4;
+}
+
+#content #header #login, #content #header #login a {
+	background-color: #F90;
+	float: left;
+	height: 50px;
+	width: 220px;
+	font-size: 20px;
+	color: #FFF;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	text-align: left;
+	vertical-align: middle;
+	line-height: 50px;
+	font-weight: 400;
+	text-decoration: none;
+}
+#content #header #login a:hover {
+	text-decoration: underline;
+}
+#content #header #menu .btn {
+	display: inline;
+	float: left;
+	height: 50px;
+	width: 135px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 11px;
+	color: #333;
+	text-align: center;
+	line-height: 50px;
+	font-weight: 400;
+	z-index:20;
+	overflow:hidden;
+}
+#content #header #menu .btnactive {
+	background-color: #CFCDB4;
+	display: inline;
+	float: left;
+	height: auto;
+	width: 135px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 11px;
+	color: #333;
+	text-align: center;
+	line-height: 50px;
+	font-weight: 400;
+	z-index:20;
+	cursor:pointer;
+	background-image: url(../images/bck_menu.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+#content #header #menu .btnactive p{
+	line-height:18px;
+}
+#content #header #menu .btn a, #content #header #menu .btn a:visited, #content #header #menu .btnactive a, #content #header #menu .btnactive a:visited{
+	text-decoration: none;
+	color: #333;
+}
+#content #header #menu .btn a:hover, #content #header #menu .btnactive a:hover{
+	text-decoration: underline;
+	color: #333;
+}
+/*Content*/
+#content #highlights {
+	width: 100%;
+	height: 25px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#content #highlights #text {
+	float: left;
+	height: 218px;
+	width: 238px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 24px;
+	line-height: 30px;
+	color: #333;
+	vertical-align:middle;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 30px;
+	padding-left: 10px;
+}
+#content #detail #desc h1 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: #FFF;
+	background-image: url(../images/bck_blue_corner.png);
+	height: 37px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom:4px;
+	display: inline;
+	padding-right: 15px;
+	margin-bottom: 25px;
+}
+#content #detail #desc h2 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: #FFF;
+	background-image: url(../images/bck_liblue_corner.png);
+	height: 30px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom:4px;
+	display: inline;
+	padding-right: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#content #detail #desc h3 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+	background-image: url(../images/bck_box_title.png);
+	height: 22px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-right: 15px;
+	display: inline;
+}
+#content #detail #campaing h3 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+	background-image: url(../images/bck_box_title.png);
+	height: 22px;
+	width: 238px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 3px;
+}
+#content #detail #campaing h3 a, #content #detail #campaing h3 a:visited, #content #detail #desc h3 a, #content #detail #desc h3 a:visited{
+	text-decoration:none;
+}
+#content #detail #campaing h3 a:hover, #content #detail #desc h3 a:hover {
+	text-decoration:underline;
+}
+#content #detail .btn {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	float: right;
+	height: 20px;
+	width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	text-align: center;
+	padding-top: 5px;
+}
+#content #detail .btn a:link{
+	color: #333;
+	text-decoration: none;
+}
+#content #detail .btn a:hover{
+	text-decoration: underline;
+}
+#content #detail .btn a:visited{
+	color: #333;
+	text-decoration: none;
+}
+#content #detail #desc #promotor #text, #content #detail #desc #creator #text {
+	height: 275px;
+}
+#content #detail #campaing #text {
+	min-height: 73px;
+	max-height: 233px;
+}
+/*Latest Prom Ticker*/
+#content #detail #campaing #text #latest #latest_prom {
+	font-size: 11px;
+	color: #333;
+	float: left;
+	min-height: 40px;
+	max-height: 200px;
+	width: 243px;
+	margin-top: 5px;
+	margin-left: 5px;
+	overflow: hidden;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color:#FFF;
+}
+#content #detail #campaing #text #latest #latest_prom .mask { /* that serves as a mask. so you get a sort of padding both left and right */
+	position: relative;
+	left: 5px;
+	top: 0px;
+	width: 250px;
+	overflow: hidden;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker { /* that's your list */
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	overflow: hidden;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker li {
+	float: left; /* important: display inline gives incorrect results when you check for elem's width */
+	display:block;
+	margin-bottom: 2;
+	padding: 0;
+	width: 97%;
+	height:40px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #999;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker a {
+	white-space: nowrap;
+	padding: 0;
+	color: #333;
+	margin-top: 0;
+	margin-right: 0px;
+	margin-bottom: 0;
+	margin-left: 0;
+} 
+#content #detail #campaing #text #latest #latest_prom ul.newsticker a:hover {
+	color: #333;
+} 
+#content #detail #campaing #text #latest #latest_prom ul.newsticker span {
+	margin-top: 0;
+	margin-right: 2px;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+.savenext {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #FFF;
+	height: 25px;
+	width: 150px;
+	background-image: url(../images/bck_liblue_corner.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	cursor: pointer;
+}
+/*End*/
+.msg_list {
+margin: 0px;
+padding: 0px;
+}
+.msg_head {
+cursor: pointer;
+position: relative;
+margin:1px;
+}
+.msg_body {
+	background-color:#E5E5E5;
+}
+#content #highlights #graph {
+	float: left;
+	height: 250px;
+	width: 750px;
+}
+#content #detail {
+	width: 100%;
+	height: auto;
+}
+#content #detail #desc {
+	float: left;
+	width: 700px;
+	margin-right:50px;
+	min-height: 500px;
+	height: inherit;
+}
+#content #detail #desc p{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.high{
+	font-size: 12px;
+	font-weight: bold;
+	color: #1F3447;	
+}
+#content #detail #register {
+	float: left;
+	height: 35px;
+	width: 240px;
+	background-image: url(../images/bck_dorange_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 25px;
+	font-weight: 400;
+	color: #FFF;
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-top: 5px;
+}
+#content #detail #register a, #content #detail #register a:visited{
+	color: #FFF;
+	text-decoration: none;
+}
+#content #detail #register a:hover {
+	text-decoration:underline;
+}
+#content #detail #campaing {
+	float: left;
+	min-height: 88px;
+	max-height: 258px;
+	width: 248px;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-top: 2px;
+}
+#content #detail #desc #creator p, #content #detail #desc #promotor p {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 16px;
+	font-weight: 400;
+	color: #333;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#content #detail #desc #promotor {
+	float: left;
+	height: 300px;
+	width: 370px;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-right:2px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#content #detail #desc #promotor #prom {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	color: #FFF;
+	font-weight: 400;
+	padding-right: 20px;
+	width: 175px;
+	padding-left: 10px;
+	height: 35px;
+	font-size: 25px;
+	padding-top: 5px;
+	background-image: url(../images/bck_blue_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+#content #detail #desc #creator {
+	float: left;
+	height: 300px;
+	width: 370px;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-right:2px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#content #detail #desc #creator #camp {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	color: #FFF;
+	font-weight: 400;
+	padding-right: 20px;
+	width: 175px;
+	padding-left: 10px;
+	height: 35px;
+	font-size: 25px;
+	padding-top: 5px;
+	background-image: url(../images/bck_liblue_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+/*Footer*/
+#content #footer {
+	height: 150px;
+	width: 100%;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #999;
+	border-right-color: #999;
+	border-left-color: #999;
+	border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-ms-border-radius-topright: 2px;
+	-webkit-border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	-ms-border-radius-topleft: 2px;
+	-webkit-border-top-left-radius: 2px;
+	float:left;
+}
+#content #footer a {
+	text-decoration: none;
+}
+#content #footer a:hover {
+	text-decoration: underline;
+}
+#content #footer #mapa {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+	float: left;
+	height: 115px;
+	width: 210px;
+	padding-top: 10px;
+	padding-left: 10px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #CCC;
+}
+#content #footer #mapa a:hover, #content #footer #social a:hover{
+	color: #333;
+	text-decoration: underline;
+}
+#content #footer #social a, #content #footer #social:visited, #content #footer #mapa a:visited, #content #footer #mapa a {
+	color: #333;
+	text-decoration: none;
+}
+#content #footer #social {
+	float: left;
+	height: 115px;
+	width: 327px;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+}
+#content #footer #social #twat {
+	height: 50px;
+	width: 95%;
+	border: 1px solid #999;
+	background-color: #FFF;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+}
+#content #footer #legal {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/bck_legal.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	float: left;
+	height: 20px;
+	width: 1000px;
+	padding-top: 5px;
+	padding-left: 10px;
+}

@@ -1,0 +1,10 @@
+<div id="campaing" style="width:785px;">
+
+  <h3><%=  t("paystatus.title") %> </h3>
+  <br/><br/>
+<%=  t("paystatus.errortitle") %> <strong><%= @campaign.name %></strong>
+  <%=  t("paystatus.errortext") %>
+</div>
+<script type="tetext/javascript">
+  setTimeout("document.location.href='<%= my_campaigns_path %>', 3000);
+</script>

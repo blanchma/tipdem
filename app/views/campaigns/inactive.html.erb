@@ -1,0 +1,69 @@
+<div id="campaing" style="width:785px;">
+<h3>Mis Campañas Inactivas</h3>
+<br /><br />
+<table class="tabla" border="0" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <%= content_tag :th, "Campaña" , :alt => "tooltip",:title => "Nombre de la campaña" %>
+      <%= content_tag :th, "Tipo", :alt => "tooltip",:title => "Tipo de la campaña" %>
+      <%= content_tag :th, "Estado" , :alt => "tooltip",:title => "Monto disponible por los incentivos a los promotores que se suman a la campaña" %>
+      <%= content_tag :th, "Clicks" , :alt => "tooltip",:title => "Número total de accesos/clics a la landing page de la campaña" %>
+      <%= content_tag :th, "Hits" , :alt => "tooltip",:title => "Número total de accesos/hits a la url de la campaña" %>
+      <%= content_tag :th, "Referidos" , :alt => "tooltip",:title => "Número total de referidos obtenidos mediante la promoción de la campaña" %>
+      <%= content_tag :th, "Posts" , :alt => "tooltip",:title => "Número de posteos en las redes sociales hablitidas para la promoción de la campaña" %>
+      <%= content_tag :th, "Dinero disponible" , :alt => "tooltip",:title => "Monto consumido por los incentivos a los promotores que se suman a la campaña" %>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody id="mycamps">
+    <% if !@non_active_campaigns.nil? %>
+      <% for campaign in @non_active_campaigns %>
+        <tr id="row_<%= campaign.id %>"style="border-bottom:solid; border-bottom-width: 1px; border-bottom-color: #09F;">
+          <td> <%= raw campaign.name %> </td>
+          <% if  campaign.mode == CampaignMode::PayPerClick %>
+            <td>PPC</td>
+          <% elsif  campaign.mode == CampaignMode::PayPerHit %>
+            <td>PPH</td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td> <%= campaign.status %> </td>
+          <td>  <%= campaign.landing_page_hits.count %> </td>
+          <td>  <%= campaign.client_page_hits.count %> </td>
+          <td>  <%= campaign.chains.count %> </td>
+          <td>  <%= campaign.posts.published.count %> </td>
+          <td>  <%= number_to_currency(campaign.budget.try(:current), :unit => "$", :format => "%u%n") %> </td>
+
+          <td colspan="3">
+            <% if campaign.editable?  %>
+              <%=  link_to image_tag("Page-Edit.png", :title => "Editar campaña"), edit_campaign_path(campaign.id) %>
+            <% else %>
+              <%=  link_to image_tag("Page-Edit.png", :title => "Completar campaña"), new_campaign_path(:id => campaign.id) %>
+            <% end %>
+
+            <% if campaign.status == CampaignStatus::WaitingForPay %>
+              <%= link_to image_tag("ico_dinero_mail_16.jpg", :title => "Abonar presupuesto"), pay_campaign_budget_path(:campaign_id => campaign)  %>
+            <% end %>
+
+            <%= link_to image_tag("Delete-16.png", :title => "Borrar campaña"),"#", :onclick => "openRemoveCampaign(#{campaign.id})"  %>
+
+
+            <a style="text-decoration:none; font-size:26px; " href="#" title="More info" onclick="$('#more_<%=  campaign.id %>').toggle();">
+              <%= image_tag "Chart-Column.png", :title => "Más Estadísticas" %>
+            </a>
+          </td>
+        </tr>
+        <tr><td colspan="10">
+
+            <div id="more_<%=  campaign.id %>" style="display:none">
+              <%= render :partial => "campaign_data", :locals => {:campaign => campaign } %>
+            </div>
+          </td>
+        </tr>
+
+
+      <% end %>
+    <% end %>
+  </tbody >
+</table>
+</div>

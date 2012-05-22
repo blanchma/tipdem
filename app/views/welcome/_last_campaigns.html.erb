@@ -1,0 +1,22 @@
+<div id="campaing">
+  <div id="text">
+    <h3><%= t "last_campaigns.last_published" %> </h3>
+    <div id="latest">
+      <div id="latest_prom">
+        <ul id="ticker01" class="newsticker">
+          <% for campaign in last_campaigns  %>
+            <li>
+             <% link_to campaign.link do  %>
+               <span><%= image_tag campaign.logo.url(:thumb), :alt => campaign.name, :width => "40", :height => "40", :align => "absmiddle" %></span>
+             <% end %>
+              <% link_to campaign.link do  %>
+                <%= campaign.name %>
+               <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="btn"><%= link_to t("last_campaigns.see_more"), new_user_session_path, :class => "login_btn" %></div>
+</div>

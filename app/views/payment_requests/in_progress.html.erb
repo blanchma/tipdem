@@ -1,0 +1,19 @@
+<div id="campaing" style="width:785px;">
+  <h3>Solicitud de pago</h3>
+
+  <br/>
+
+  <div class="payment_new_container">
+
+
+    <p>Usted ya creo una solicitud de pago el día <%= @payment_request.created_at %> por la suma de  
+      <b><%= number_to_currency(@payment_request.requested_money , :unit => "$", :format => "%u%n")%></b>. </p>
+
+    <p>Actualmente, esa solicitud se encuentra: <b> <%= t @payment_request.status %></b> </p>
+
+    <br/>
+
+    <p>Ir a <%= link_to "Mis Solicitudes de Pago", payment_requests_path %>
+    </p>
+  </div>
+</div>

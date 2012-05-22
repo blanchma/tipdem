@@ -1,0 +1,35 @@
+
+<% unless products.nil? || products.empty? %>
+  <table id="horizontal-min">
+    <thead>
+      <tr>
+        <th scope="col"> # </th>
+        <th scope="col"> Prize </th>
+        <th scope="col"> Points </th>
+        <th scope="col"> Cost </th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.each do |key,value| %>
+        <tr>
+          <td><%= value[:quantity] %></td>
+          <td><%= value[:name]     %></td>
+          <td><%= value[:number]   %></td>
+          <td><%= value[:cost].to_i *  value[:quantity].to_i     %></td>
+          <td>
+            <%= link_to_remote "Remove",
+              :url =>{:action => :remove_from_cart, :product_id => key },
+              :html => {:class => ""} %>
+          </td>
+        </tr>
+
+      <% end %>
+        <tr style="color:black;">
+          <td colspan="4" style="text-align: right;">Total:</td>
+          <td style=""><%= products.values.collect!.each {|value| value[:cost].to_i * value[:quantity].to_i }.inject {|s,v| s += v} %> </td>
+        </tr>
+
+    </tbody>
+  </table>
+<% end %>

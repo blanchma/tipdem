@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title><%= @page_title or 'tipdem' %></title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
+    <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
+    <%= stylesheet_link_tag 'panel_style'  %>
+    <%= csrf_meta_tag %>
+
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <div id="mask"></div>
+    <div id="content" >
+      <div id="header">
+        <div id="logo"><%=link_to(image_tag('logo_lc.png', :size => '200x50', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %></div>
+        <div id="menu"></div>
+        <div id="login">
+          <div id="face">
+            <%= image_tag "face.png", :width => "50",  :height => "50" %>
+          </div>
+          <div id="connected">
+            <p><strong><%=  t("header.welcome") %> <%= current_user.username || current_user.email %></strong></p>
+            <p><% link_to destroy_user_session_path do %><%=  t("header.close") %><% end %></p>
+          </div>
+          <div id="linkpanel"><%=link_to(image_tag('panel_help.png', :size => '25x25', :border=> '0'), {:controller=> 'welcome', :action => 'faqs'}) %><%=link_to(image_tag('panel_contact.png', :size => '25x25', :border=> '0'), {:controller=> 'welcome', :action => 'contacto'}) %></div>
+        </div>
+      </div>
+      <div id="head">
+        <% if @panel_notice %>
+          <div class="panel_notice">
+            <%= @panel_notice.message %>
+          </div>
+        <% end %>
+      </div>
+      <div id="highlights">
+        <% if flash[:error] %>
+          <div class="flash_error"><%= flash[:error] %></div>
+          <% end %>
+          <% if flash[:notice] %>
+          <div class="flash_notice"><%= flash[:notice] %></div>
+          <% end %>
+          <% if flash[:alert] %>
+          <div class="flash_alert"><%= flash[:alert] %></div>
+        <% end %>
+      </div>
+      <div id="detail">
+        <div id="desc">
+          <% link_to :controller => "panel", :action => "home" do %><div class="botn" id="inicio" ><%=  t("menu.home") %></div><% end %>
+          <% link_to new_campaign_path, :method => :get do %><div class="botn" style="height:35px; padding-top:15px; background-color:#FF9900; background-image:none;"><%=  t("menu.create") %></div><% end %>
+          <div class="botn" id="root"><%=  t("menu.mycamp") %></div>
+          <div id="tree" style="margin-bottom: 5px;">
+            <% link_to my_campaigns_path do %><div class="sbtn"><%=  t("menu.active") %></div><% end %>
+            <% link_to inactive_campaigns_path do %><div class="sbtn"><%=  t("menu.inactive") %></div><% end %>
+          </div>
+          <% link_to  promotions_path do %><div class="botn" id="misprom"><%=  t("menu.myprom") %></div><% end %>
+          <div class="botn" id="root2"><%=  t("menu.myprof") %></div>
+          <div id="tree2">
+            <% link_to  :controller => "users", :action => "edit" do %><div class="sbtn" id="datos"><%=  t("menu.mydata") %></div><% end %>
+            <% link_to edit_user_categories_path(current_user) do %><div class="sbtn" id="datos"><%=  t("menu.mycategories") %></div><% end %>
+            <% link_to my_accounts_path do %><div class="sbtn"><%=  t("menu.mynetworks") %></div><% end %>
+            <% link_to payment_requests_path do %><div class="sbtn"><%=  t("menu.mypays") %></div><% end %>
+          </div>
+        </div>
+
+
+        <%= yield :layout %>
+
+
+      </div>
+
+      <div id="footer">
+        <div id="mapa"></div>
+        <div id="legal">© Copyright 2011 - Tipdem - All rights reserved - Terms of use - Legal disclaimer</div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      //hide the all of the element with class msg_body
+      $("#tree, #tree2").hide();
+    </script>
+
+
+    <%= get_time_zone unless current_user.time_zone && current_user.dst %>
+    <%= javascript_include_tag 'jquery.tools.min.js', 'application'  %>
+    <%= yield :bottom %>
+
+    <script type="text/javascript">
+
+      $(document).ready(function()  {
+       
+        //toggle the componenet with class msg_body
+        $("#root, #root2").click(function()
+        {
+          $(this).next("#tree, #tree2").slideToggle(300);
+        });
+
+ 
+        // select all desired input fields and attach tooltips to them
+        $("#campaing img[title], #point-choosed img[title], #create_landing_page img[title], .tabla img[title], .tabla th[alt]").tooltip({
+          // place tooltip on the right edge
+          position: "center right",
+          // a little tweaking of the position
+          offset: [-2, 10],
+          // use the built-in fadeIn/fadeOut effect
+          effect: "fade",
+          // custom opacity setting
+          opacity: 0.7
+        });
+        
+      });
+    </script>
+
+  </body>  
+</html>

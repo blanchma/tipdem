@@ -1,0 +1,173 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.formatCurrency-1.4.0.min' %>
+  <%= javascript_include_tag 'jquery.formatCurrency.es-AR' %>
+<% end %>
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("create.step.three.title") %></h3>
+      <ul id="pasos3">
+    <li id="pasoapaso" style="width:75px;"><%=  t("create.steps.five") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.four") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.three") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.two") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.one") %></li>
+  </ul>
+  <br /><br />
+
+  <% form_for [@campaign,@budget], :url => campaign_budget_path(@campaign), :html => {:method => :post, :id => "create_budget_form"}  do |f| %>
+    <div style="width:100%; float: left; height: 371px">
+      <%= hidden_field_tag "save_and_next", "yes" %>
+
+      <div id="square">
+        <ul>
+          <li>
+            <h4><%= f.label :total, t("create.step.three.total") %></h4><br /><br/>
+            <%= f.text_field :total, :class => "currency", :size => 15 %>
+            <div id="budget_explain" class="explain"><br/>
+              <%=  t("create.step.three.totaldesc") %>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="square">
+        <ul>
+          <li>
+            <h4><%= label_tag :mode, t("create.step.three.type") %></h4><br /><br/>
+            <%= select :budget, :mode, "<option #{'selected=\"selected\"' if @budget.mode == CampaignMode::PayPerClick} value='#{CampaignMode::PayPerClick}'>CPC</option>
+  <option #{'selected=\"selected\"' if @budget.mode == CampaignMode::PayPerHit} value='#{CampaignMode::PayPerHit}'>CPM</option>", :id => "mode_options" %>
+
+            <div id="pay_per_click_explain" class="explain"><br/>
+              <%=  t("create.step.three.cpcdesc") %>
+            </div>
+            <div id="pay_per_hit_explain" class="explain" style="display: none;"><br/>
+              <%=  t("create.step.three.cpmdesc") %>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="square">
+        <ul>
+          <li id="pay_per_click_fields">
+            <h4><%= f.label :pay_per_landing_page_hit, t("create.step.three.maxcpc") %></h4><br /><br/>
+            <%= f.text_field :pay_per_landing_page_hit, :class => "currency", :size => 15 %><br/><br/>
+            <h4><%= f.label :number_of_clicks, t("create.step.three.count") %></h4><br />
+        <div id="number_of_clicks"></>
+        </div>
+          </li>
+          <li id="pay_per_hit_fields">
+            <h4><%= f.label :pay_per_client_hit, t("create.step.three.maxcpm") %></h4><br /><br/>
+            <%= f.text_field :pay_per_client_page_hit, :class => "currency", :size => 15 %>
+          </li>
+          <li>
+            <%= f.submit "", :style => "display:none", :id => "submit_budget_form"  %>
+          </li>
+        </ul><br/>
+      </div>
+      <div class="step" style="margin-top: 116px;">
+        <% if @budget.errors.size > 0 %>
+          <div class="flash_error" id="first_step_error">
+            <%= error_messages_for(:budget, :header_message => nil, :message => nil).html_safe %>
+          </div>
+        <% end %>
+        <%= link_to t("create.back"), step_categories_path(@campaign.id), :class => "back" %>
+      <%= f.submit t("create.save"), :class=> "saved", :onclick => "$('#save_and_next').val('no')" %>
+      <%= f.submit t("create.savenext"), :class=> "savenext", :onclick => "$('#save_and_next').val('yes')"  %>
+      <% if  @budget.valid? %>
+        <%= link_to t("create.next"), step_landing_path(:campaign_id => @campaign.id), :class => "next" %>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+
+
+  $("#budget_total").keyup(showClicksNumber);
+  $("#budget_pay_per_landing_page_hit").keyup(showClicksNumber);
+
+  function showClicksNumber (event) {
+    var total= $("#budget_total").asNumber({region: "es-AR"});//$("#budget_total").val();
+    //total = parseFloat(checkDecimal(total.replace("$", "")));
+    var unit= $("#budget_pay_per_landing_page_hit").asNumber({region: "es-AR"});//$("#budget_pay_per_landing_page_hit").val();
+    //unit = parseFloat(checkDecimal(unit.replace("$", "")));
+    var clicks =  total / unit;
+    if (isNaN(clicks) || clicks == Infinity || clicks < 0) {
+      clicks = 0
+    }
+    clicks = Math.floor(clicks);
+    $("#number_of_clicks").html(clicks);
+    
+  }
+  
+  function checkDecimal (number) {
+    if (number.search(',') != -1) {
+      return number.replace(",", "");
+    }
+    else {
+      return number;
+    }
+  }
+
+  
+  
+  function showModeExplain (event) {
+    if (event) {
+      vel="slow";
+    }
+    else {
+      vel=null;
+    }
+
+    var option = $('#budget_mode :selected');
+    switch (option.val()) {
+      case "<%= CampaignMode::PayPerHit %>":
+          $("#pay_per_hit_explain").show(vel);
+        $("#pay_per_hit_fields").show(vel);
+        $("#pay_per_click_explain").hide(vel);
+        $("#pay_per_click_fields").hide(vel);
+        break;
+      case "<%= CampaignMode::PayPerClick %>":
+          $("#pay_per_click_explain").show(vel);
+        $("#pay_per_click_fields").show(vel);
+        $("#pay_per_hit_explain").hide(vel);
+        $("#pay_per_hit_fields").hide(vel);
+        break;
+      default:
+
+        break;
+      }
+    }
+
+    $(document).ready(function() {
+      $('.currency').formatCurrency({region: "es-AR"});
+
+      $('.currency').blur(function() {
+        $(this).formatCurrency({region: "es-AR", colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: 2 });
+      })
+      .keyup(function(e) {
+        var e = window.event || e;
+        var keyUnicode = e.charCode || e.keyCode;
+        if (e !== undefined) {
+          switch (keyUnicode) {
+            case 16: break; // Shift
+            case 27: this.value = ''; break; // Esc: clear entry
+            case 35: break; // End
+            case 36: break; // Home
+            case 37: break; // cursor left
+            case 38: break; // cursor up
+            case 39: break; // cursor right
+            case 40: break; // cursor down
+            case 78: break; // N (Opera 9.63+ maps the "." from the number key section to the "N" key too!) (See: http://unixpapa.com/js/key.html search for ". Del")
+            case 110: break; // . number block (Opera 9.63+ maps the "." from the number block to the "N" key (78) !!!)
+            case 190: break; // .
+            default: $(this).formatCurrency({region: "es-AR", colorize: true, negativeFormat: '-%s%n', roundToDecimalPlace: -1, eventOnDecimalsEntered: true });
+          }
+        }
+      });
+
+      $('#budget_mode').change(showModeExplain);
+      showModeExplain();
+      showClicksNumber();
+
+    });
+</script>

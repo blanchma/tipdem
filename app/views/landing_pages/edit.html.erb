@@ -1,0 +1,259 @@
+<% content_for(:head) do %>
+  <%= javascript_include_tag 'tiny_mce/tiny_mce.js' %>
+<% end %>
+
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("create.edit.land.title") %></h3>
+  <br /><br />
+
+  <% form_for [@campaign,@landing_page], :url => campaign_landing_page_path, :html => {:id => "landing_page_form", :multipart => true, :method => :put } do |f| %>
+
+    
+<div style="width:49%; height: 371px; float: left">
+
+      <ul>
+        <li class="form_message" id="landing_form_message">
+        </li>
+        <h4><%=  f.label :title, t("create.edit.land.maintitle") %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.land.titlet") %></h4>
+        <li><%=  f.text_field :title, :size => 40, :id => "title_field" %></li><br />
+
+        <h4><%=  f.label :sub_title, t("create.edit.land.subtitle") %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.land.subtitlet") %></h4>
+        <li><%=  f.text_field :sub_title, :size => 40, :id => "sub_title_field" %></li><br/>
+
+
+        <h4><%= f.label :main_image, t("create.edit.land.mainimage") %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.land.timg") %></h4>
+        <li><%=  t("create.edit.land.imgtext") %><br />
+          <%= f.select :main_image_source, options_for_select(ImageSource.all.map {|p| [(t ImageSource.get(p)) , ImageSource.get(p) ] }, [(t @landing_page.main_image_source), @landing_page.main_image_source] ) %>
+
+          <br/>
+          <div id="from_file" class="from_box">
+            <span><b><%=  t("create.edit.land.imgtype") %>:</b></span>
+            <%= f.file_field :main_image  %>
+
+            <%= f.submit t("create.edit.land.imgload"), :id => "upload_button", :onclick => "$('#save_and_next').val('no')" %>
+
+            <!-- span id="campaign_logo_file_name" -->
+            <span id="landing_page_main_image_file_size"/>
+            <span id="landing_page_main_image_file_type"/>
+
+          </div>
+          <div id="from_url" style="display:none" class="from_box" >
+            <span><b>URL:</b></span>
+            <%= f.text_field :main_image_url, :id => "main_image_url_field", :style => "width: 350px", :size => nil %>
+          </div></li><br />
+        <h4><%=  f.label :owner_url, t("create.edit.land.web"), :style => "display: inline-block" %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.land.tweb") %></h4>
+        <li><%=  f.text_field :owner_url, :size => 40, :id => "owner_url_field" %><span id="warn_url"></span></li>
+
+      </ul>
+  <br/>
+           <!-- #dialog is the id of a DIV defined in the code below -->
+    <a href="#dialog" name="modal"><h4><%=  t("create.edit.land.prev") %></h4></a><br/><br/>
+    <div id="boxes">
+
+
+    <!-- #customize your modal window here -->
+
+    <div id="dialog" class="window">
+      <!-- close button is defined as close class -->
+        <a href="#" class="close" style="float:right;"><%= image_tag 'no.png', :width => '20', :border => '0' %></a>
+        <%= render 'template' %>
+      
+        
+
+    </div>
+
+
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->
+    </div>
+</div>
+
+    <div style="width:49%; float: left;"> 
+      <h4><%=  f.label :body, t("create.edit.land.main"), :style => "display: inline-block" %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.land.tmain")  %></h4>
+      <%=  f.text_area :body, :cols => 45, :rows => 20, :class => "mce-editor" %>
+    </div>
+
+
+    <div class="step">
+        <% if @landing_page.errors.size > 0  %>
+    <div class="flash_error" id="first_step_error">
+      <%= errors_for(@landing_page).html_safe %>
+    </div>
+  <% end %>
+      <%= link_to t("create.edit.land.edit"), edit_campaign_path(@campaign), :class => "back" %>
+      <%= f.submit t("create.save"), :class=> "savenext" %>
+
+
+    </div>
+
+
+<% end  %>
+</div>
+
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+    $('#landing_page_main_image_source').change(showMainImageSourceUploader );
+    showMainImageSourceUploader();
+
+    $('#title_field').keyup(function(event) {
+      $('#title_landing').html($('#title_field').val() );
+    });
+
+    $('#sub_title_field').keyup(function(event) {
+      $('#sub_title_landing').html($('#sub_title_field').val() );
+    });
+
+
+
+    $('#main_image_url_field').change(function(event) {
+      $("#image_landing").attr("src", $('#main_image_url_field').val() );
+    });
+
+    $('#owner_url_field').keyup(function(event) {
+
+      if( this.value.indexOf('http://') !== 0 && this.value.indexOf('https://') !== 0 ){
+        $("#warn_url").html("Introduzca http:// o https:// al inicio de la URL");
+      }
+      else {
+        $("#warn_url").html("");
+      }
+    });
+  });
+
+  function showMainImageSourceUploader () {
+    var option = $('#landing_page_main_image_source :selected');
+    switch (option.val()) {
+      case "image_source.file":
+        $("#from_file").show("slow");
+        $("#from_url").hide("fast");
+       // $("#main_image_url").attr("value","")
+        break;
+      case "image_source.url":
+        $("#from_url").show("slow");
+        $("#from_file").hide("fast");
+        $("#main_image_logo").attr("value","")
+        $("image_landing").attr("height","300");
+        $("image_landing").attr("width","300");
+        break;
+      default:
+        $("#from_url").hide("fast");
+        $("#from_file").hide("fast");
+        $("#main_image").attr("value","");
+      //  $("#main_image_url").attr("value","");
+        $("#image_landing").attr("src", $("#campaign_logo_url").val() );
+        break;
+    }
+  }
+
+  tinyMCE.init({
+    mode : "textareas",
+    theme : "advanced",
+    convert_urls : false,
+    plugins : "paste",
+    paste_text_sticky : true,
+    setup : function(ed) {
+      ed.onInit.add(function(ed) {
+        ed.pasteAsPlainText = true;
+      });
+    },
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_buttons1 : "mymenubutton,bold,italic,underline,separator,outdent,indent,bullist,numlist,undo,redo",
+    theme_advanced_buttons2 : "",
+    theme_advanced_buttons3 : "",
+    onchange_callback : "updateBody",
+    handle_event_callback : "myHandleEvent",
+    theme_advanced_disable: "image"
+  });
+
+  function myHandleEvent(e) {
+    if(e.type == 'keydown' || e.type == 'mouseover') {
+      $("#body_landing").html(e.srcElement.innerHTML);
+    }
+
+    return true; // Continue handling
+  }
+  function updateBody(inst) {
+    $("#landing_page_body").text(inst.getBody().innerHTML);
+    $("#body_landing").html(inst.getBody().innerHTML);
+
+  }
+
+</script>
+  <script>
+
+$(document).ready(function() {
+
+    //select all the a tag with name equal to modal
+    $('a[name=modal]').click(function(e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        //Get the A tag
+        var id = $(this).attr('href');
+
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+        //transition effect
+        $('#mask').fadeIn(1000);
+        $('#mask').fadeTo("slow",0.5);
+
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //Set the popup window to center
+        $(id).css('top',  winH/2-$(id).height()/2);
+        $(id).css('left', winW/2-$(id).width()/2);
+
+        //transition effect
+        $(id).fadeIn(2000);
+
+    });
+
+    //if close button is clicked
+    $('.window .close').click(function (e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        $('#mask, .window').hide();
+    });
+
+    //if mask is clicked
+    $('#mask').click(function () {
+        $(this).hide();
+        $('.window').hide();
+    });
+
+});
+
+</script>
+<style>
+
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#CFCDB4;
+  display:none;
+}
+
+#boxes .window {
+  position:absolute;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:0px;
+}
+
+
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:1000px;
+  height:600px;
+}
+</style>

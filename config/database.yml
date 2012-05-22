@@ -1,0 +1,41 @@
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: livechains_dev
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+
+
+
+test: &test
+  adapter: mysql2
+  encoding: utf8
+  database: livechains_test
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+
+stage:
+  adapter: mysql2
+  encoding: utf8
+  database: stage_livechains
+  pool: 5
+  username: stage_root
+  password: gauchogaucho
+  host: localhost
+  reconnect: true
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: gauchede_tipdem
+  username: gauchede_root
+  password: pingopingo1917
+  host: localhost
+  pool: 5
+  reconnect: true
+

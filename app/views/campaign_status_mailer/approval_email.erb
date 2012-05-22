@@ -1,0 +1,9 @@
+<p>
+  Su campaña <%= @campaign.name %>  fue aprobada.
+</p>
+<p>
+  Visite nuestra página para <%= link_to "promocionarla", promote_campaign_url(@campaign.id, :host => APP_CONFIG["domain"]) %>.
+</p>
+<p>
+  Visite su  <%= link_to "página promocional", @campaign.link  %>.
+</p>

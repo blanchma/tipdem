@@ -1,0 +1,117 @@
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("create.edit.camp.title") %></h3>
+  <br /><br />
+
+
+  <%  form_for @campaign, :html => { :method => :put, :multipart => true } do |f| %>
+
+    <%= errors_for(@campaign, "Opps, unable to add new user").html_safe %>
+
+    <div style="width:49%; float: left">
+      <ul>
+        <h4><%= f.label :name, t("create.edit.camp.name") , :size => "30"%> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tname") %></h4>
+        <li> <%= f.text_field :name, :size => "30"  %></li><br />
+
+        <h4><%= f.label :logo, t("create.edit.camp.logo") %> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tlogo") %></h4>
+        <li>
+          <span><%=  t("create.edit.camp.logotext") %></span>
+          <%= select_tag :logo_source, t("create.edit.camp.logovalue") %>
+          <div id="from_file" class="from_box">
+            <span><b><%=  t("create.edit.camp.logotype") %>:</b><%= f.file_field :logo  %></span>
+
+            <!-- span id="campaign_logo_file_name" -->
+            <span id="campaign_logo_file_size"/>
+            <span id="campaign_logo_file_type"/>
+          </div>
+          <div id="from_url" style="display:none" class="from_box" >
+            <span><b>URL:</b><%= f.text_field :logo_url, :size => 50 %></span>
+          </div>
+
+          <div id="logo_img">
+            <%= image_tag @campaign.logo.url, :height => 50, :width => 50 unless @campaign.new_record?  %>
+          </div>
+        </li><br />
+
+        <br style="clear:both"/>
+
+        <h4><%= f.label :begin_date, t("create.edit.camp.begin") , :size => "30"%> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tbegin")  %></h4>
+        <li>
+          <%= f.date_select :begin_date  %>
+        </li><br />
+        <li>
+          <div id="end_date_checkbox">
+            <h4><%= f.label :end_date, t("create.edit.camp.end") , :size => "30"%><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tend") %></h4>
+            (<%=  t("create.edit.camp.endyes") %> <%= f.check_box :have_end_date, :id => "have_end_date" %> )
+
+          </div>
+          <div id="select_end_date" style="display:none">
+
+            <%= f.date_select :end_date, :default => Time.now + 360 * 72  %>
+          </div>
+        </li><br />
+      </ul>
+
+    </div>
+    <div style="width:49%; height: 371px; float: left">
+      <ul>
+        <h4> <%= f.label :description, t("create.edit.camp.desc") %> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tdesc") %></h4>
+        <li><%= f.text_area :description, :cols => 30 , :rows => 5 %><br />
+        <div id="contador"><%=  t("create.edit.camp.have") %> <strong><span id="description_chars"></span></strong> <%=  t("create.edit.camp.left") %>.</div>
+        </li><br /><br />
+        <h4> <%= f.label :default_message, t("create.edit.camp.msg") %> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.edit.camp.tmsg") %></h4>
+        <li><%= f.text_area :default_message, :cols => 30 , :rows => 5  %><br/>
+          <div id="contador"><%=  t("create.edit.camp.have") %> <strong><span id="default_message_chars"></span></strong> <%=  t("create.edit.camp.left") %>.</div>
+
+        </li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <%= link_to t("create.edit.camp.edit"), edit_campaign_landing_page_path( @campaign.id), :class=> "back" %>
+      <%= f.submit t("create.save"), :class=> "savenext" %>
+
+    </div>
+
+
+  <% end %>
+
+</div>
+
+
+
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+    $('#logo_source').change(showLogoSourceUploader);
+    $('#have_end_date').change(showSelectEndDate);
+
+    $("#campaign_description").limit(210, "#description_chars")
+    $("#campaign_default_message").limit(120, "#default_message_chars")
+  });
+
+  function showSelectEndDate(event) {
+    $("#select_end_date").toggle('clip');
+  }
+
+  function showLogoSourceUploader () {
+    var option = $('#logo_source :selected');
+    switch (parseInt(option.val())) {
+      case 1:
+        $("#from_file").show("slow");
+        $("#from_url").hide("fast");
+        $("#campaign_logo_url").attr("value","")
+        break;
+      case 2:
+        $("#from_url").show("slow");
+        $("#from_file").hide("fast");
+        $("#campaign_logo").attr("value","")
+        break;
+      default:
+        $("#from_url").hide("fast");
+        $("#from_file").hide("fast");
+        break;
+    }
+  }
+
+
+</script>

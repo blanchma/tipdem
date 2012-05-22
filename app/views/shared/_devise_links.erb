@@ -1,0 +1,11 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to t('devise.sessions.link'), new_session_path(:user) %><br />
+<% end -%>
+
+<%- if controller_name != 'registrations' %>
+  <%= link_to t('devise.registrations.link'), new_registration_path(:user) %><br />
+<% end -%>
+
+<%- if controller_name != 'passwords' %>
+  <%= link_to t('devise.passwords.link'), new_password_path(:user) %><br />
+<% end -%>

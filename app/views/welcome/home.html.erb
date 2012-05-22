@@ -1,0 +1,40 @@
+<% content_for :header do %>
+  <%= render :partial => "one_header" %>
+<% end %>
+
+<div id="highlights">
+  <div id="graph">
+    <h1>Descarga Adobe Flash para ver correctamente esta página.</h1>
+    <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+  </div>
+  <!--div id="text">La mejor herramienta de recomendación boca a boca para la difusión de campañas.</div-->
+  <div id="text"><%=t("home_1")%></div>
+
+</div>
+<div id="detail">
+  <div id="desc">
+    <div id="promotor">
+      <div id="text">
+        <h1 id="prom"><%=t("home_2")%></h1>
+        <p> <span class="big"><%=t("home_3")%></span> <%=t("home_4")%></p>
+        <p> <%=t("home_5")%> <span class="big"><%=t("home_6")%></span> </p>
+        <p> <%=t("home_7")%> <span class="big"><%=t("home_8")%></span></p>
+      </div>
+      <div class="btn"><% link_to :action => "p_funcionamiento" do %><%=t("home_9")%><% end %></div>
+    </div>
+    <div id="creator">
+      <div id="text">
+        <h1 id="camp"><%=t("home_20")%></h1>
+        <p><span class="big"><%=t("home_10")%></span> <%=t("home_11")%> <span class="big"><%=t("home_12")%></span></p>
+        <p><span class="big"><%=t("home_13")%></span> <%=t("home_14")%><span class="big"><%=t("home_15")%></span> <%=t("home_16")%> </p>
+        <p><span class="big"><%=t("home_17")%></span><%=t("home_18")%></p>
+      </div>
+      <div class="btn"><% link_to :action => "c_funcionamiento" do %><%=t("home_9")%><% end %></div>
+    </div>
+  </div>
+  <div id="register"><%= link_to t("register"), new_user_registration_path %></div>
+  <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
+</div>
+<script type="text/javascript">
+  swfobject.embedSWF("images/home.swf", "graph", "750", "250", "9.0.0", "expressInstall.swf", {}, { wmode: "opaque" }, {});
+</script>

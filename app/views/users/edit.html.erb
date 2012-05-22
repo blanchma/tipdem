@@ -1,0 +1,79 @@
+<style type="text/css">
+  #content #detail #desc #root2 {
+    background-color: #BBB895;
+  }
+</style>
+<div id="campaing">
+  <h3><%=  t("mydata.title") %></h3>
+  <br /><br />
+
+  <div id="error_detail">
+    <%= error_messages_for :user,
+      :header_message => nil,
+      :message => @user.errors.size > 0 ? t("errors.template.singular") : t("errors.template.plural") %>
+  </div>
+
+  <%  if @user.email.blank? || @user.email.include?("please-replace.com") || !@user.confirmed? %>
+    <div>
+      <%=  t("mydata.conftext") %>
+      <% form_for :user, @user, :url => my_confirmation_path(@user) do |f| %>
+        <h4><%= f.label :email %></h4><br/>
+        <p class="p2"><%= f.text_field :email, 
+          :value => "#{@user.email.include?('please-replace.com') ? '' : @user.email}" %></p>
+
+        <p><%= f.submit t("mydata.conf"), :class => "back", :style => 'float:right;' %></p>
+
+      <% end %>
+    </div>
+  <% end %>
+  <br/><br/>
+  <% form_for :user, @user, :url => {:controller => :users, :action => :update}, :html => { :method => :put } do |f| %>
+
+   
+    <h4><%= f.label :username %></h4><br />
+    <p><%= f.text_field :username, :size => 50 %></p>
+    <br />
+    <%  unless @user.email.blank? || @user.email.include?("please-replace.com") || !@user.confirmed?  %>
+      <h4><%= f.label :email %></h4><br />
+      <p><%= f.text_field :email , :size => 50 %></p>
+      <br />
+    <% end %>
+
+    <h4><%= f.label :gender %></h4>
+    <p class="p1"><%= f.label :male %> <%= f.radio_button  "gender", 'male' %></p>
+    <p class="p1"> <%= f.label :female %> <%= f.radio_button  "gender", 'female' %></p>
+    <br/>
+
+    <h4><%= f.label :locale %></h4>
+    <p><%= select :user, :locale, [["English", "en"], ["Español", "es"]], :selected => cookies[:locale]  %></p>
+    <br />
+
+    <h4><%= f.label :password %></h4> <%=  t("mydata.pass") %><br />
+    <p><%= f.password_field :password, :size => 50 %></p>
+    <br />
+    <h4><%= f.label :password_confirmation %></h4><br />
+    <p><%= f.password_field :password_confirmation, :size => 50 %></p>
+    <br />
+    <h4><%= f.label :time_zone %></h4><br />
+    <p><%= time_zone_select :user, :time_zone, nil, :default => current_user.time_zone %></p>
+    <br />
+    <div class="step" style="margin-top: 13px;">
+      <%= f.submit t("mydata.update"), :class => "btnform" %>
+
+      <%= link_to t("mydata.cancel"), unregister_path(current_user.id), :confirm => "¿Está seguro?", :method => :delete, :class =>'flash_error' %>
+    </div>
+  <% end %>
+
+  <br/>
+
+  <br/>
+
+
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function()  {
+    $("#tree2").show();
+  });
+</script>

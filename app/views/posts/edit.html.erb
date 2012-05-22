@@ -1,0 +1,78 @@
+<div id="campaing" style="width:785px">
+  <div id="close"><% if session[:return] %>
+    <%= link_to t("promote.back") {session[:return][0]}, session[:return][1] %>
+  <% end %></div>
+
+  <%= render "campaign" %>
+
+
+  <div id="form_<%= @post.channel %>">
+    <h3><%= t (@post.channel) %></h3>
+    <br/>
+
+    <div id="errors_<%= @post.channel %>"></div>
+
+    <% remote_form_for :post, @post, :url => campaign_post_path(@campaign.id, @post.id), :html => {:method => :put},
+      :loaded => "$('#loading').hide();", :loading => "$('#loading').show();" do  |f| %>
+      
+      <div class="form_layout" style="width:99%; height:246px; float: left; margin: 5px;">
+        <%= f.hidden_field :channel %>
+        <%= f.hidden_field :campaign_id %>
+        <div style="width:50%; height: 150px; float: left"><h4><%= t("promote.cus1") %></h4><br/>
+        <%= f.text_area :message, :cols => 40, :rows => 5, :style => "resize: none;",  :onKeyDown => "limitText(this,140 - #{@post.link.length});" ,
+          :onKeyUp => "limitText(this, 140 - #{@post.link.length})" , :value => @post.message  %>
+          <p> <%= 140 - @post.link.length %>  <%= t("promote.cus2") %>.</p></div>
+        <div style="width:50%; height: 150px; float: left"><h4><%= t("promote.time") %></h4><br/><br/>
+
+        <div style="display: block">
+          <%= label_tag t("promote.now") %>
+          <%= f.radio_button :now, true, :id => "post_now", :checked => "checked" %>
+
+          <%= label_tag t("promote.at") %>
+          <%= f.radio_button :now, false, :id => "post_at" %>
+          <%= select(:post, :hour, (0..23).to_a.collect {|i| [ i < 13 ? "#{i} AM" : "#{i - 12} PM", i] })%>
+          <div id="daily_area" style="display:inline">
+            <%= f.check_box :daily, :id => "daily_check" %>
+            <%= f.label :daily, t("promote.daily") %>
+          </div>
+        </div></div>
+         <br/>
+        <%= f.submit t("promote.upd"), :class => 'savenext', :style => 'float:right; color:#FFF; position:relative' %>
+      </div>
+
+      <div id="loading" style="display:none">
+        <%= image_tag "icons/ajax-loader_2.gif" %>
+      </div>
+
+    <% end %>
+  </div>
+<div class="step" style="text-align:left;">
+  <div class="publicar"><%= link_to t("promote.prom"), new_campaign_post_path(@campaign.id) %></div>
+  <h4><%= link_to t("promote.see"), campaign_posts_path(@campaign.id) %></h4>
+</div>
+</div>
+
+<script type="text/javascript" >
+  $(document).ready(function() {
+    $("#post_hour").change(function(event) {
+      console.log(event);
+      $(event.target).prev().attr("checked", "checked");
+    });
+
+    $("#post_now").click(function(event) {
+      console.log(event);
+      $(event.target).next().attr("checked", "");
+      $(event.target).parent().find("#daily_check").attr("checked", "");
+    });
+
+    $("#daily_check").click(function(event) {
+      console.log(event);
+      if ($(event.target).is("checked") == true ) {
+        $(event.target).parent().siblings("#post_at").attr("checked", "checked");
+        $(event.target).parent().siblings("#post_now").attr("checked", "");
+      }
+
+    });
+
+  });
+</script>

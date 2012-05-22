@@ -1,0 +1,21 @@
+<% content_for :header do %>
+  <%= render :partial => "two_header" %>
+<% end %>
+
+<div id="highlights"></div>
+<div id="detail">
+  <div id="desc"><h1><%= t("quienes.what_is") %></h1>
+
+    <p><%= t("quienes.explain_1") %></p>
+    <p><%= t("quienes.explain_2") %></p>
+    <p><%= t("quienes.video") %></p>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+  </div>
+  <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
+  <div id="register"><%= link_to t("register"), new_user_registration_path %></div>
+</div>

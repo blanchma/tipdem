@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'login'  %>
+<% end %>
+
+<div id="content">
+  <div id="detail">
+    <div id="desc">
+
+      <%= render :partial => "shared/show_user_errors" %>
+
+      <div id="login" style="height: 235px">
+        <div id="logo">
+          <% link_to "/" do %>
+            <%= image_tag 'logo_lc.png', :alt => "TIPDEM", :width => "220", :height => "50", :vspace => "0", :border => "0" %>
+          <% end %></div>
+
+        <h2>¿Olvidaste tu contraseña?</h2>
+        <br/><br/>
+        <% form_for resource_name, resource, :url => password_path(resource_name) do |f| %>
+          <p class="p1"><%= f.label :email %></p>
+          <p class="p2"><%= f.text_field :email %></p>
+          <br/><br/>
+          <p><%= f.submit "Enviar instrucciones de reseteo de contraseña", :class=> "btn"  %></p>
+          <br/><br/>
+          <p><%= render :partial => "shared/devise_links" %></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+<% end %>

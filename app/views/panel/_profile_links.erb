@@ -1,0 +1,20 @@
+<ul class="mini_panel mini_head_panel">
+  <li>
+    <% link_to  :controller => "users", :action => "edit" do %>
+      <%#= image_tag 'userpanel/connections.png', :alt => "chain", :width => "32",  :height => "32",  :border => "0", :align => "absmiddle" %>
+      Mis Datos
+    <% end %>
+  </li>
+  <li>
+    <% link_to my_accounts_path do %>
+      <%#= image_tag 'userpanel/connections.png', :alt => "chain", :width => "32",  :height => "32",  :border => "0", :align => "absmiddle" %>
+      Mis Cuentas
+    <% end %>
+  </li>
+  <li>
+    <% link_to payment_requests_path do %>
+      <%#= image_tag 'userpanel/connections.png', :alt => "chain", :width => "32",  :height => "32",  :border => "0", :align => "absmiddle" %>
+      Mis Solicitudes de Pago
+    <% end %>
+  </li>
+</ul>

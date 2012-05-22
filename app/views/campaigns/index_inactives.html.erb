@@ -1,0 +1,100 @@
+<style type="text/css">
+#content #detail #desc #root {
+  background-color: #BBB895;
+}
+</style>
+<div id="campaing" style="width:785px;">
+<h3><%=  t("mycamp.inactive.title") %></h3>
+<br /><br />
+<table class="tabla" border="0" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <%= content_tag :th, t("mycamp.inactive.campaign") , :alt => "tooltip",:title => t("mycamp.inactive.tool.campaign")%>
+      <%= content_tag :th, t("mycamp.inactive.type"), :alt => "tooltip",:title => t("mycamp.inactive.tool.type") %>
+      <%= content_tag :th, t("mycamp.inactive.status") , :alt => "tooltip",:title => t("mycamp.inactive.tool.status") %>
+      <%= content_tag :th, t("mycamp.inactive.click") , :alt => "tooltip",:title => t("mycamp.inactive.tool.click") %>
+      <%= content_tag :th, t("mycamp.inactive.hits") , :alt => "tooltip",:title => t("mycamp.inactive.tool.hits") %>
+      <%= content_tag :th, t("mycamp.inactive.promo") , :alt => "tooltip",:title => t("mycamp.inactive.tool.promo") %>
+      <%= content_tag :th, t("mycamp.inactive.posts") , :alt => "tooltip",:title => t("mycamp.inactive.tool.posts") %>
+      <%= content_tag :th, t("mycamp.inactive.budget") , :alt => "tooltip",:title => t("mycamp.inactive.tool.budget") %>
+      <th><%=  t("mycamp.inactive.action") %></th>
+    </tr>
+  </thead>
+  <tbody id="mycamps">
+    <% if !@non_active_campaigns.nil? %>
+      <% for campaign in @non_active_campaigns %>
+        <tr id="row_<%= campaign.id %>"style="border-bottom:solid; border-bottom-width: 1px; border-bottom-color: #09F;">
+          <td> <%= raw campaign.name %> </td>
+          <% if  campaign.mode == CampaignMode::PayPerClick %>
+            <td>PPC</td>
+          <% elsif  campaign.mode == CampaignMode::PayPerHit %>
+            <td>PPH</td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td> <%= campaign.status %> </td>
+          <td>  <%= campaign.landing_page_hits.count %> </td>
+          <td>  <%= campaign.client_page_hits.count %> </td>
+          <td>  <%= campaign.chains.count %> </td>
+          <td>  <%= campaign.posts.published.count %> </td>
+          <td>  <%= number_to_currency(campaign.budget.try(:current), :unit => "$", :format => "%u%n") %> </td>
+
+          <td colspan="3">
+            <% if campaign.editable?  %>
+              <%=  link_to image_tag("Page-Edit.png", :title => t("mycamp.inactive.tool.edit")), edit_campaign_path(campaign.id) %>
+            <% else %>
+              <%=  link_to image_tag("Page-Edit.png", :title => t("mycamp.inactive.tool.finish")), new_campaign_path(:id => campaign.id) %>
+            <% end %>
+
+            <% if campaign.status == CampaignStatus::WaitingForPay %>
+              <%= link_to image_tag("ico_dinero_mail_16.jpg", :title => t("mycamp.inactive.tool.pay")), pay_campaign_budget_path(:campaign_id => campaign)  %>
+            <% end %>
+
+            <%= link_to image_tag("Delete-16.png", :title => t("mycamp.inactive.tool.delete")),"#", :onclick => "openRemoveCampaign(#{campaign.id})"  %>
+
+
+            <a style="text-decoration:none; font-size:26px; " href="#" title="More info" onclick="$('#more_<%=  campaign.id %>').toggle();">
+              <%= image_tag "Chart-Column.png", :title => t("mycamp.inactive.tool.stats") %>
+            </a>
+          </td>
+        </tr>
+        <tr><td colspan="10">
+
+            <div id="more_<%=  campaign.id %>" style="display:none">
+              <%= render :partial => "campaign_data", :locals => {:campaign => campaign } %>
+            </div>
+          </td>
+        </tr>
+
+
+      <% end %>
+    <% end %>
+  </tbody >
+</table>
+</div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function()  {
+        $("#tree, #tree2").show();
+  });
+
+  function openRemoveCampaign (id) {
+    var r=confirm("¿Seguro que deseas desactivar esta campaña?");
+    if (r==true)
+    {
+      removeCampaign(id);
+      $("#row_"+id).remove();
+    }
+  }
+
+  function removeCampaign(id) {
+    $.ajax(
+    {data:'_method=delete' + '&authenticity_token=' + encodeURIComponent('<%=  form_authenticity_token  %>'),
+      dataType:'script',
+      type:'post',
+      url:'/campaigns/'+id})
+  }
+
+
+</script>

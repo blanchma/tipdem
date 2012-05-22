@@ -1,0 +1,53 @@
+<style type="text/css">
+  #content #detail #desc #root2 {
+    background-color: #BBB895;
+  }
+</style>
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("mypay.title") %></h3>
+  <br /><br />
+
+
+
+  <table id="my_payment_requests" class="tabla" border="0" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <th><%=  t("mypay.date") %></th>
+        <th><%=  t("mypay.money") %></th>
+        <th><%=  t("mypay.status") %></th>
+        <th><%=  t("mypay.paydate") %></th>
+        <th><%=  t("mypay.action") %></th>
+      </tr>
+    </thead>
+    <% if !@payment_requests.nil? %>
+      <tbody>
+        <% for request in @payment_requests %>
+
+          <tr>
+            <td><%= request.created_at %></td>
+
+            <td><%= request.requested_money %></td>
+
+            <td><%= t request.status %></td>
+
+            <td><%= request.paid_at %></td>
+
+            <td>
+                <% if request.created? %>
+                <%= link_to "Cancelar", payment_request_path(request.id), :method => :delete %>
+              <% end %>
+            </td>
+          </tr>
+
+
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function()  {
+    $("#tree2").show();
+  });
+</script>

@@ -1,0 +1,24 @@
+
+<% cache do %>
+
+  <div class="campaign_details">
+    <h3><%=  t("promote.title") %> <%= h @campaign.name %></h3>
+    <div id="promo">
+      <div id="pict"><% if@campaign.logo_file_name %>
+          <%= image_tag campaign.logo.url(:small),  :width => "100", :height => "100"  %></div>
+      <% end %>
+      <div id="data">
+        <div id="info">
+          <%= h @campaign.description %>
+          <p><%=  t("create.step.four.prev") %>: <%= link_to @campaign.link,@campaign.link, :target =>"_blank" %></p>
+          <div id="more">
+            <div id="cash">
+              <%=  t("current.earn") %> <span id="money">  <%=  number_to_currency(campaign.budget.pay, :unit => "$", :format => "%u%n") %></span> (<%= @campaign.mode %>)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

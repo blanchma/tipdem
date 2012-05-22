@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title><%= @page_title or 'tipdem' %></title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />    
+    <%= stylesheet_link_tag 'awesome', 'admin'  %>
+    <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'application' %>
+
+    <%= csrf_meta_tag %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div >
+      <ul id="clean_container">
+        <li>
+          <%= link_to "Estados de campaña", :controller => :admin, :action => :campaigns_status %>
+        </li>
+        <li>
+          <%= link_to "Solicitudes de pago", :controller => :admin, :action => :payment_requests %>
+        </li>
+
+        <li>
+          <%= link_to "Usuarios", :controller => :users, :action => :index %>
+        </li>
+        <li>
+          <%= link_to "Comisiones", :controller => :revenue_commissions, :action => :index %>
+        </li>
+        <li>
+          <%=  link_to "Mi panel", user_root_path,:style => "color: Green" %>
+        </li>
+        <li>
+          <%=  link_to "Cerrar sessión", destroy_user_session_path,:style => "color: Red" %>
+        </li>
+      </ul>
+
+      <div>
+        <%= flash[:notice] || flash[:error] %>
+      </div>
+
+      <%= yield :layout %>
+    </div>
+  </body>
+
+</html>

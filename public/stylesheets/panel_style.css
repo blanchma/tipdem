@@ -1,0 +1,1412 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Carme&v2);
+*{
+    /* Universal page reset */
+    margin:0;
+    padding:0;
+}
+body {
+	background-image:url(../images/bck.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+#content {
+	width: 1000px;
+	min-height:600px;!important
+	margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*Header*/
+#content #header {
+	height: 50px;
+	display: inline-block;
+}
+
+#content #header #logo {
+	background-color: #CFCDB4;
+	height: 50px;
+	width: 220px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	float: left;
+	text-align: left;
+}
+#content #header #menu {
+	background-image: url(../images/bck_menu_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	height: 50px;
+	width: 548px;
+	float: left;
+	background-color: #CFCDB4;
+}
+
+#content #header #login {
+	float: left;
+	height: 50px;
+	width: 232px;
+	font-size: 11px;
+	color: #FFF;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-weight: 400;
+	text-decoration: none;
+	background-color: #F90;
+}
+#content #header #login a:hover {
+	text-decoration: underline;
+}
+#content #header #menu .btn {
+	display: inline;
+	float: left;
+	height: 50px;
+	width: 100px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 11px;
+	color: #333;
+	text-align: center;
+	line-height: 50px;
+	font-weight: 700;
+}
+#content #header #menu .btn a, #content #header #menu .btn a:visited{
+	text-decoration: none;
+	color: #333;
+}
+#content #header #menu .btn a:hover{
+	text-decoration: underline;
+}
+#content #header #linkpanel {
+	width:25px;
+	height:50px;
+	float:right;
+}
+/*Content*/
+#content #highlights {
+	width: 100%;
+	height: 25px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#content #highlights #text {
+	float: left;
+	height: 218px;
+	width: 238px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 24px;
+	line-height: 30px;
+	color: #333;
+	vertical-align:middle;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 30px;
+	padding-left: 10px;
+}
+#content #detail #campaing #text h1 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 22px;
+	font-weight: 400;
+	color: #FFF;
+	background-image: url(../images/bck_blue_corner.png);
+	height: 40px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 0px;
+	padding-top: 0px;
+	display: inline;
+	padding-right: 15px;
+	margin-top:5px;
+	margin-bottom: 25px;
+	line-height: 35px;
+}
+#content #detail #campaing h2 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: #FFF;
+	background-image: url(../images/bck_liblue_corner.png);
+	height: 28px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 0px;
+	display: inline;
+	padding-right: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#content #detail #desc h3,
+#content #detail #campaing h4 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+	background-image: url(../images/bck_box_title.png);
+	height: 20px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-right: 15px;
+	display: inline-block;
+        margin-bottom:2px;
+}
+#content #detail h3 {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #FFF;
+	background-image: url(../images/bck_dorange_corner.png);
+	height: 22px;
+	min-width: 100px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-right:15px;
+	display: inline;
+	float: left;
+}
+#content #detail .btn {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	float: right;
+	height: 20px;
+	width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	text-align: center;
+	padding-top: 5px;
+	padding-left:15px;
+	padding-right:5px;
+	text-align:center;
+}
+#content #detail .btnform {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	float: right;
+	height: 25px;
+	min-width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	text-align: center;
+	padding-left:15px;
+	padding-right:5px;
+	text-align:center;
+	border:0px;
+	background-color: #FFF;
+	cursor:pointer;
+}
+#content #detail .save {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	height: 25px;
+	width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	cursor: pointer;
+}
+#content #detail .next {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	min-height: 75px;
+	width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	padding-top:4px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:4px;
+}
+#content #detail .back {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	height: 25px;
+	min-width: 75px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	padding-bottom:4px;
+	padding-left:15px;
+	padding-right:5px;
+	padding-top:4px;
+	cursor:pointer;
+}
+#content #detail .saved {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	height: 25px;
+	width: 100px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	cursor: pointer;
+}
+#content #detail .savenext {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	height: 25px;
+	width: 150px;
+	background-image: url(../images/bck_liblue_corner.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	background-color: #FFF;
+	border: 0px;
+	cursor: pointer;
+
+}
+#content #detail #desc #promotor #text, #content #detail #desc #creator #text {
+	height: 275px;
+}
+#content #detail #campaing #text {
+	height: 375px;
+	overflow: hidden;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+}
+#content #detail #campaing #text p{
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+/*Latest Prom Ticker*/
+#content #detail #campaing #text #latest #latest_prom {
+	font-size: 11px;
+	font-weight: 400;
+	color: #333;
+	float: left;
+	height: 50px;
+	width: 235px;
+	margin-top: 5px;
+	margin-left: 15px;
+	overflow: hidden;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+#content #detail #campaing #text #latest #latest_prom .mask { /* that serves as a mask. so you get a sort of padding both left and right */
+	position: relative;
+	left: 10px;
+	top: 0px;
+	width: 215px;
+	overflow: hidden;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker { /* that's your list */
+	position: relative;
+	left: 735px;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	overflow: hidden;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker li {
+float: left; /* important: display inline gives incorrect results when you check for elem's width */
+display:block;
+margin: 0;
+padding: 0;
+}
+#content #detail #campaing #text #latest #latest_prom ul.newsticker a {
+	white-space: nowrap;
+	padding: 0;
+	color: #999;
+	margin-top: 0;
+	margin-right: 10px;
+	margin-bottom: 0;
+	margin-left: 0;
+} 
+#content #detail #campaing #text #latest #latest_prom ul.newsticker a:hover {
+	color: #333;
+} 
+#content #detail #campaing #text #latest #latest_prom ul.newsticker span {
+	margin-top: 0;
+	margin-right: 2px;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+/*End*/
+.msg_list {
+margin: 0px;
+padding: 0px;
+}
+.msg_head {
+cursor: pointer;
+position: relative;
+margin:1px;
+}
+.msg_body {
+	background-color:#E5E5E5;
+}
+#content #highlights #graph {
+	float: left;
+	height: 250px;
+	width: 750px;
+}
+#content #detail {
+	width: 100%;
+	height: 400px;
+}
+#content #detail #desc {
+	float: left;
+	width: 205px;
+	min-height: 400px;
+	height: inherit;
+	text-align: center;
+	vertical-align: middle;
+	overflow: hidden;
+}
+#content #detail #desc p{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#content #detail #register {
+	float: left;
+	height: 35px;
+	width: 240px;
+	background-image: url(../images/bck_dorange_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 25px;
+	font-weight: 400;
+	color: #FFF;
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-top: 5px;
+}
+#content #detail #register a, #content #detail #register a:visited{
+	color: #FFF;
+	text-decoration: none;
+}
+#content #detail #register a:hover {
+	text-decoration:underline;
+}
+#content #detail #campaing {
+	float: left;
+	min-height: 433px;
+	width: 535px;
+	overflow:auto;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-left:5px;
+		background-color:#FFF;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+#content #detail #campaing li{
+	list-style-type: none;
+}
+#content #detail #desc #creator p, #content #detail #desc #promotor p {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 16px;
+	font-weight: 400;
+	color: #333;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#content #detail #desc #promotor {
+	float: left;
+	height: 300px;
+	width: 370px;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-right:2px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#content #detail #desc #promotor #prom {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	color: #FFF;
+	font-weight: 400;
+	padding-right: 20px;
+	width: 175px;
+	padding-left: 10px;
+	height: 35px;
+	font-size: 25px;
+	padding-top: 5px;
+	background-image: url(../images/bck_blue_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+#content #detail #desc #creator {
+	float: left;
+	height: 300px;
+	width: 370px;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-right:2px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#content #detail #desc #creator #camp {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	color: #FFF;
+	font-weight: 400;
+	padding-right: 20px;
+	width: 175px;
+	padding-left: 10px;
+	height: 35px;
+	font-size: 25px;
+	padding-top: 5px;
+	background-image: url(../images/bck_liblue_corner.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+/*Footer*/
+#content #footer {
+	height: 150px;
+	width: 100%;
+	margin-top:40px;
+	float:left;
+}
+#content #footer a {
+	text-decoration: none;
+}
+#content #footer a:hover {
+	text-decoration: underline;
+}
+#content #footer #mapa {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+	float: left;
+	height: 115px;
+	width: 500px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+#content #footer #social {
+	float: left;
+	height: 115px;
+	width: 330px;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+}
+#content #footer #social #twat {
+	height: 50px;
+	width: 95%;
+	border: 1px solid #999;
+	background-color: #FFF;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+}
+#content #footer #legal {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/bck_legal.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	float: left;
+	height: 20px;
+	width: 500px;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+#content #footer #susc {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/bck_landing_susc.jpg);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	float: right;
+	height: 110px;
+	width: 478px;
+	margin-top: 40px;
+	padding-left: 10px;
+	background-color: #6D8EAD;
+}
+#content #detail #desc .botn {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	text-decoration: none;
+	background-color: #CFCDB4;
+	height: 23px;
+	width: 185px;
+	padding-top:7px;
+	padding-left:15px;
+	margin-bottom:5px;
+	text-align: left;
+	border: 1px solid #999;
+}
+#content #detail #desc .botn:hover{
+	text-decoration:underline;
+	color:#333;
+	background-color: #BBB895;
+}
+#content #detail #campaing #promo {
+	background-image: url(../images/bck_box.jpg);
+	float: left;
+	height: 100px;
+	width: 100%;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #999;
+	border-right-color: #999;
+	border-bottom-color: #999;
+	border-left-color: #999;
+	list-style-type: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#detail #campaing #campaign_details {
+	float: left;
+	height: 400px;
+	width: 100%;
+	z-index: 20;
+	border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	display:none;
+}
+#detail #campaing #vigentes {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	color: #333;
+	text-decoration: none;
+}
+#header #login #connected {
+	float: left;
+	height: 50px;
+	width: 150px;
+}
+#header #login #connected a{
+	text-decoration:none;
+	color: #FFF;
+}
+#header #login #connected a:hover{
+	text-decoration:underline;
+}
+
+
+#content #detail #campaing #promo #pict,
+#content #detail #campaing #campaign_details #promo #pict {
+	float: left;
+	height: 100px;
+	width: 100px;
+}
+#content #detail #campaing #promo #data,
+#content #detail #campaing #campaign_details #promo #data{
+	float: left;
+	height: 100px;
+	width: 435px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+}
+#content #detail #campaing #promo #data #info,
+#content #detail #campaing #campaign_details #promo #data #info {
+	height:60px;
+	width: 98%;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#content #detail #campaing #promo #data #more #cash,
+#content #detail #campaing #campaign_details #promo #data #more #cash{
+	height: 25px;
+	width: 220px;
+	padding-left: 5px;
+	padding-right:15px;
+	margin-top:10px;
+	background-image: url(../images/bck_cash.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+}
+#content #detail #campaing #promo #data #more #cash #money {
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	font-weight: 400;
+}
+#content #detail #campaing #promo #data #more #btn, .publicar {
+	float: right;
+	width: 125px;
+	text-align: center;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	height: 20px;
+	padding-top: 5px;
+	background-image: url(../images/bck_more.png);
+	display: inline;
+	color: #FFF;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	background-color: #FFF;
+	cursor: pointer;
+}
+.publicar a, .publicar a:hover, .publicar a:visited{
+	color:#FFF;
+}
+.post_item{
+	width:100%;
+	float:left;
+	height: 32px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+#content #detail #campaing #promo #data #more #btn a{
+	color: #FFF;
+	text-decoration: none;
+}
+#content #detail #campaing #promo #data #more #btn a:hover{
+	color: #FFF;
+	text-decoration: underline;
+}
+#content #detail #extra {
+	float: left;
+	width: 240px;
+	height: 400px;
+	padding-left: 5px;
+}
+#content #detail #extra #amount p, #number_of_clicks {
+	font-size: 34px;
+	text-align:center;
+	color: #333;
+	width: 100%;
+	padding-top:10px;
+	height:45px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+}
+#content #detail #extra #cats p {
+	font-size: 14px;
+	text-align:left;
+	color: #333;
+	width: 100%;
+	padding-top:10px;
+	padding-bottom:20px;
+	padding-left:5px;
+	height:45px;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+}
+#detail #desc .sbtn {
+	background-color: #E9E8DC;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 12px;
+	height: 20px;
+	width: 190px;
+	padding-left: 10px;
+	text-align: left;
+	border: 1px solid #999;
+	padding-top: 3px;
+	margin-top: -5px;
+	color: #333;
+	text-decoration:none;
+}
+#detail #desc .sbtn:link{
+	text-decoration:none;
+	color:#333;
+
+}
+#detail #desc .sbtn:hover{
+	text-decoration:none;
+	color:#333;
+	background-color: #DAD9C5;
+}
+a:link, a:visited {
+	text-decoration:none;
+	color:#333;
+}
+a:hover {
+	text-decoration:underline;
+}
+#root, #root2 {
+	cursor:pointer; 
+}
+#tree, #tree2 {
+	margin-bottom:2px;
+}
+#header #login #face {
+	background-color: #FC3;
+	float: left;
+	height: 50px;
+	width: 50px;
+}
+.step {
+	width:100%;
+	height:25px;
+	text-align: right;	
+	float:left;
+}
+
+
+#content #detail #amount, #content #detail #cats {
+	float: left;
+	width: 100%;
+	height: 100px;
+		border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin-bottom:5px;
+}
+.tabla {
+	width:100%;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	border: 1px solid #999;
+}
+.tabla thead {
+	background-color:#CFCDB4;
+	height:20px;
+}
+.tabla tbody tr {
+	background-color:#E3E2D2;
+	text-align:center;
+}
+.tabla tbody td {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #999;
+
+}
+.tabla tbody tr:hover {
+	background-color:#F3F3ED;
+}
+#publish {
+	width:210px;
+	float:right;
+	height: 50px;
+	padding-left:5px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #999;
+}
+#social {
+	width:300px;
+	height:200px;
+	float:left;
+	padding-left:5px;
+}
+#close {
+	width:125px;
+	height:20px;
+	background-image: url(../images/bck_box_btn.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	float: right;
+	text-align: center;
+	font-family: Carme, Georgia, "Times New Roman", serif;
+	font-size: 14px;
+	color: #333;
+	position: relative;
+	padding-top: 5px;
+	padding-left: 5px;
+	z-index: 10;
+	cursor:pointer;
+}
+#new_post_form_message {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	background-image: url(../images/bck_error.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	float: left;
+	height: 20px;
+	width: 390px;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+.flash_error {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	background-image: url(../images/bck_error.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	float: left;
+	min-height: 20px;
+	min-width: 0px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right:15px;
+	text-align:left;
+	display:block;
+}
+.flash_notice {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	background-image: url(../images/bck_ok.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	float: left;
+	height: 20px;
+	min-width: 0px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right:15px;
+	text-align:left
+}
+.flash_alert {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	background-image: url(../images/bck_alert.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	float: left;
+	height: 20px;
+	min-width: 0px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right:15px;
+	text-align:left
+}
+/** tooltips**/
+.tooltip {
+	background-color:#1F3447;
+	border:1px solid #fff;
+	padding:10px 15px;
+	width:150px;
+	display:none;
+	color:#fff;
+	text-align:left;
+	font-size:12px;
+	/* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+	-webkit-box-shadow:0 0 10px #000;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+.charts, .campaign_graph{
+	width:100%;
+	float:left;
+}
+.campaign_title {
+	width:33%;
+	height:250px;
+	float:left;
+		border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+}
+#square {
+		width:32%;
+	height:250px;
+	float:left;
+		border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	margin-right:2px;
+	margin-left:4px;
+	padding-top:3px;
+}
+#dinero{
+	width:200px;
+	height:100px;
+	float:right;
+	padding-top:3px;
+	text-align: center;
+}
+#detail #paginate {
+	float: left;
+	height: 25px;
+	margin-top: 2px;
+	width: 100%;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #333;
+	text-align: center;
+	font-size: 11px;
+}
+#detail #paginate .current{
+	background-color: #6D8EAD;
+	min-height: 20px;
+	width: 20px;
+	border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#detail #paginate .prev_page, #detail #paginate a, #detail #paginate .next_page{
+	background-color: #E9E8DC;
+	min-height: 20px;
+	width: 20px;
+	border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	padding-right: 5px;
+	padding-left: 5px;
+	text-decoration: none;
+}
+#detail #paginate a:hover{
+	text-decoration: none;
+	background-color: #CFCDB4;
+}
+
+.payment_new_container {
+    padding: 30px 10px 20px 20px;
+    
+    line-height: 1.7em;    
+}
+#pasos  {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 10px;
+	list-style-type: none;
+	float:right;
+	text-align:center;
+	width:433px;
+	height:25px;
+	background-image: url(../images/bck_paso1.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #333;
+}
+#pasos2  {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 10px;
+	list-style-type: none;
+	float:right;
+	text-align:center;
+	width:433px;
+	height:25px;
+	background-image: url(../images/bck_paso2.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #333;
+}
+#pasos3  {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 10px;
+	list-style-type: none;
+	float:right;
+	text-align:center;
+	width:433px;
+	height:25px;
+	background-image: url(../images/bck_paso3.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #333;
+}
+#pasos4  {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 10px;
+	list-style-type: none;
+	float:right;
+	text-align:center;
+	width:433px;
+	height:25px;
+	background-image: url(../images/bck_paso4.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #333;
+}
+#pasos5  {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 10px;
+	list-style-type: none;
+	float:right;
+	text-align:center;
+	width:433px;
+	height:25px;
+	background-image: url(../images/bck_paso5.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #333;
+}
+#pasos li, #pasos2 li, #pasos3 li, #pasos4 li, #pasos5 li{
+	display: inline-block;
+}
+#pasoapaso{
+	width:88px;
+	padding-top:5px;
+	float:right;
+}
+#contador{
+	width:259px;
+	height:20px;
+	background-image: url(../images/bck_box_btn.png);
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.post_container{
+	width:98.7%;
+	min-height:32px;
+	float:left;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:12px;
+	overflow:auto;
+	border-radius: 2px;
+    -ms-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border: 1px solid #999;
+	padding:2px;
+	margin:2px;
+}
+.tw_icon {
+	background-image: url(../images/tw16.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 16px;
+	width: 16px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.tw_icon32 {
+	background-image: url(../images/tw32.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 32px;
+	width: 32px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.fb_icon {
+	background-image: url(../images/fb16.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 16px;
+	width: 16px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.fb_icon32 {
+	background-image: url(../images/fb32.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 32px;
+	width: 32px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.in_icon {
+	background-image: url(../images/in16.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 16px;
+	width: 16px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.in_icon32 {
+	background-image: url(../images/in32.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 32px;
+	width: 32px;
+	float: left;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+#first_step_error {
+	height:auto;
+	min-height:18px;
+	overflow: visible;
+	position: static;
+	z-index: auto;
+	bottom: 0px;
+	background-repeat: repeat-y;
+	background-position: right top;
+	line-height: 22px;
+}
+#icons {
+	width:64px;
+	min-height:80px;
+	float:left;
+	border: 1px solid #999;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	margin-left:10px;
+	text-align:center;
+}
+/*Preview Landing*/
+#content #detailand {
+	width: 1000px;
+	height: 400px;
+	background-color: #FFF;
+}
+#content #detailand #descland {
+    float: left;
+    width: 60%;
+    min-height: 400px;
+    height: inherit;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+#content #detailand #descland p{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#content #detailand #register {
+    float: left;
+    height: 35px;
+    width: 240px;
+    background-image: url(../images/bck_dorange_corner.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    font-family: Carme, Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: #FFF;
+    padding-top: 5px;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+#content #detailand #register a, #content #detailand #register a:visited{
+    color: #FFF;
+    text-decoration: none;
+}
+#content #detailand #register a:hover {
+    text-decoration:underline;
+}
+#content #detailand #campaingland {
+	float: left;
+	height: 275px;
+	width: 39%;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-left:5px;
+	background-image: url(../images/bck_box.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-color: #FFF;
+}
+#content #detailand #tpdad {
+	float: left;
+	height: 119px;
+	width: 39%;
+	border-radius: 2px;
+	-ms-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border: 1px solid #999;
+	margin-left:5px;
+	background-image: url(../images/bck_ad.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-color: #FFF;
+	margin-top:2px;
+}
+#content #detailand #descland #creator p, #content #detailand #descland #promotor p {
+    font-family: Carme, Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+#content #detailand #descland #promotor {
+    float: left;
+    height: 300px;
+    width: 370px;
+    border-radius: 2px;
+    -ms-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border: 1px solid #999;
+    margin-right:2px;
+    background-image: url(../images/bck_box.jpg);
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+#content #detailand #descland #promotor #prom {
+    font-family: Carme, Georgia, "Times New Roman", serif;
+    color: #FFF;
+    font-weight: 400;
+    padding-right: 20px;
+    width: 175px;
+    padding-left: 10px;
+    height: 35px;
+    font-size: 25px;
+    padding-top: 5px;
+    background-image: url(../images/bck_blue_corner.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+#content #detailand #descland #creator {
+    float: left;
+    height: 300px;
+    width: 370px;
+    border-radius: 2px;
+    -ms-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border: 1px solid #999;
+    margin-right:2px;
+    background-image: url(../images/bck_box.jpg);
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+#content #detailand #descland #creator #camp {
+    font-family: Carme, Georgia, "Times New Roman", serif;
+    color: #FFF;
+    font-weight: 400;
+    padding-right: 20px;
+    width: 175px;
+    padding-left: 10px;
+    height: 35px;
+    font-size: 25px;
+    padding-top: 5px;
+    background-image: url(../images/bck_liblue_corner.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#register {
+    float: left;
+    height: 35px;
+    width: 240px;
+    background-image: url(../images/bck_dorange_corner.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    font-family: Carme, Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+#content #detailand #tpdad #speaker {
+	float: left;
+	height: 109px;
+	width: 109px;
+	margin-left: 5px;
+}
+#content #detailand #tpdad #speak {
+	float: left;
+	height: 81px;
+	width: 260px;
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 16px;
+	color: #333;
+	padding-left: 10px;
+	padding-top: 8px;
+}
+#content #detailand #tpdad #linksusc {
+	float: left;
+	width: 275px;
+	height: 30px;
+}
+#content #detailand #tpdad #linksusc #btnsusc {
+	font-family: Carme, "Times New Roman", Serif;
+	font-size: 18px;
+	background-image: url(../images/btn_susc.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	float: right;
+	height: 25px;
+	width: 175px;
+	padding-top: 5px;
+	text-align: center;
+}
+#content #detailand #tpdad #linksusc #btnsusc a, #content #detailand #tpdad #linksusc #btnsusc a:hover, #content #detailand #tpdad #linksusc #btnsusc a:visited {
+	color:#FFF;
+}

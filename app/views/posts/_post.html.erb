@@ -1,0 +1,22 @@
+<div id="post_<%= post.id%>">
+  <div class="post_item">
+    <div class="<%= h post.channel %>_icon32" />
+  <strong><%= raw post.message %></strong>
+  
+  <% if post.posted_at %>
+    <strong> - <%= t("promote.post") %> </strong><%= l post.posted_at.in_time_zone(current_user.time_zone || 'utc'), :format => :friendly %>
+  <% else %>
+    <strong> - <%= t("promote.prog") %> </strong><%= l post.when_post.in_time_zone(current_user.time_zone || 'utc'), :format => :friendly %>
+
+    <%= link_to_remote t("promote.canc"), :url => campaign_post_path(post.campaign_id, post.id), :method => :delete,
+      :loaded => "$('#loading_#{post.id}').hide();", :loading => "$('#loading_#{post.id}').show();" %>
+    <%= link_to_remote t("promote.edit"), :url => edit_campaign_post_path(:campaign_id => post.campaign_id, :id => post.id),
+      :method => :get, :loaded => "$('#loading_#{post.id}').hide();", :loading => "$('#loading_#{post.id}').show();" %>
+
+    <div id="loading_<%= post.id %>" style="display:none">
+      <%= image_tag "icons/ajax-loader_2.gif" %>
+    </div>
+    </div>
+  <% end %>
+</div>
+

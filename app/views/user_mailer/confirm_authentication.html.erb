@@ -1,0 +1,3 @@
+<%= link_to "Aceptar cuenta de #{@authentication.provider.titleize}", confirm_authentication_url(@authentication.verify_token, :user_id => @user.id) %>
+
+<p>Denunciar como fraude</p>

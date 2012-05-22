@@ -1,0 +1,73 @@
+<style type="text/css">
+  #content #detail #desc #root2 {
+    background-color: #BBB895;
+  }
+</style>
+<% form_for [@categorizable,@categories], :url => user_categories_path(@user), :method => :put do %>
+
+  <div id="campaing" style="width:785px;">
+    <h3><%=  t("mycat.title") %></h3>  <br /><br />
+    <div class="wrapper" style="width:89%; float: left; height: 352px;">
+      <ul>
+        <% for category in @categories  %>
+          <li> <%=  check_box_tag("categories[]", category.id, (@categorizable.categories.exists? category.id) ) %> &nbsp; &nbsp; <%=  label_tag t("category.#{category.name}") %></li>
+        <%  end %>
+      </ul>
+    </div>
+
+
+
+    <div class="step">
+          <div style="display:block; float:left; margin-top: 4px">
+      <span> <%=  t("mycat.susc") %></span>
+      <% if current_user.email_recommendations %>
+        <%= link_to_remote t("mycat.btnoff"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations", :class =>'next'} %>
+      <% else %>
+          <%= link_to_remote t("mycat.btnon"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations"} %>
+      <% end %>
+
+    </div>
+      <%= submit_tag t("mycat.save"), :class => "back" %>
+    </div>
+  </div>
+
+
+
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#category_list label").click(function(event) { $(event.target).prev().attr("checked", "checked") } );
+      $("#tree2").show();
+  });
+</script>
+
+<style type="text/css">
+  /* allow room for 3 columns */
+  ul
+  {
+    width: 99%;
+    list-style: none;
+    margin-left: 5px;
+  }
+
+  /* float & allow room for the widest item */
+  ul li
+  {
+    float: left;
+    width: 33%;
+    height: 25px;
+  }
+
+  /* stop the float */
+  br
+  {
+    clear: left;
+  }
+
+  /* separate the list from subsequent markup */
+  div.wrapper
+  {
+    margin-bottom: 1em;
+  }
+</style>

@@ -1,0 +1,89 @@
+<% content_for(:head) do %>
+
+<% end %>
+
+<% content_for(:bottom) do %>
+
+<% end %>
+
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("create.step.two.title") %></h3>
+  <ul id="pasos">
+    <li id="pasoapaso" style="width:75px;"><%=  t("create.steps.five") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.four") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.three") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.two") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.one") %></li>
+  </ul>
+  <br /><br />
+  <% if flash[:error] %>
+    <%= flash[:error] %>
+  <% end %>
+  
+  <% form_for [@campaign,@categories], :url => campaign_categories_path(@campaign.id), :method => :put do |f| %>
+    <%= hidden_field_tag "save_and_next", "yes" %>
+    <div class="wrapper" style="width:89%; float: left; height: 352px;">
+      <p><%=  t("create.step.two.text") %></p><br/>
+      <ul id="category_list">
+        <% for category in @categories  %>
+          <li> <%=  check_box_tag("categories[]", category.id, (@campaign.categories.exists? category.id) ) %> &nbsp; &nbsp; <%=  label_tag t("category.#{category.name}") %></li>
+        <%  end %>
+      </ul>
+    </div>
+
+
+    <div class="step">
+      <% if @campaign.errors.size > 0  %>
+        <div class="flash_error" id="first_step_error">
+          <%= errors_for(@campaign).html_safe %>
+        </div>
+      <% end %>
+      <%= link_to t("create.back"), step_setup_path(@campaign.id), :class => "back" %>
+      <%= f.submit t("create.save"), :class=> "saved", :onclick => "$('#save_and_next').val('no')" %>
+      <%= f.submit t("create.savenext"), :class=> "savenext", :onclick => "$('#save_and_next').val('yes')"  %>
+      <% if @campaign.categories.count > 0 && @campaign.categories.count < 4 %>
+        <%= link_to t("create.next"), step_budget_path(:campaign_id => @campaign.id), :class => "next" %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#category_list label").click(function(event) { $(event.target).prev().attr("checked", "checked") } );
+  });
+</script>
+
+
+<style type="text/css">
+  /* allow room for 3 columns */
+  ul
+  {
+    width: 99%;
+    list-style: none;
+    margin-left: 5px;
+  }
+
+  /* float & allow room for the widest item */
+  ul li
+  {
+    float: left;
+    width: 33%;
+    height: 25px;
+  }
+
+  /* stop the float */
+  br
+  {
+    clear: left;
+  }
+
+  /* separate the list from subsequent markup */
+  div.wrapper
+  {
+    margin-bottom: 1em;
+  }
+</style>
+
+

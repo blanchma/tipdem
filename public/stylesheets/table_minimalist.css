@@ -1,0 +1,17 @@
+
+
+
+
+#horizontal-min {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 0.6em;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#horizontal-min td {
+    color: #669;
+    padding: 9px 4px 0;
+}

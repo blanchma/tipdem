@@ -1,0 +1,39 @@
+
+<div id="campaing" style="width:785px">
+  <div id="close">
+    <% if session[:return] %>
+      <%= link_to t("promote.back") {session[:return][0]}, session[:return][1] %>
+    <% end %></div>
+
+  <%= render "campaign" %>
+
+  <div class="publicar"><%= link_to t("promote.prom"), new_campaign_post_path(@campaign.id) %></div>
+
+  <div id="posts_messages">
+    <%= error_messages_for :post,
+      :header_message => nil,
+      :message => nil  %>
+  </div>
+
+  <% if publish_daily?(Channel::Facebook) %>
+    <div id="automatic_fb">
+      <%= link_to_remote t("promote.cancfb"),
+        stop_campaigns_post(campaign, :channel => Channel::Facebook),
+        :method => :delete, :update => {:success => "$(this).parent().remove()"}  %>
+    </div>
+  <% end %>
+
+  <% if publish_daily?(Channel::Twitter) %>
+    <div id="automatic_tw">
+      <%= link_to_remote t("promote.cancfb"),
+        stop_campaigns_post(campaign, :channel => Channel::Twitter),
+        :method => :delete, :update => {:success => "$(this).parent().remove()"}  %>
+    </div>
+  <% end %>
+
+  <h3><%= t("promote.hist") %></h3>
+  <div>
+    <%= render :partial => "posts", :collection => @posts, :as => :post  %>
+  </div>
+
+</div>

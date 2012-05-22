@@ -1,0 +1,74 @@
+<div id="campaing" style="width:785px;">
+  <h3><%=  t("create.step.five.title") %></h3>
+          <ul id="pasos5">
+    <li id="pasoapaso" style="width:75px;"><%=  t("create.steps.five") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.four") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.three") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.two") %></li>
+    <li id="pasoapaso"><%=  t("create.steps.one") %></li>
+  </ul>
+  <br /><br />
+
+  <div id="promo" style="height:369px">
+
+    <div id="pict" style=" margin-right: 5px">
+      <%= image_tag @campaign.logo.url(:small),  :width => "100", :height => "100", :vspace => "2"  %>
+    </div>
+    <div id="data" style="width: 80%">
+      <h3><%= h @campaign.name %></h3><br/><br/>
+      <div style="width: 69%; float:left">
+      <p class="description">
+      <h4><%=  t("create.step.five.desc") %></h4><br/>
+      <%= h @campaign.description %>
+      </p>
+      <p class="end_date"><b><%=  t("create.step.five.begin") %></b> <%= @campaign.begin_date %></p>
+      <% if @campaign.have_end_date %>
+        <p class="end_date">
+          <b><%=  t("create.step.five.end") %></b> <%= @campaign.end_date %>
+        </p><br/>
+      <% end %>
+      </div>
+      <div style="width: 29%; float:left">
+      <h4><%=  t("create.step.five.amount") %></h4><br/>
+      <p><b><%=  t("create.step.five.total") %> &nbsp;&nbsp;</b>
+        <%= number_to_currency(@campaign.budget.total, :unit => "$", :format => "%u%n") %>
+        <br/>
+        <% if @campaign.mode == CampaignMode::PayPerClick  %>
+          <b>Pay per  click: &nbsp;&nbsp;</b>
+          <%= number_to_currency(@campaign.budget.pay_per_landing_page_hit, :unit => "$", :format => "%u%n") %>
+
+        <%  else %>
+          <b>Pay per hit: &nbsp;&nbsp;</b>
+          <%= number_to_currency(@campaign.budget.pay_per_client_page_hit, :unit => "$", :format => "%u%n") %>
+        <% end %>
+      </p><br/>
+      </div>
+      <div style="width: 100%; float:left">
+      <p><h4><%=  t("create.step.five.msg") %></h4></p>
+      <p>
+        <%= h @campaign.default_message %>
+      </p>
+      <br/>
+      <h4><%=  t("create.step.five.landing") %></h4>
+      <br/>
+      <p><%= link_to "#{@campaign.link}?test=true", "#{@campaign.link}?test=true", :target => "_blank" %></p>
+      <p><span style="font-size:10px"><%=  t("create.step.five.landingtext") %></span></p>
+      <br/>
+      <h4><%=  t("create.step.five.pay") %></h4><%= render :partial => "dinero_mail_button" %>
+      <span style="font-size:10px"><%=  t("create.step.five.paytext") %></span>
+    </div>
+    </div>
+
+  </div>
+  <div class="step">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="right"><%= button_to t("create.back"), step_landing_path(:campaign_id => @campaign.id), :class => "back" %></td>
+    <td width="153" align="right"><%= button_to t("create.end"), my_campaigns_path, :class => "savenext" %></td>
+  </tr>
+</table>
+    
+    
+  </div>
+  
+</div>

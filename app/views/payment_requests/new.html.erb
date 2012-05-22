@@ -1,0 +1,39 @@
+<div id="campaing" style="width:785px;">
+  <h3>Solicitud de pago</h3>
+  <br />
+
+
+  <div class="payment_new_container">
+  
+
+    <br/>
+    <% if current_user.dinero_mail_account %>
+      <% form_for @payment_request, payment_requests_path(@payment_request), :method => :post do |f| %>
+
+        <p>
+          <%= f.error_messages %>
+        </p>
+
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <p>
+          Usted desea solicitar el cobro de la suma de <b><%=  number_to_currency(current_user.current_money, :unit => "$", :format => "%u%n") %></b>
+          obtenida en concepto de comisiones por promociones a través de su cuenta de DineroMail: <b><%= current_user.dinero_mail_account.email %></b>. </p
+        <p>Una vez verificados los datos, se realizara el pago a través de una transferencia a su cuenta de DineroMail dentro las 72hs hábiles.Al momento de efectuarse el pago recibira un email de confirmacion. Puede seguir el estado de su solicitud en Mi Perfil -> <%= link_to "Mis Solicitudes", payment_requests_path %>.
+        </p>
+        <br/>
+        <p>
+          Si desea cambiar su cuenta de DineroMail, vaya a Mi Perfil -> <%= link_to "Mis Cuentas", :controller => :panel, :action => :accounts %>
+        </p>
+        <br/>
+        <p>
+          <%= f.submit "Crear solicitud" %>
+        </p>
+
+      <% end %>
+    <% else %>
+      Antes de crear una Solicitud de Pago, necesita asociar una cuenta de DineroMail. Vaya a Mi Perfil -> <%= link_to "Mis Cuentas", :controller => :panel, :action => :accounts %>
+    <% end %>
+
+
+  </div>
+</div>

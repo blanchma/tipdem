@@ -1,0 +1,6 @@
+La campaña <%= @campaign.name %>  fue pagada.
+
+<p> <%= @request_url %> </p>
+<br/>
+
+<%= link_to "Aprobar", admin_path(:host => APP_CONFIG["domain"]) %>

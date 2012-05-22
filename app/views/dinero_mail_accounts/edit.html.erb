@@ -1,0 +1,22 @@
+<div id="campaing">
+
+<h3>Edita tu cuenta de DineroMail</h3><br/><br/>
+
+<div style="height: 371px; float: left">
+<% form_for([@user,@dinero_mail_account], :url => user_dinero_mail_accounts_path(@user), :method => :put)  do |f| %>
+
+  <%= f.error_messages %>
+  <p style="color: Red" id="dm_error"></p>
+  <p>
+  <h4> <%= f.label :email  %></h4>
+  </p><br/>
+  <p>
+  <%= f.text_field :email, :size => 40 %></p>
+</div>
+  <div class="step">
+    <%= f.submit "Enviar", :class => "btnform" %>
+      
+  </div>
+
+<% end %>
+</div>

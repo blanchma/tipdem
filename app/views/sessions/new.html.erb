@@ -1,0 +1,50 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'login'  %>
+<% end %>
+
+<div id="content">
+  <div id="detail">
+    <div id="desc">
+
+     <%= render :partial => "shared/show_user_errors" %>
+
+      <div id="login">
+        <div id="logo">
+          <% link_to "/" do %>
+            <%= image_tag 'logo_lc.png', :alt => "TIPDEM", :width => "200", :height => "50", :vspace => "0", :border => "0" %>
+          <% end %></div>
+
+        <h2><%= t "sign_in" %> </h2>
+
+        <% form_for resource_name, resource, :url => session_path(resource_name) do |f| %>
+
+          <p class="p1"><%= f.label :email %></p>
+          <p class="p2"><%= f.text_field :email %></p>
+          <p class="p1"><%= f.label :password %></p>
+          <p class="p2"><%= f.password_field :password %></p>
+          <% if devise_mapping.rememberable? -%>
+            
+            <p class="p2" style="text-align: left; width: 60%"><%= f.label :remember_me %> <%= f.check_box :remember_me %></p>
+            <div style="width: 100%; float: right">
+              <%= f.submit t("session.access"), :class=> "btn" %></div>
+          <% end -%>
+        <% end %>
+
+</div>
+
+        <div id="loginsoc">
+          <h2><%= t "registersoc" %> </h2>
+            <p style="text-align: left">
+              <%= link_to (image_tag("tw32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/twitter" %>
+              <%= link_to (image_tag("fb32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/facebook" %>
+              <%= link_to (image_tag("in32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/linked_in" %>
+            </p>
+
+          <p>
+            <%= render :partial => "shared/devise_links" %>
+          </p>
+        </div>
+      
+    </div>
+  </div>
+</div>

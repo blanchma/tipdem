@@ -1,0 +1,17 @@
+<div id="error_msg">
+  <% if params[:message] %>
+    <div>
+      <%= t params[:message] %>
+    </div>
+  <% end %>
+
+  <div >
+    <%= flash[:alert] || flash[:error] || flash[:notice]%>
+  </div>
+
+  <div id="error_detail">
+    <%= error_messages_for :user,
+      :header_message => nil,
+      :message => @user.errors.size > 0 ? t("errors.template.singular") : t("errors.template.plural") %>
+  </div>
+</div>

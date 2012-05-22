@@ -1,0 +1,70 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'login', 'captcha/styles.css'  %>
+  <%= javascript_include_tag 'jquery.sexy-captcha' %>
+<% end %>
+
+<div id="content">
+  <div id="detail">
+
+    <div id="desc">
+        <%= render :partial => "shared/show_user_errors" %>
+
+      <div id="login">
+        <div id="logo">
+          <% link_to "/" do %>
+            <%= image_tag 'logo_lc.png', :alt => "TIPDEM", :width => "200", :height => "50", :vspace => "0", :border => "0" %>
+          <% end %></div>
+
+        <h2><%= t "register" %> </h2>
+
+
+        <div class="formbox">
+          <% form_for :user, @user, :url => registration_path(:user), :id => "registration_form" do |f| -%>
+
+            <p class="p1"><%= f.label :email %></p>
+            <p class="p2"><%= f.text_field :email %></p>
+
+            <% if @user.password_required? %>
+              <p class="p1"<%= f.label :password %></p>
+              <p class="p2"><%= f.password_field :password %></p>
+
+              <p class="p1"><%= f.label :password_confirmation %></p>
+              <p class="p2"><%= f.password_field :password_confirmation %></p>
+            <% end %>
+            
+            <p class="p1"><%= f.label :gender %></p>
+            <p class="p2"><%= f.label :male %> <%= f.radio_button :gender, 'male' %>
+            <%= f.label :female %> <%= f.radio_button :gender, 'female' %></p>
+            
+            <div class="myCaptcha"></div>
+
+            <div style="width: 100%; float:right">
+              <p><%= f.submit t("register"), :class=> "btn"%></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="detail">
+        <div id="desc">
+          <div id="loginsoc">
+            <h2><%= t "registersoc" %> </h2>
+            <p style="text-align: left">
+              <%= link_to (image_tag("tw32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/twitter" %>
+              <%= link_to (image_tag("fb32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/facebook" %>
+              <%= link_to (image_tag("in32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), "/auth/linked_in" %>
+            </p>
+
+            <p>
+              <%= render :partial => "shared/devise_links" %>
+            </p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+   $('document').ready(function() {
+    $('.myCaptcha').sexyCaptcha('<%= captcha_path %>');
+  }); 
+</script>

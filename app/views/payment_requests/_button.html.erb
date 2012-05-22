@@ -1,0 +1,11 @@
+<% if current_user.current_money > RevenueParams::Min_Payment %>
+  <div class="btn">
+    <%= link_to (t("amount.button")), {:controller => :payment_requests, :action => :new }, :class => "colored" %>
+  </div>
+<% else %>
+  <div class="btn">
+    <a href="#" title="<%=  t("amount.alerttitle") %>" onclick="alert('<%=  t("amount.alert1") %> <%=  number_to_currency(RevenueParams::Min_Payment, :unit => "$", :format => "%u%n") %>  <%=  t("amount.alert2") %>')">
+      <%=  t("amount.alerttext") %>
+    </a>
+  </div>
+<%  end %>

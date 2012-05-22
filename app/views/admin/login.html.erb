@@ -1,0 +1,21 @@
+<% if current_user && current_user.admin? %>
+  <h4>Su usuario ya es administrador. </h4>
+  <%= link_to "Ir al panel de Administración", :action => :campaigns_status %>
+<% else  %>
+
+  <% form_tag adminify_path, :method => :put do  %>
+
+    <div style="margin: 0 auto 0 auto; display:block; float:left;">
+      <h4>Su usuario no es administrador. Ingrese la clave de conversión: </h4>
+      <span style="color:red" ><%= flash[:notice]  %> </span>
+      <p><%= label_tag :email %>
+        <%= text_field_tag :email, ( current_user ? current_user.email : "") %>
+      </p>
+      <p><%= label_tag :password %>
+        <%= password_field_tag :password %></p>
+      <p><%= submit_tag "Entrar" %></p>
+    </div>
+
+  <% end %>
+
+<% end %>

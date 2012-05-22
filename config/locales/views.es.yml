@@ -1,0 +1,783 @@
+es:
+  # Panel
+  header:
+    welcome: "Bienvenido"
+    close: "Cerrar sesión"
+  menu:
+    home: "Inicio"
+    create: "Crear Campaña"
+    mycamp: "Mis Campañas"
+    active: "Campañas activas"
+    inactive: "Campañas inactivas"
+    myprom: "Mis Promociones"
+    myprof: "Mi Perfil"
+    mydata: "Mis Datos"
+    mycategories: "Mis Categorías"
+    mynetworks: "Mis Redes"
+    mypays: "Mis Cobros"
+  current:
+    title: "Promociones vigentes"
+    empty: "No hay campañas disponibles en este momento."
+    earn: "Puedes ganar"
+    type: "por click"
+    promote: "Promocionar"
+  amount:
+    title: "Llevas acumulado"
+    button: "Solicitar cobro"
+    alerttitle: "Dinero insuficiente para cobrar"
+    alert1: "Necesitas tener mas de"
+    alert2: "para cobrar"
+    alerttext: "Fondos insuficientes"
+  categories:
+    text: "Selecciona las categorías de tu interés y te notificaremos cuando haya campañas activas."
+    button: "Elegir"
+  create:
+    step:
+      one:
+        title: "1 - Crear una campaña"
+        name: "Nombre"
+        tname: "Escribe el nombre de tu campaña con el cual se la identificará en las redes sociales y el panel de control de Tipdem."
+        logo: "Logo"
+        tlogo: "Incluye un logo para identificar tu campaña en las redes sociales y el panel de control de Tipdem. Puedes ingresar una imagen por URL o cargar manualmente el archivo. Los tipos de Archivos permitidos son PNG/JPG/GIF y el archivo no debe superar los 2 Mb."
+        logotext: "Elija como agregar su imagen:"
+        logovalue: "'<option value='1'>Archivo</option><option value='2'>URL</option>'"
+        logotype: "Archivo"
+        begin: "Fecha de inicio"
+        tbegin: "Define la fecha en la cual iniciará la campaña."
+        end: "Fecha de finalización"
+        endyes: "Si"
+        tend: "Define la fecha en la cual finalizará la campaña."
+        desc: "Descripción"
+        tdesc: "Escribe los detalles de tu campaña que aparecerán debajo del nombre en las redes sociales y el panel de control de Tipdem."
+        msg: "Mensaje sugerido a los promotores"
+        tmsg: "Escribe un mensaje sugerido para que los promotores puedan difundir tu campaña. Esto facilitará los pasos de Promoción y los promotores no tendrán que hacerlo al momento de difundirla."
+        have: "Tienes"
+        left: "caracteres disponibles"
+      two:
+        title: "2 - Elija las categorias para su campaña"
+        text: "Seleccione una categoría como mínimo para su campaña y hasta un máximo de 3 (tres)."
+      three:
+        title: "3 - Defina su presupuesto y las recompensas"
+        total: "Presupuesto total"
+        totaldesc: "Defina la inversión que realizará para promocionar su campaña."
+        type: "Tipo de Campaña"
+        cpcdesc: "En el modelo CPC (Costo por Click) Usted paga por cada usuario que haga un clic para visitar la Landing Page."
+        cpmdesc: "En el modelo CPM (Costo por 1000 impresiones) Usted paga por cada vez que su anuncio sea publicado 1000 veces en las redes sociales."
+        maxcpc: "Máximo a pagar por click"
+        maxcpm: "Máximo a pagar por impresión"
+        count: "Cantidad disponible de clicks"
+      four:
+        title: "4 - Complete los datos de la página promocional"
+        maintitle: "Título"
+        titlet: "Escribe el título de la página de promoción que servirá para difundir tu campaña."
+        subtitle: "Subtítulo"
+        subtitlet: "Escribe el subtítulo de la página de promoción que servirá para difundir tu campaña."
+        mainimage: "Imagen principal"
+        imgtext: "Elija como agregar su imagen:"
+        timg: "Incluye una imagen para identificar tu campaña en las redes sociales y el panel de control de Live Chains. Puedes ingresar una imagen por URL o cargar manualmente el archivo. Los tipos de Archivos permitidos son PNG/JPG/GIF y el archivo no debe superar los 2 Mb."
+        imgtype: "Archivo"
+        imgload: "Subir"
+        web: "Website de destino"
+        tweb: "URL para redirigir a los usuarios."
+        prev: "Vista previa de la página promocional"
+        main: "Cuerpo principal"
+        tmain: "Escribe los detalles de tu campaña explicando los beneficios que ofrece la misma. Esta descripción es muy importante ya que es lo que decidirá a los promotores a difundir tu campaña."
+      five:
+        title: "5 - Revise los datos antes de finalizar"
+        desc: "Descripción de la campaña"
+        begin: "Fecha de inicio"
+        end: "Fecha de finalización"
+        amount: "Montos de la campaña"
+        total: "Presupuesto total:"
+        msg: "Mensaje sugerido a tus promotores:"
+        landing: "Página de promoción"
+        landingtext: "Este link solo es válido para pruebas. Cuando active la campaña, recibira un correo con el link definitivo."
+        pay: "Paga el presupuesto total de la campaña:"
+        paytext: "No es necesario que lo pague inmediatamente pero su campaña no estara activa hasta tanto no se abone el total."
+    edit:
+      camp:
+        title: "Editar los datos de la campaña"
+        name: "Nombre"
+        tname: "Escribe el nombre de tu campaña con el cual se la identificará en las redes sociales y el panel de control de Tipdem."
+        logo: "Logo"
+        tlogo: "Incluye un logo para identificar tu campaña en las redes sociales y el panel de control de Tipdem. Puedes ingresar una imagen por URL o cargar manualmente el archivo. Los tipos de Archivos permitidos son PNG/JPG/GIF y el archivo no debe superar los 2 Mb."
+        logotext: "Elija como agregar su imagen:"
+        logovalue: "'<option value='1'>Archivo</option><option value='2'>URL</option>'"
+        logotype: "Archivo"
+        begin: "Fecha de inicio"
+        tbegin: "Define la fecha en la cual iniciará la campaña."
+        end: "Fecha de finalización"
+        endyes: "Si"
+        tend: "Define la fecha en la cual finalizará la campaña."
+        desc: "Descripción"
+        tdesc: "Escribe los detalles de tu campaña que aparecerán debajo del nombre en las redes sociales y el panel de control de Tipdem."
+        msg: "Mensaje sugerido a los promotores"
+        tmsg: "Escribe un mensaje sugerido para que los promotores puedan difundir tu campaña. Esto facilitará los pasos de Promoción y los promotores no tendrán que hacerlo al momento de difundirla."
+        have: "Tienes"
+        left: "caracteres disponibles"
+        edit: "Editar Landing Page"
+      land:
+        title: "Editar Página Promocional"
+        maintitle: "Título"
+        titlet: "Escribe el título de la página de promoción que servirá para difundir tu campaña."
+        subtitle: "Subtítulo"
+        subtitlet: "Escribe el subtítulo de la página de promoción que servirá para difundir tu campaña."
+        mainimage: "Imagen principal"
+        imgtext: "Elija como agregar su imagen:"
+        timg: "Incluye una imagen para identificar tu campaña en las redes sociales y el panel de control de Live Chains. Puedes ingresar una imagen por URL o cargar manualmente el archivo. Los tipos de Archivos permitidos son PNG/JPG/GIF y el archivo no debe superar los 2 Mb."
+        imgtype: "Archivo"
+        imgload: "Subir"
+        web: "Website de destino"
+        tweb: "URL para redirigir a los usuarios."
+        prev: "Vista previa de la página promocional"
+        main: "Cuerpo principal"
+        tmain: "Escribe los detalles de tu campaña explicando los beneficios que ofrece la misma. Esta descripción es muy importante ya que es lo que decidirá a los promotores a difundir tu campaña."
+        edit: "Editar Campaña"
+    steps:
+      one: "1 - Creación"
+      two: "2 - Categorías"
+      three: "3 - Presupuesto"
+      four: "4 - Contenidos"
+      five: "5 - Pago"
+    save: "Guardar"
+    savenext: "Guardar y Seguir"
+    next: "Siguiente"
+    back: "Anterior"
+    end: "Finalizar"
+  mycamp:
+    active:
+      title: "Mis Campañas Activas"
+      campaign: "Campaña"
+      type: "Tipo"
+      begin: "Inicio"
+      end: "Fin"
+      click: "Clicks"
+      hits: "Hits"
+      promo: "Referidos"
+      budget: "Dinero Asignado"
+      cons: "Dinero Consumido"
+      action: "Acciones"
+      tool:
+        campaign: "Nombre de la campaña"
+        type: "Tipo de campaña"
+        begin: "Fecha de inicio de la campaña"
+        end: "Fecha de finalización de la campaña"
+        click: "Número total de clics a la landing page de la campaña"
+        hits: "Número total de accesos a la URL de la campaña"
+        promo: "Número total de referidos obtenidos mediante la promoción de la campaña"
+        budget: "Monto total de dinero asignado a la campaña"
+        cons: "Monto disponible por los incentivos a los promotores que se suman a la campaña"
+        edit: "Editar campaña"
+        delete: "Borrar campaña"
+        comm: "Promocionar"
+        stats: "Más Estadísticas"
+    inactive:
+      title: "Mis Campañas Inactivas"
+      campaign: "Campaña"
+      type: "Tipo"
+      status: "Estado"
+      click: "Clicks"
+      hits: "Hits"
+      promo: "Referidos"
+      budget: "Dinero Restante"
+      posts: "Posts"
+      action: "Acciones"
+      tool:
+        campaign: "Nombre de la campaña"
+        type: "Tipo de campaña"
+        status: "Estado de publicación de la campaña"
+        click: "Número total de clics a la landing page de la campaña"
+        hits: "Número total de accesos a la URL de la campaña"
+        promo: "Número total de referidos obtenidos mediante la promoción de la campaña"
+        budget: "Monto total de dinero asignado o restante a la campaña"
+        posts: "Publicaciones realizadas de la campaña"
+        edit: "Editar campaña"
+        delete: "Borrar campaña"
+        pay: "Abonar presupuesto"
+        stats: "Más Estadísticas"
+        finish: "Completar campaña"
+  myprom:
+    title: "Mis Promociones"
+    campaign: "Campaña"
+    refer: "Referidos"
+    click: "Clicks"
+    hits: "Hits"
+    earn: "Ganancias"
+    post: "Posts"
+    action: "Acciones"
+    tool:
+      campaign: "Nombre de la campaña"
+      refer: "Número de referidos obtenidos mediante la promoción de la campaña"
+      click: "Número total de clics a la landing page de la campaña promocionada"
+      hits: "Número total de accesos a la URL asociada a la campaña promocionada"
+      earn: "Monto de dinero acumulado hasta el momento por campaña"
+      post: "Número de posteos en las redes sociales habilitadas para la promoción de la campaña"
+  mydata:
+    title: "Mis Datos"
+    pass: "(Deja en blanco si no deseas modificarla)"
+    cancel: "Cancelar mi cuenta"
+    update: "Actualizar datos"
+    gender: "Sexo"
+    male: "Masculino"
+    female: "Femenino"
+    conftext: "<h2>Enviar instrucciones de confirmación</h2><p>Debe confirmar su usuario antes de poder:</p><ol><li>Crear campañas</li><li>Retirar premios o beneficios</li></ol>"
+    conf: "Enviar confirmación"
+  mycat:
+    title: "Elija las categorias de su interés"
+    susc: "Recibir por correo notificación de las nuevas campañas según mis preferencias"
+    btnon: "Suscribir"
+    btnoff: "Desuscribir"
+    save: "Guardar"
+  mynet:
+    title: "Tus Cuentas asociadas"
+    socnet: "Redes sociales"
+    pay: "Sistema de pago"
+    link: "Vincular"
+    unlink: "Desvincular"
+    delete: "Borrar"
+    edit: "Editar"
+  mypay:
+    title: "Mis solicitudes de cobro"
+    date: "Fecha de creación"
+    money: "Dinero solicitado"
+    status: "Estado"
+    paydate: "Fecha de pago"
+    action: "Acciones"
+  paystatus:
+    title: "Estado del pago"
+    success: "fue abonada con éxito.</p><p>Su campaña está pendiente de aprobación.</p> <p>Le avisaremos por correo cuando este aprobada.</p><p>Muchas gracias!"
+    errortitle: "<p>Ha ocurrido un error en el pago de la campaña:"
+    errortext: "</p><p>Intente más tarde desde Mis Campañas.</p><p>Muchas gracias!</p>"
+  payment:
+    title: "Abonar presupuesto"
+    total: "Total a pagar"
+  campdata:
+    name: "Datos de la campaña:"
+    desc: "Descripción:"
+    begin: "Fecha de inicio:"
+    end: "Fecha de finalización:"
+    mode: "Modalidad"
+  campdetail:
+    title: "Detalles de la campaña"
+    owner: "Creador:"
+    btn: "Promocionar"
+  promote:
+    title: "Promocionar la campaña:"
+    cancfb: "Cancelar publicación automática a Facebook"
+    canctw: "Cancelar publicación automática a Twitter"
+    cancin: "Cancelar publicación automática a Linkedin"
+    hist: "Historial de Tips"
+    post: "Posteado:"
+    prog: "Programado:"
+    canc: "Cancelar"
+    edit: "Editar"
+    prom: "Promocionar"
+    see: "Ver mis posts"
+    msg: "Mensaje predeterminado:"
+    custom: "Personalizar"
+    close: "Cerrar"
+    cus1: "Puedes personalizar este mensaje"
+    cus2: "caracteres máximo"
+    time: "Elija cuando desea realizar la publicación:"
+    now: "Ahora"
+    at: "A las"
+    daily: "Diario"
+    back: "Volver a Inicio"
+    upd: "Actualizar"
+    buttons:
+      facebook: "Postear"
+      twitter: "Twittear"
+      linked_in: "Publicar"
+      fb: "Post"
+      tw: "Twittear"
+      in: "Publish"
+  stats:
+    title: "Estadísticas"
+    trafic: "Tráfico por día"
+    gender: "Comparción por sexo"
+    click: "Clicks por referidos"
+    hit: "Hits por referidos"
+  campinactive: "Esta campaña ya ha concluido o esta temporalmente inactiva."
+  campinactivelink: "Visite nuestra página"
+  fb: "Facebook"
+  tw: "Twitter"
+  in: "LinkedIn"
+  category:
+    Alimentos: "Alimentos"
+    Arte: "Arte"
+    Autos: "Autos"
+    Bebes & Niños: "Bebés y niños"
+    Belleza: "Belleza"
+    Bebidas: "Bebidas"
+    Celebridades: "Celebridades"
+    Deals: "Ofertas"
+    Deportes: "Deportes"
+    Educacion: "Educación"
+    Electronica & Gadgets: "Electronica y Gadgets"
+    Empresas: "Empresas"
+    Entretenimento: "Entretenimento"
+    Familia: "Familia"
+    Finanzas: "Finanzas"
+    Hogar: "Hogar"
+    Indumentaria: "Indumentaria"
+    Jovenes: "Jovenes"
+    Juegos: "Juegos"
+    Libros: "Libros"
+    Marketing: "Marketing"
+    Musica: "Música"
+    Politica: "Política"
+    Salud: "Salud"
+    Viajes: "Viajes"
+  user:
+    updated: "Preferencias actualizadas"
+  accounts:
+    linked: "Cuenta vinculada exitosamente"
+
+  #Registration
+  confirm:
+    ask:
+      text1: "El email:"
+      text2: "ya esta asociada con otro usuario. </p><p>Si desea, vincular su cuenta de"
+      text3: "Si desea vincular su cuenta de "
+      text4: "confirme por correo:"
+      link: "enviar confirmación"
+      text5: "O"
+      link2: "concluya su registración"
+      text6: "con otra cuenta de correo."
+      text7: "La confirmación ya fue enviada a "
+      text8: "Revise su casilla de correo en unos minutos (verifique su carpeta de SPAM)</p><p> Muchas gracias"
+
+
+  #Landing
+  landing:
+    text: "Regístrate en Tipdem, elige una campaña y recomiéndala a tus amigos.<br/>¡Accede a premios y recompensas!"
+
+  #Publico
+  home_1: "La mejor herramienta de recomendación boca a boca para la difusión de campañas."
+  home_2: "Promotores"
+  home_3: "Comparte con tus amigos y seguidores"
+  home_4: "los productos, servicios y causas de tu interés"
+  home_5: "Conviertete en"
+  home_6: "generador de opinión"
+  home_7: "Recibe"
+  home_8: "importantes recompensas."
+  home_9: "Más info"
+  home_10: "Difunde y Gestiona"
+  home_11: "tus campañas en medios sociales en una"
+  home_12: "única plataforma."
+  home_13: "Fideliza"
+  home_14: "a tus"
+  home_15: "Seguidores y FANs"
+  home_16: "participándolos de tu éxito"
+  home_17: "Mide el valor de tus campañas"
+  home_18: "y su impacto en tiempo real."
+  home_19: "Registrarse"
+  home_20: "Campañas"
+
+  _one_header_1: "¿Qué es Tipdem?"
+  _one_header_2: "Equipo"
+  _one_header_3: "Términos y Condiciones"
+  _one_header_4: "Política de Privacidad"
+  _one_header_5: "Acerca de Tipdem"
+  _one_header_6: "Promotores"
+  _one_header_7: "Campañas"
+  _one_header_8: "Servicios"
+  _one_header_9: "Contacto"
+  _one_header_10: "¿Como funciona?"
+
+  _two_header_1: "¿Qué es Tipdem?"
+  _two_header_2: "Equipo"
+  _two_header_3: "Términos y Condiciones"
+  _two_header_4: "Política de Privacidad"
+  _two_header_5: "Acerca de Tipdem"
+  _two_header_6: "Promotores"
+  _two_header_7: "Campañas"
+  _two_header_8: "Servicios"
+  _two_header_9: "Contacto"
+  _two_header_10: "¿Como funciona?"
+
+
+  welcome_1: "Acerca de Tipdem"
+  welcome_2: "- Promotores"
+  welcome_3: "- Campañas"
+  welcome_4: "- Servicios"
+  welcome_5: "Preguntas Frecuentes"
+  welcome_6: "Contacto"
+  welcome_7: "Suscribite a nuestro newsletter"
+  welcome_8: "Términos y Condiciones"
+  welcome_9: "Política de Privacidad"
+  welcome_10: "¿Cómo funciona?"
+  welcome_11: "© Copyright 2011 - Tipdem - Todos los derechos reservados - Términos y Condiciones - Política de Privacidad"
+  welcome_12: "Beneficios"
+
+  last_campaigns:
+    see_more: "Ver más"
+    last_published: "Ultimas campañas publicadas"
+
+  quienes:
+    what_is: "¿Qué es TIPDEM?®"
+    explain_1: "Es una plataforma de difusión y gestión de campañas, basados en el concepto de comunicación boca a boca (Word of Mouth)."
+    explain_2: "Creado con el objetivo de ayudar a difundir opiniones y acciones de comunicación y marketing, midiendo su impacto tanto a nivel cuantitativo como cualitativo, con el objetivo final de aumentar su audiendia, fidelizarla y así dimensionar el retorno de su inversión."
+    video: "<iframe src='http://player.vimeo.com/video/28171581?byline=0&amp;color=ff9933' width='600' height='338' frameborder='0'></iframe>"
+
+  equipo:
+    title: "Equipo"
+    creemos: "En <strong>TIPDEM</strong>&reg; creemos que la <strong>diversidad</strong> es la clave para conformar un buen equipo que permita tener bajo control todos los aspectos posibles para entregar un <strong>servicio de excelencia</strong>."
+    pasion: "La <strong>pasión</strong> por lo que hacemos nos mantiene enfocados en nuestro <strong>principal motivador</strong> que son nuestros <strong>usuarios y clientes</strong>."
+
+  buttons:
+    fb: "Post"
+    tw: "Tweet"
+    in: "Compartir"
+
+  sign_in: "Inicio de sesión"
+  register: "Registrarse"
+  registersoc: "Registrarse usando tu cuenta de redes sociales"
+  my_panel: "Mi Panel"
+
+  image_source:
+    file: "Desde un archivo"
+    url: "Desde una URL"
+    logo: "Usar el logo"
+
+  bottom:
+    what_is: "¿What is TIPDEM?®"
+    follow_us_tw: "Follow us on Twitter"
+    follow_us_fb: "Follow us on Facebook"
+
+  session:
+    access: "Entrar"
+    access_in: "Accede con tu cuenta de LinkedIn"
+    access_tw: "Accede con tu cuenta de Twitter"
+    access_fb: "Accede con tu cuenta de Facebook"
+
+  registration:
+    with_tw: "Registrate con tu cuenta de Twitter"
+    with_fb: "Registrate con tu cuenta de Facebook"
+    with_in: "Registrate con tu cuenta de LinkedIn"
+
+  contact:
+    title: "Contáctenos"
+    name: "Nombre"
+    mail: "Correo electrónico"
+    msg: "Mensaje"
+    send: "Enviar"
+
+  howitwork:
+    prom:
+      title: "¿Cómo funciona?"
+      subtitle: "Promotores"
+      text: "<p>Las Redes Sociales han ayudado a las personas a conocer, seguir y apoyar productos, servicios y causas de su interés. TIPDEM® te ayudará a compartir tu experiencia con tu grupo de pertenencia, a influir con tu opinión y recomendación de aquellas acciones y campañas de tu interés, pero esta vez, siendo parte del éxito de la promoción mediante la obtención de importantes beneficios.</p><p>En resumen, <strong>TIPDEM®</strong> te permite ganar dinero, descuentos, acceder a promociones, etc.; mientras disfutas de promocionar la campaña de tu agrado.</p><p><strong>¿Cómo?</strong>...  Compartir tu opinión con tus amigos, seguidores de Twitter y Facebook y hacer crecer el árbol de promoción. <strong>¡Mirá las Campañas Activas!</strong></p>"
+      graph: "<p><img alt='Graph_promote' src='/images/graph_promote_es.png' width='700' /></p>"
+      btn: "Beneficios"
+    creator:
+      title: "¿Cómo funciona?"
+      subtitle: "Creadores de Campañas"
+      text: "<p>Los medios sociales nos proponen nuevos esquemas de difusión y relacionamiento con nuestros FAN's y Seguidores, TIPDEM® te ayudará a potenciar esta relación unificando la gestión de las campañas en las redes sociales</p><p><strong>¿Cómo?</strong>...   Llendo más allá de las tradicionales campañas on line aprovechando el empuje e influencia de tus FAN's y Seguidores.</p>"
+      graph: "<p><img alt='Graph_promote' src='/images/graph_campaign_es.png' width='700' /></p>"
+      btn: "Beneficios"
+    services:
+      title: "Servicios"
+      table: "  <table frame='void' cellspacing='0' cols='4' border='0' style='font-family: Verdana; font-size: 11px;'>
+  <tbody>
+    <tr>
+      <td height='19' colspan='2' align='left' valign='middle' bgcolor='#1F3447' style='color: #FFF' ><strong>CREADORES DE CAMPAÑAS</strong><strong><br />
+      </strong></td>
+      <td width='91' align='center' valign='middle' bgcolor='#1F3447' style='color: #FFF' ><strong>STANDARD</strong></td>
+      <td width='94' align='center' valign='middle' bgcolor='#1F3447' style='color: #FFF' ><strong>BUSINESS</strong></td>
+    </tr>
+    <tr>
+      <td width='24' height='19' align='left' valign='middle'  ><br /></td>
+      <td width='451' align='left' valign='middle'  >Registro On Line</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Crear Campañas</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Campañas simultáneas</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Invitaciones por Facebook</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Invitaciones por Twitter</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Invitaciones por Linked In</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Invitaciones por Orkut</td>
+      <td align='center' valign='middle'  >Proximamente</td>
+      <td align='center' valign='middle'  >Proximamente</td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Programación de Campañas</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Diseño integral de la campaña en redes sociales</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Administración de Presupuesto</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Plantillas de Landing Page</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Personalización de Landing Page </td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Redireccionamientos de Landing Page</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Administración de Datos de Usuario</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Reportes Estándar*</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Reportes Ad Hoc</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Seguimiento de mensajes sugeridos</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Seguimiento de versiones de landing pages</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Tiempo de permanencia en la landing pages</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte&nbsp;vía Mail</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte vía Twitter</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte vía Facebook</td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte telefónico</td>
+      <td align='center' valign='middle'  ><img alt='no' src='/images/no.png' width='20' /></td>
+      <td align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' colspan='2' align='left' valign='middle' bgcolor='#6D8EAD' style='color: #FFF' ><strong>PROMOTORES</strong><br /></td>
+      <td align='center' valign='middle' bgcolor='#6D8EAD'  ><br /></td>
+      <td align='center' valign='middle' bgcolor='#6D8EAD'  ><br /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Registro On Line</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Seguir promociones&nbsp;</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Promociones simultáneas</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Publicar en Facebook</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Publicar en Twitter</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Publicar en Linked In</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Publicar en Orkut</td>
+      <td colspan='2' align='center' valign='middle'  >Proximamente</td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Búsqueda y selección de campañas por categorías</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Programación de Publicación</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Administrar cobro de recompensas</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Mensajes de promoción sugeridos</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Personalización de mensajes</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Administración de Datos de usuario</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Reportes Estándar*</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Notificaciones de campañas de acuerdo a los intereses del usuario</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Mails periódicos de Estado de cuenta y recordatorio de campañas activas</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte&nbsp;vía Mail</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte vía Twitter</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  >Soporte vía Facebook</td>
+      <td colspan='2' align='center' valign='middle'  ><img alt='yes' src='/images/yes.png' width='20' /></td>
+    </tr>
+    <tr>
+      <td height='19' colspan='2' align='left' valign='middle' bgcolor='#CFCDB4'  ><strong>OPCIONALES</strong><br /></td>
+      <td align='center' valign='middle' bgcolor='#CFCDB4'  ><br /></td>
+      <td align='center' valign='middle' bgcolor='#CFCDB4'  ><br /></td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td colspan='3' align='left' valign='middle'  >Diseño Integral de Landing Page en Campaña en Perfil Facebook</td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td colspan='3' align='left' valign='middle'  >Integración con Plataforma de Compra Propia del cliente</td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td colspan='3' align='left' valign='middle'  >Promoción por banners desde sitios webs</td>
+    </tr>
+    <tr>
+      <td height='19' align='left' valign='middle'  ><br /></td>
+      <td align='left' valign='middle'  ><br /></td>
+      <td align='center' valign='middle'  ><br /></td>
+      <td align='center' valign='middle'  ><br /></td>
+    </tr>
+    <tr>
+      <td height='69' align='left' valign='middle'  ><br /></td>
+      <td colspan='3' align='left' valign='middle'  ><em>*posts, clicks, hits, cadenas, promotores, conexiones, etweets, facebook likes, Click Rate (Clicks / Posts), Hit Rate (Hit / Posts), Interest (Hit / Clicks), Link Rate (Clicks / Chains), Link &quot;Return&quot; ( Promotors from Chains / Chains)</em></td>
+    </tr>
+  </tbody>
+</table>"
+  faqs:
+    title: "FAQ's - Preguntas frecuentes"
+    promo:
+      title: "Promotores"
+      ask1: "1. ¿Cuánto cuesta registrarse en Tipdem®?"
+      ans1: "Registrarse en <strong>Tipdem®</strong> en completamente gratis, recomendar campañas también es gratuito y todas las funciones que como promotor necesites utilizar."
+      ask2: "2. ¿Qué beneficios obtengo al registrarme en Tipdem®?"
+      ans2: "Al recomendar las campañas de <strong>Tipdem®</strong>, podrás recibir una gran variedad de beneficios en relación a la cantidad de contactos que se vayan sumando y como tu red vaya difundiendo la campaña."
+      ask3: "3. ¿Qué diferencias hay en utilizar Tipdem® en lugar de otra herramienta en la cual pueda comentarles a mis amigos acerca de una campaña?"
+      ans3: "Utilizando <strong>Tipdem®</strong> no solo serás referente entre tus amigos y conocidos comentándole acerca de una campaña que les puede resultar interesante o de utilidad, sino que obtendrás una recompensa por ello. Cuantos más amigos y conocidos contactes, más beneficios sumarás a tu cuenta. Además si alguno de ellos obtiene información adicional acerca de la campaña tus beneficios se multiplicarán."
+      ask4: "4. ¿Cómo puedo difundir las campañas de mi interés entre mis amigos y conocidos?"
+      ans4: "La forma de difundir campañas utilizando <strong>Tipdem®</strong> es muy simple:</p><blockquote><p>• Registrate en <strong>Tipdem®</strong> y convierte en promotor.<br />• Comentales a tus amigos y conocidos acerca de la campaña de tu interés a través de Twitter, Facebook o e-mail. Puedes usar una o las tres formas de comunicación.<br />• Realiza el seguimiento de tus recomendaciones desde el panel de control de <strong>Tipdem®</strong> para conocer cómo tus amigos fueron difundiendo el mensaje de la campaña que les enviaste.</p></blockquote>"
+      ask5: "5. ¿Cómo puedo acceder a mis recompensas?"
+      ans5: "Cada vez que ingreses con tu usuario y contraseña al sitio de <strong>Tipdem®</strong> podrás ver las recompensas a las cuales puedes acceder. Las recompensas están relacionadas al tipo de campaña que estés promocionando."
+      ask6: "6. ¿Qué es 'boca a boca' o 'Word of Mouth'?"
+      ans6: "El &quot;boca a boca&quot; (&quot;Word of Mouth&quot; en inglés) está relacionado con la forma en que las personas comparten información de manera informal con el grupo de su confianza.</p><p>Esta forma de contacto es muy habitual cuando una persona le recomienda a un amigo o conocido un producto que le gustó o un servicio que le resultó bueno.</p><p>Este es el concepto básico en el cual se soporta Tipdem®. Los promotores encuentran una campaña de su interés y la difunden con su grupo de amigos y conocidos. Estos, al recibirla de alguien de su confianza, le brindan mayor atención y saben que puede ser una campaña interesante ya sea para recomendar o para ellos mismos."
+    creator:
+      title: "Creadores de campañas"
+      ask1: "1. ¿Cuánto cuesta registrarse en Tipdem®?"
+      ans1: "Registrase en <strong>Tipdem®</strong> y crear campañas estándar es completamente gratis. Además <strong>Tipdem®</strong> cuenta con planes pagos especiales en caso de necesitar herramientas de mayor poder de análisis para las campañas."
+      ask2: "2. ¿Qué beneficios obtengo al utilizar Tipdem® para crear y promover mis campañas?"
+      ans2: "<strong>Tipdem®</strong> te permitirá difundir tus campañas de manera sencilla, gratis y con un gran impacto en las redes sociales más populares. Además podrás ver información detallada y<br />centralizada del avance de la misma en único Panel de Control."
+      ask3: "3. ¿Cómo puedo crear mi campaña con Tipdem®?"
+      ans3: "Para crear tu campaña tienes que seguir el asistente para la creación de campañas y en pocos minutos tendrás tu nueva campaña en línea. Para eso solamente tienes que realizar 4 sencillos pasos:</p><blockquote><p> <strong>a)</strong> Elige los datos básicos de tu campaña (Nombre de la campaña, Descripción, Mensaje y Duración).<br /><strong>b)</strong> Define las recompensas para los Promotores.<br /><strong>c)</strong> Diseña la Página de Promoción de tu Campaña.<br /><strong>d)</strong> Avísale a tus amigos y conocidos a través de Twitter y Facebook… y listo!</p></blockquote>"
+      ask4: "4. ¿Cómo puedo ver el avance de mi campaña?"
+      ans4: "Cada vez que ingreses con tu usuario y contraseña al sitio de <strong>Tipdem®</strong> podrás ver en el Panel de Control el detalle de cómo ha avanzado tu campaña y cuantos nuevos promotores se han sumado para difundirla. Además podrás ver este detalle organizado por la red social o e-mail."
+      ask5: "5. ¿Qué es 'boca a boca' o 'Word of Mouth'?"
+      ans5: "El &quot;boca a boca&quot; (&quot;Word of Mouth&quot; en inglés) está relacionado con la forma en que las personas comparten información de manera informal con el grupo de personas de su<br />confianza.</p><p>Esta forma de contacto es muy habitual cuando una persona le recomienda a un amigo o conocido un producto que le gustó o un servicio que le resultó bueno.<br />Este es el concepto básico en el cual se soporta <strong>Tipdem®</strong>. Los promotores encuentran una campaña de su interés y la difunden con su grupo de amigos y conocidos. Estos, al recibirla de alguien de su confianza, le brindan mayor atención y saben que puede ser una campaña interesante ya sea para recomendar o para ellos mismos."

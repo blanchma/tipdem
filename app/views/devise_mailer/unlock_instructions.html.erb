@@ -1,0 +1,34 @@
+<table width="50%" border="0" align="center" cellpadding="15">
+  <tr>
+    <td bgcolor="#6D8EAD"><table width="600" border="0" align="center" cellpadding="5" cellspacing="0" style="font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:12px">
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td bgcolor="#CFCDB4"><a href="http://www.tipdem.com"><img src="http://tipdem.com/images/logo_lc.png" alt="Tipdem" border="0" /></a></td>
+        <td align="center" bgcolor="#CFCDB4"><strong>Unlock account</strong></td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="#FFFFFF"><p>Hello, <%= @resource.username %>!</p>
+          </td>
+      </tr>
+      <tr>
+        <td height="50" colspan="2" align="left" valign="middle" bgcolor="#FFFFFF"><p>Your account has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
+
+<p>Click the link below to unlock your account:</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="372" bgcolor="#FFFFFF" style="font-size:9px; color:#666"><p>Remember to add this address to your contacts to avoid being received as spam.
+            <br>
+            For questions or concerns <a href="http://tipdem.com/welcome/contacto">click here </a></p></td>
+        <td width="108" bgcolor="#FFFFFF" style="font-size:9px; color:#666">Follow Us at:<br />
+          <a href="http://on.fb.me/tipdem"><img src="http://tipdem.com/images/fb16.png?1316127582" alt="Facebook" width="16" height="16" border="0" /></a> <a href="http://bit.ly/p0kwOs"><img src="http://tipdem.com/images/tw16.png?1316127582" alt="Twitter" width="16" height="16" border="0" /></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>

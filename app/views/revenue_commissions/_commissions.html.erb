@@ -1,0 +1,21 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="admin_table_1" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th><%= sortable "campaign" %></th>
+    <th><%= sortable "user" %></th>
+    <th><%= sortable "revenue", "Released" %></th>
+    <th><%= sortable "comission", "Released" %></th>
+    <th><%= sortable "date", "Released" %></th>
+  </tr>
+  <% for commission in @commissions %>
+    <tr>
+      <td><%= commission.campaign.name %></td>
+      <td><%= commission.revenue.user.username %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @commissions %>
+

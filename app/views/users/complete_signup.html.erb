@@ -1,0 +1,46 @@
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag  'login'  %>
+<% end %>
+
+
+
+<div id="content">
+  <div id="detail">
+    <div id="desc">
+      <div id="login" style="height: 205px">
+        <div id="logo">
+          <% link_to "/" do %>
+            <%= image_tag 'logo_lc.png', :alt => "Tipdem", :width => "220", :height => "50", :vspace => "20", :border => "0" %>
+          <% end %></div>
+
+      <%= render :partial => "shared/show_user_errors" %>
+
+        <h2>Ingrese su dirección de correo</h2>
+        <br/><br/>
+        <% form_for :user, @user, :url => {:action => :update_signup} do |f| %>
+
+
+          <p class="p1"><%= f.label :email %></p>
+          <p class="p2"><%= f.text_field :email %></p>
+
+
+          <% if @user.errors.on(:username) %>
+            <p class="p1"><%= f.label :username %></p>
+            <p class="p2"><%= f.text_field :username %></p>
+          <% end %>
+
+          <p><%= f.submit "Continuar", :class => "btn" %></p>
+
+        </div>
+        <%= f.error_messages  %>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>
+
+
+<script type="text/javascript">
+  //hideLogin();
+</script>

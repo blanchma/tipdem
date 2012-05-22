@@ -1,0 +1,24 @@
+<div>
+  <h4>Comisiones</h4>
+  <b>CLICK</b>: <%= Commission::LandingPageHit %>
+  <br/>
+  <b>HIT</b>: <%= Commission::ClientPageHit %>
+  <br/>
+</div>
+
+<div>
+  <b>Total ganancias por comisiones:</b> <%= number_to_currency(@bank_account.money) %>
+</div>
+
+
+<div id="commissions"><%= render @commissions %></div>
+
+<script type="text/javascript">
+  $(function() {
+    $("#commissions th a, #commissions .pagination a").live("click", function() {
+      $.getScript(this.href);
+      return false;
+    });
+
+  });
+</script>

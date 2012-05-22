@@ -1,0 +1,24 @@
+
+    <h3><%=  t("campdetail.title") %></h3>
+    <div id="detail_prom_prev">
+      <div id="prom_img"><%= image_tag @campaign.logo.url(:small), :width => "75"  %></div>
+      <div id="detail_prom_details">
+        <div id="prom_title"><%=  h  @campaign.name %></div>
+        <div id="prom_link"><%= link_to @campaign.link, @campaign.link, :target => "_blank" %></div>
+        <div id="prom_desc"><%= h @campaign.description %></div>
+        <div id="prom_name"><b><%=  t("campdetail.owner") %></b> <%= h @campaign.owner.username %></div>
+      </div>
+      <div id="prom_points">
+        <table width="300" align="center" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><%= h @campaign.mode %></td>
+            <td align="center"><%= h @campaign.budget.pay %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+ 
+  <div id="promote_this" >
+    <%= link_to_remote t("campdetail.btn"), :url => {:controller => :posts, :action => :new, :campaign_id => @campaign.id, :layout => 'false'},
+      :html => {:class => "awesome orange promote", :id => "show_post_form" }, :update => "campaign_details", :success => "setPromoteCookie(#{@campaign.id})" %>
+  </div>

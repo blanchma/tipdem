@@ -1,0 +1,33 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'public_site_style.css', :rel=> 'stylesheet', :title => "user" %>
+<% end %>
+
+
+<div id="header">
+		<div id="logo"><%=link_to(image_tag('logo_lc.png', :size => '200x50', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %></div>
+		<div id="menu">
+                <div id="btn2" class="btn" onmouseover="this.className='btnactive'" onmouseout="this.className='btn'"><%=t("_one_header_5")%>
+          <p><% link_to :action => "p_quienes" do %><%=t("_one_header_1")%><% end %></p>
+          <p><% link_to :action => "equipo" do %><%=t("_one_header_2")%><% end %></p>
+          <p><% link_to :action => "tyc" do %><%=t("_one_header_3")%><% end %></p>
+          <p><% link_to :action => "privacy" do %><%=t("_one_header_4")%></p><% end %>
+        </div>
+        <div id="btn3" class="btn" onmouseover="this.className='btnactive'" onmouseout="this.className='btn'"><%=t("_one_header_10")%>
+          <p><% link_to :action => "p_funcionamiento" do %><%=t("_one_header_6")%><% end %></p>
+          <p><% link_to :action => "c_funcionamiento" do %><%=t("_one_header_7")%><% end %></p>
+        </div>
+        <div id="btn4" class="btn"><% link_to :action => "servicios" do %><%=t("_one_header_8")%><% end %></div>
+        <div id="btn5" class="btn"><% link_to :action => "contacto" do %><%=t("_one_header_9")%><% end %></div>
+        </div>
+		<div id="login">
+              <% if user_signed_in? %>
+              <%= link_to t("my_panel"), user_root_path, :id => 'Panel', :class => "login_btn" %>
+              <% end %>
+              <% unless user_signed_in? %>
+              <%= link_to t("sign_in"), new_user_session_path, :class => "login_btn" %>
+              <% end %>
+                </div>
+                <div id="langchange" style="float: left">
+                  <%=link_to(image_tag('flag_es.png', :size => '12x50', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %>
+                </div>
+	</div>

@@ -1,0 +1,36 @@
+
+
+#la idea es simple,iterar por todos los errores de validacion y crear una entrada para el texto
+#y una imagen al lado de cada campo del form. Un detalle es q necesitas borrar todos los mensajes
+#anteriores antes de procesar los datos, Por eso guardo en flash un array de campos q fallaron en la
+#iteracion inmediata anterior. Como ejemplo imaginate q entras al form, no cargas nada, te saltan
+#todas las validaciones, luego completas solo el nombre, das submit, te tiene q borrar la validacion
+#del login de la llamada anterior y mostrarte si la de todos los campos restantes q falta completar
+#correctamente.
+
+
+flag = '_'
+list = Array.new
+
+
+ 
+page.remove(".valid_msg")
+model_name = @model.class.to_s.underscore
+
+@model.errors.each do |attr,msg|
+  if flag != attr
+    if attr.include?('date')
+	    id = model_name+'_'+attr+'_3i'
+    else
+      id = model_name+'_'+attr
+    end
+       
+    page[id].after("<span id='#{attr}_valid' class='valid_msg'>&nbsp; #{ msg } </span>")
+
+    flag = attr
+    list.push(attr)
+  end
+end
+
+
+   

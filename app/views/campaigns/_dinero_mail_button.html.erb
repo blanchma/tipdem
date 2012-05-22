@@ -1,0 +1,20 @@
+<form action='https://argentina.dineromail.com/Shop/Shop_Ingreso.asp'
+      method='post'>
+  <input type='hidden' name='NombreItem' value='<%= @campaign.name %>'/>
+  <input type='hidden' name='TipoMoneda' value='1'/>
+  <input type='hidden' name='PrecioItem' value='<%= @campaign.budget.total %>'/>
+  <input type='hidden' name='E_Comercio' value='1931414'/>
+  <input type='hidden' name='NroItem' value='-'/>
+  <input type='hidden' name='image_url'
+         value='http://tipdem.com/images/icons/img_logo_page.png'/>
+  <input type='hidden' name='DireccionExito'
+         value='<%= "#{APP_CONFIG['domain']}/campaigns#{@campaign.id}/success"%>'/>
+  <input type='hidden' name='DireccionFracaso'
+         value='<%= "#{APP_CONFIG['domain']}/campaigns/#{@campaign.id}/fail"%>'/>
+  <input type='hidden' name='DireccionEnvio' value='0'/>
+  <input type='hidden' name='Mensaje' value='1'/>
+  <input type='hidden' name='MediosPago' value='18,7'/>
+  <input type='hidden' name='buyer_email' value='<%= current_user.email %> '/>
+  <input type='image' src='<%=  "#{APP_CONFIG['domain']}/images/buttons/pay_dm.gif" %>'
+         border='0' name='submit' alt='Pagar con DineroMail' title="DineroMail"/>
+</form>

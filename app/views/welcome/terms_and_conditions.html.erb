@@ -1,0 +1,21 @@
+<% content_for :head do %>
+  <title>¿Quiénes sómos? - Tipdem</title>
+<% end %>
+
+<% content_for :header do %>
+  <%= render :partial => "three_header" %>
+<% end %>
+
+<div id="main">
+  <div id="centralize">
+    <div id="leftbar">
+      <ul>
+        <li><% link_to :action => "home" do %>Inicio<% end %></li>
+      </ul>
+    </div>
+    <div id="content"><h3>Términos y Condiciones</h3>
+     <%= t("terms_&_conditions") %>
+      <br></br><br></br>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+PassengerEnabled On
+PassengerAppRoot "/home/gauchede/socialmeme/current"
+RailsEnv production

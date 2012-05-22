@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /see/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /landing_pages/
+Allow: /

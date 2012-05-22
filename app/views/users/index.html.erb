@@ -1,0 +1,38 @@
+<h1> Users</h1>
+
+<%= link_to "All Users", :action => "index" %>
+
+<%= link_to "Users awaiting approval", :action => "index", :approved => "false" %>
+
+<table class="admin_table_1" border="0" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Fecha de creación</th>
+      <th>Admin</th>      
+      <th>Confirmado</th>
+      <th>Facebook</th>
+      <th>Twitter</th>
+      <th>LinkedIn</th>
+      <th>Acciones</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr id="row_<%= user.id%>" >
+        <td> <%= user.username %> </td>
+        <td> <%= user.email %> </td>
+        <td> <%= user.created_at %> </td>
+        <td> <%= user.admin? ? 'yes' : 'no'  %> </td>        
+        <td> <%= user.confirmed? ? 'yes' : 'no' %> </td>
+        <td> <%= user.facebook? ? 'yes' : 'no' %> </td>
+        <td> <%= user.twitter?  ? 'yes' : 'no' %> </td>
+        <td> <%= user.linked_in?  ? 'yes' : 'no' %> </td>
+        <td> <%= link_to "Confirmar",  confirm_path(user.id) %>         
+        <%= link_to "Borrar",   user_path(user.id), :method => :delete, :success => "$('#row_#{user.id}').remove()"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

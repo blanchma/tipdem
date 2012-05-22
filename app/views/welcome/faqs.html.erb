@@ -1,0 +1,57 @@
+<% content_for :head do %>
+  <title>Preguntas frecuentes - Tipdem</title>
+<% end %>
+
+<% content_for :header do %>
+  <%= render :partial => "two_header" %>
+<% end %>
+
+<div id="highlights"></div>
+    <div id="detail">
+   		<div id="desc"><h1><%=t("faqs.title")%></h1><br /><br />
+                  <h2><%=t("faqs.promo.title")%></h2>
+<div class="msg_list">
+      <p class="msg_head"><strong><%=t("faqs.promo.ask1")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans1")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.promo.ask2")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans2")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.promo.ask3")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans3")%></div>
+<p class="msg_head"><strong><%=t("faqs.promo.ask4")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans4")%></div>
+<p class="msg_head"><strong><%=t("faqs.promo.ask5")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans5")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.promo.ask6")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.promo.ans6")%></p></div>
+</div>
+                  <h2><%=t("faqs.creator.title")%></h2>
+                  <div class="msg_list">
+      <p class="msg_head"><strong><%=t("faqs.creator.ask1")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.creator.ans1")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.creator.ask2")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.creator.ans2")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.creator.ask3")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.creator.ans3")%></div>
+<p class="msg_head"><strong><%=t("faqs.creator.ask4")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.creator.ans4")%></p></div>
+<p class="msg_head"><strong><%=t("faqs.creator.ask5")%></strong></p>
+<div class="msg_body"><p><%=t("faqs.creator.ans5")%></p></div>
+    </div>
+                </div>
+
+  <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
+    <div id="register"><%= link_to t("register")%> new_user_registration_path %></div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+  //hide the all of the element with class msg_body
+  $(".msg_body").hide();
+  //toggle the componenet with class msg_body
+  $(".msg_head").click(function()
+  {
+    $(this).next(".msg_body").slideToggle(600);
+  });
+});
+</script>

@@ -1,0 +1,121 @@
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tabla" style="margin-top:20px; float: left;">
+  <thead>
+    <tr>
+      <th>Landing Page</th>
+      <th>Source</th>
+      <th>City</th>
+      <th>Date</th>
+      <th>Visits</th>
+      <th>Pageviews</th>
+      <th>Unique pageviews</th>
+      <th>Entrance rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%if @analytics != nil%>
+      <% for analytics in @analytics %>
+        <tr>
+          <td><%=  analytics['landingPagePath'] %></td>
+          <td><%=  analytics['source'] %></td>
+          <td><%=  analytics['city'] %></td>
+          <td><%=  analytics['date'] %></td>
+          <td><%=  analytics['visits'] %></td>
+          <td><%=  analytics['pageviews'] %></td>
+          <td><%=  analytics['uniquePageviews'] %></td>
+          <td><%=  analytics['entranceRate'] %></td>
+        </tr>
+      <% end %>
+        <% else %>
+        <tr><td colspan="8"><span style="text-align: center"> No data currently available </span></td></tr>
+
+    <% end %>
+
+
+
+  </tbody>
+</table>
+<div class="campaign_charts" id="redes" style="width:100%; text-align:center; height:150px;">
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="tabla" style="width:120px; margin-top:20px; float: left;">
+  <thead>
+    <tr >
+      <th colspan="2">Facebook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clicks</td>
+      <td><%= campaign.landing_page_hits.facebook.count %></td>
+    </tr>
+    <tr>
+      <td>Hits</td>
+      <td><%= campaign.client_page_hits.facebook.count %></td>
+    </tr>
+    <tr>
+      <td>Referidos</td>
+      <td><%= campaign.chains.facebook.count %></td>
+    </tr>
+    <tr>
+      <td>Posts</td>
+      <td><%= campaign.fb_posts %></td>
+    </tr>
+    <tr>
+      <td>Likes</td>
+      <td><%= campaign.fb_likes %></td>
+    </tr>
+    <tr>
+      <td>Comments</td>
+      <td><%= campaign.fb_comments %></td>
+    </tr>
+  </tbody>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="tabla" style="width:120px; margin-top:20px; float: left;">
+  <thead>
+    <tr >
+      <th colspan="2">Twitter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clicks</td>
+      <td><%= campaign.landing_page_hits.twitter(campaign.id).count %></td>
+    </tr>
+    <tr>
+      <td>Hits</td>
+      <td><%= campaign.client_page_hits.twitter.count %></td>
+    </tr>
+    <tr>
+      <td>Referidos</td>
+      <td><%= campaign.chains.twitter.count %></td>
+    </tr>
+    <tr>
+      <td>Posts</td>
+      <td><%= campaign.tw_posts %></td>
+    </tr>
+    <tr>
+      <td>Retweets</td>
+      <td><%= campaign.tw_retweets %></td>
+    </tr>
+  </tbody>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="tabla" style="width:120px; margin-top:20px; float: left;">
+  <thead>
+    <tr >
+      <th colspan="2">Otros</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clicks</td>
+      <td><%= campaign.landing_page_hits.default(campaign.id).count %></td>
+    </tr>
+    <tr>
+      <td>Hits</td>
+      <td><%= campaign.client_page_hits.default.count %></td>
+    </tr>
+    <tr>
+      <td>Referidos</td>
+      <td><%= campaign.chains.default.count %></td>
+    </tr>
+  </tbody>
+</table>
+</div>

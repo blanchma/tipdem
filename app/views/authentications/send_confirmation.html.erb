@@ -1,0 +1,14 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'login'  %>
+<% end %>
+
+<div id="content">
+  <div id="detail">
+    <div id="desc">
+<p> <%=t("confirm.ask.text7")%><%= @user.email %>. </p>
+<p><%=t("confirm.ask.text8")%> Revise su casilla de correo en unos minutos (verifique su carpeta de SPAM) </p>
+
+<p> Muchas gracias</p>
+    </div>
+  </div>
+</div>

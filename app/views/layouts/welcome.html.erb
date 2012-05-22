@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= @page_title or 'tipdem' %></title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
+    <meta name="google-site-verification" content="gpH0zOtr4NYC8TzdvHWKA53aiKw9KJjWkQpeoOPFytQ" />
+    <meta name="msvalidate.01" content="A36FC27C07E4E62622A1A55B515B5855" />
+    <link rel="image_src" href="http://www.tipdem.com/images/logofb.jpg" />
+    <meta name="keywords" content="Campañas, Promociones, Boca a boca, Anuncios, Premios, difusión, promocionar, publicidad, herramienta, gestión, reportes, ganar, dinero, redes sociales, social, marketing, word of mouth" />
+    <meta name="description" content="La mejor herramienta de recomendación boca a boca para la difusión de campañas. Súmate como Promotor y gana increíbles recompensas"/>
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Tipdem" />
+    <%= yield :head %>
+    <%= javascript_include_tag 'swfobject', 'jquery'  %>
+    <!--[if lt IE 7]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2452887-17']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </head>
+  <body>
+    <div id="mask"></div>
+    <div id="content">
+      <div id="header">
+        <%= yield :header %>
+      </div>
+
+
+      <%= yield :layout %>
+
+      <div id="footer">
+        <div id="mapa">
+          <p><% link_to :action => "p_quienes" do %><%=t("welcome_1")%>&reg;<% end %> </p>
+          <p><%=t("welcome_8")%>        </p>
+          <p><% link_to :action => "p_funcionamiento" do %><%=t("welcome_2")%><% end %> </p>
+          <p><% link_to :action => "c_funcionamiento" do %><%=t("welcome_3")%><% end %> </p>
+          <p> <%=t("welcome_12")%></p>
+          <p><% link_to :action => "p_beneficios" do %><%=t("welcome_2")%><% end %> </p>
+          <p><% link_to :action => "c_beneficios" do %><%=t("welcome_3")%><% end %> </p>
+        </div>
+        <div id="mapa">
+          <p><% link_to :action => "servicios" do %><%=t("welcome_4")%><% end %></p>
+          <p><% link_to :action => "faqs" do %><%=t("welcome_5")%><% end %></p>
+          <p><% link_to :action => "contacto" do %><%=t("welcome_6")%><% end %></p>
+          <p> <%=t("welcome_7")%></p>
+          <p><% link_to :action => "tyc" do %><%=t("welcome_8")%><% end %></p>
+          <p><% link_to :action => "privacy" do %><%=t("welcome_9")%><% end %></p>
+        </div>
+        <div id="mapa">
+
+        </div>
+        <div id="social">
+          <p><%= image_tag 'fb16.png', :height => '16', :align =>'absmiddle' %> <%= link_to t("bottom.follow_us_fb"), "http://on.fb.me/tipdem", :target => "blank" %></p>
+          <p><%= image_tag 'tw16.png', :height => '16', :align =>'absmiddle' %> <%= link_to t("bottom.follow_us_tw"), "http://bit.ly/p0kwOs", :target => "blank" %></p>
+          <div id="twat"><div id="twitter_div"><ul id="twitter_update_list" style="list-style-type: none;"></ul></div>
+<script src="http://twitter.com/javascripts/blogger.js" type="text/javascript"></script>
+<script src="http://twitter.com/statuses/user_timeline/tipdem.json?callback=twitterCallback2&count=1" type="text/javascript"></script></div>
+        </div>
+        <div id="legal"><%=t("welcome_11")%></div>
+      </div>
+    </div>
+
+   <%=  javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js' %>
+
+  </body>
+
+
+</html>
+<!-- START TICKER VER 2.1.0 -->
+<script type="text/javascript" language="javascript">
+  /*jQuery(document).ready(function(){
+  jQuery('#ticker01').cycle({
+         pause: 1,
+         sync: 0,
+         speed: 1000,
+         timeout: 5000,
+         height: 40,
+         fx: 'fade'
+  });
+});*/
+</script>

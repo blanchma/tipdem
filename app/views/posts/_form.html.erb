@@ -1,0 +1,95 @@
+<% if current_user.send("#{Provider.from_channel(channel)}_account") %>
+
+  <div id="form_<%= channel %>" >
+    <button id="btn_<%= channel %>" class="saved" style="float: right"><%= t("promote.custom") %></button>
+    <% remote_form_for :post, post, :url => campaign_posts_path(@campaign), :loaded => "$('#loading_#{channel}').hide();", :loading => "$('#loading_#{channel}').show();" do  |f| %>
+    <%= f.submit t("promote.buttons.#{channel}"), :class => 'savenext', :style => 'float:right; color:#FFF; position:relative', :id => "promote" %>
+    <div class="<%= channel %>_icon32" ></div>
+    <div style="width: 475px; float: left">
+      <strong><%= t("promote.msg") %></strong> <%= @campaign.default_message  %>
+    </div>
+    
+
+    <div id="errors_<%= channel %>"></div>
+    
+
+      <%= f.hidden_field :channel, :value => post.channel || channel %>
+      <%= f.hidden_field :campaign_id %>
+
+      <div class="form_layout" id="per_<%= channel %>" style="display:none; width: 100%"><br/>
+        <div style="width:50%; height: 150px; float: left; margin-top: 5px"><h4><%= t("promote.cus1") %></h4><br/>
+          <%= f.text_area :message, :cols => 40, :rows => 5, :style => "resize: none;",
+            :onKeyDown => "limitText(this,140 - #{post.link.length});",
+            :onKeyUp => "limitText(this, 140 - #{post.link.length})",
+            :value => last_post_message(channel) || @campaign.default_message  %>
+
+          <p><%= Post.max_length(channel) - post.link.length %>  <%= t("promote.cus2") %>.</p><br/></div>
+        <div style="width:50%; height: 140px; float: left; margin-top: 5px">
+          <h4><%= t("promote.time") %></h4>
+          <br/>
+          <br/>
+          <div style="display: block">
+            <%= label_tag t("promote.now") %>
+            <%= f.radio_button :now, true, :id => "post_now", :checked => "checked" %>
+
+            <%= label_tag  t("promote.at") %>
+            <%= f.radio_button :now, false, :id => "post_at" %>
+            <%= select(:post, :hour, (0..23).to_a.collect {|i| [ i < 13 ? "#{i} AM" : "#{i - 12} PM", i] })%>
+            <div id="daily_area" style="display:inline">
+              <%= f.check_box :daily, :id => "daily_check" %>
+              <%= f.label :daily, t("promote.daily") %>
+            </div>
+          </div>
+          <br/><br/>
+          <%= f.submit t("promote.buttons.#{channel}"), :class => 'savenext', :style => 'float:right; color:#FFF; position:relative' %>
+        </div>
+        
+      </div>
+      
+      <div id="loading_<%= channel %>" style="display:none">
+        <%= image_tag "icons/ajax-loader_2.gif" %>
+      </div>
+
+      <script type="text/javascript" >
+        $(document).ready(function() {
+          $("#form_<%= channel %> #post_hour").change(function(event) {
+
+            $(event.target).prev().attr("checked", "checked");
+          });
+
+          $("#form_<%= channel %> #post_now").click(function(event) {
+
+            $(event.target).next().attr("checked", "");
+            $(event.target).parent().find("#daily_check").attr("checked", "");
+          });
+
+          $("#form_<%= channel %> #daily_check").click(function(event) {
+
+            if ($(event.target).is(":checked") == true ) {
+              $(event.target).parent().siblings("#post_at").attr("checked", "checked");
+              $(event.target).parent().siblings("#post_now").attr("checked", "");
+            }
+
+          });
+
+          $("#btn_<%= channel %> ").click(function () {
+            if ($("#per_<%= channel %>:first").is(":hidden")) {
+              $("#per_<%= channel %>").slideDown("slow");
+              $(".savenext#promote").hide();
+              $("#btn_<%= channel %>").text("<%= t("promote.close") %>");
+            } else {
+              $("#per_<%= channel %>").slideUp("slow");
+              $(".savenext#promote").show();
+              $("#btn_<%= channel %>").text("<%= t("promote.custom") %>");
+            }
+          });
+
+        });
+      </script>
+    </div>
+  <% end %>
+
+<% else %>
+  <%= render :partial =>"shared/link_account", :locals => {:channel => channel} %>
+<% end %>
+
