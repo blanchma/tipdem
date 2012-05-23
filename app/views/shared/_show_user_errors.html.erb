@@ -10,8 +10,12 @@
   </div>
 
   <div id="error_detail">
-    <%= error_messages_for :user,
-      :header_message => nil,
-      :message => @user.errors.size > 0 ? t("errors.template.singular") : t("errors.template.plural") %>
+    <% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+    <% end %>
   </div>
 </div>

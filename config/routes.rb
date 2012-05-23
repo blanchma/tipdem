@@ -45,6 +45,7 @@ Tipdem::Application.routes.draw do
   end
 
   resource :categories
+  resource :captcha, :only => [:new]
 
   match '/step/setup/:campaign_id' => 'campaigns#new', :as => :step_setup
   match '/step/budget/:campaign_id' => 'budgets#new', :as => :step_budget
@@ -61,7 +62,9 @@ Tipdem::Application.routes.draw do
   match '/unregister/:id' => 'users#destroy', :as => :unregister, :via => :delete
   match 'register' => 'users#create', :as => :user_registration, :via => :post
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users,
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "sessions",
+    :registrations => "registrations" }
 
 #  match 'users' => '#index', :as => :devise_for
 #  match 'user/:id/approve' => 'users#approve', :as => :approve

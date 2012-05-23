@@ -7,7 +7,7 @@
 	text-align: center;
 }
 body {
-	background-image: url(../images/bck.png);
+	background-image: url(/assets/bck.png);
 	background-repeat: no-repeat;
 	background-position: center -50px;
 	}
@@ -25,7 +25,7 @@ body {
 	font-size: 22px;
 	font-weight: 400;
 	color: #FFF;
-	background-image: url(../images/bck_blue_corner.png);
+	background-image: url(/assets/bck_blue_corner.png);
 	height: 40px;
 	min-width: 100px;
 	background-repeat: no-repeat;
@@ -43,7 +43,7 @@ body {
 	font-size: 18px;
 	font-weight: 400;
 	color: #FFF;
-	background-image: url(../images/bck_liblue_corner.png);
+	background-image: url(/assets/bck_liblue_corner.png);
 	height: 28px;
 	min-width: 100px;
 	background-repeat: no-repeat;
@@ -59,7 +59,7 @@ body {
 	font-size: 14px;
 	font-weight: 400;
 	color: #333;
-	background-image: url(../images/bck_box_title.png);
+	background-image: url(/assets/bck_box_title.png);
 	height: 22px;
 	min-width: 100px;
 	background-repeat: no-repeat;
@@ -74,7 +74,7 @@ body {
 	font-size: 14px;
 	font-weight: 400;
 	color: #FFF;
-	background-image: url(../images/bck_dorange_corner.png);
+	background-image: url(/assets/bck_dorange_corner.png);
 	height: 22px;
 	min-width: 100px;
 	background-repeat: no-repeat;
@@ -93,7 +93,7 @@ body {
 	cursor:pointer;
 	height: 25px;
 	min-width: 100px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: left top;
 	text-align: center;
@@ -113,7 +113,7 @@ body {
 	float: right;
 	height: 25px;
 	min-width: 100px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: left top;
 	text-align: center;
@@ -130,7 +130,7 @@ body {
 	color: #333;
 	height: 25px;
 	width: 100px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: left top;
 	text-align: center;
@@ -143,7 +143,7 @@ body {
 	color: #333;
 	height: 25px;
 	width: 100px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: left bottom;
 	text-align: center;
@@ -155,7 +155,7 @@ body {
 	color: #333;
 	height: 25px;
 	width: 100px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: center top;
 	text-align: center;
@@ -168,7 +168,7 @@ body {
 	color: #333;
 	height: 25px;
 	width: 150px;
-	background-image: url(../images/bck_liblue_corner.png);
+	background-image: url(/assets/bck_liblue_corner.png);
 	background-repeat: no-repeat;
 	background-position: center top;
 	text-align: center;
@@ -232,10 +232,10 @@ padding: 0;
 	margin-right: 10px;
 	margin-bottom: 0;
 	margin-left: 0;
-} 
+}
 #content #detail #campaing #text #latest #latest_prom ul.newsticker a:hover {
 	color: #333;
-} 
+}
 #content #detail #campaing #text #latest #latest_prom ul.newsticker span {
 	margin-top: 0;
 	margin-right: 2px;
@@ -284,7 +284,7 @@ margin:1px;
 	float: left;
 	height: 35px;
 	width: 240px;
-	background-image: url(../images/bck_dorange_corner.png);
+	background-image: url(/assets/bck_dorange_corner.png);
 	background-repeat: no-repeat;
 	background-position: right center;
 	font-family: Carme, Georgia, "Times New Roman", serif;
@@ -313,7 +313,7 @@ margin:1px;
 	-khtml-border-radius: 2px;
 	border: 1px solid #999;
 	margin-left:5px;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -340,7 +340,7 @@ margin:1px;
 	-khtml-border-radius: 2px;
 	border: 1px solid #999;
 	margin-right:auto;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 	margin-left: auto;
@@ -386,7 +386,7 @@ margin:1px;
 	-khtml-border-radius: 2px;
 	border: 1px solid #999;
 	margin-right:auto;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 	margin-left: auto;
@@ -411,7 +411,7 @@ margin:1px;
 	height: 35px;
 	font-size: 25px;
 	padding-top: 5px;
-	background-image: url(../images/bck_blue_corner.png);
+	background-image: url(/assets/bck_blue_corner.png);
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -426,7 +426,7 @@ margin:1px;
 	-khtml-border-radius: 2px;
 	border: 1px solid #999;
 	margin-right:2px;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 }
@@ -440,7 +440,7 @@ margin:1px;
 	height: 35px;
 	font-size: 25px;
 	padding-top: 5px;
-	background-image: url(../images/bck_liblue_corner.png);
+	background-image: url(/assets/bck_liblue_corner.png);
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -482,7 +482,7 @@ margin:1px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 11px;
 	color: #FFF;
-	background-image: url(../images/bck_legal.png);
+	background-image: url(/assets/bck_legal.png);
 	background-repeat: no-repeat;
 	background-position: right top;
 	float: left;
@@ -511,7 +511,7 @@ margin:1px;
 	background-color: #BBB895;
 }
 #content #detail #campaing #promo {
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	float: left;
 	height: 100px;
 	width: 100%;
@@ -540,7 +540,7 @@ margin:1px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	-khtml-border-radius: 2px;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 	display:none;
@@ -589,7 +589,7 @@ margin:1px;
 	height: 25px;
 	width: 200px;
 	padding-left: 5px;
-	background-image: url(../images/bck_cash.png);
+	background-image: url(/assets/bck_cash.png);
 	background-repeat: no-repeat;
 	background-position: right top;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -609,7 +609,7 @@ margin:1px;
 	font-size: 14px;
 	height: 20px;
 	padding-top: 5px;
-	background-image: url(../images/bck_more.png);
+	background-image: url(/assets/bck_more.png);
 	display: inline;
 	color: #FFF;
 	border-top-width: 0px;
@@ -674,7 +674,7 @@ a:hover {
 	text-decoration:underline;
 }
 #root, #root2 {
-	cursor:pointer; 
+	cursor:pointer;
 }
 #tree, #tree2 {
 	margin-bottom:2px;
@@ -688,7 +688,7 @@ a:hover {
 .step {
 	width:100%;
 	height:25px;
-	text-align: right;	
+	text-align: right;
 	float:left;
 }
 
@@ -703,7 +703,7 @@ a:hover {
 	-webkit-border-radius: 2px;
 	-khtml-border-radius: 2px;
 	border: 1px solid #999;
-	background-image: url(../images/bck_box.jpg);
+	background-image: url(/assets/bck_box.jpg);
 	background-repeat: no-repeat;
 	background-position: left top;
 }
@@ -749,7 +749,7 @@ a:hover {
 #close {
 	width:20px;
 	height:20px;
-	background-image: url(../images/bck_box_btn.png);
+	background-image: url(/assets/bck_box_btn.png);
 	background-repeat: no-repeat;
 	background-position: left top;
 	float: right;
@@ -769,7 +769,7 @@ a:hover {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #FFF;
-	background-image: url(../images/bck_error.png);
+	background-image: url(/assets/bck_error.png);
 	background-repeat: no-repeat;
 	background-position: right top;
 	float: left;
@@ -782,7 +782,7 @@ a:hover {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #FFF;
-	background-image: url(../images/bck_error.png);
+	background-image: url(/assets/bck_error.png);
 	background-repeat: no-repeat;
 	background-position: right top;
 	float: left;
