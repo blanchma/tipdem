@@ -2,6 +2,14 @@
   <%= render :partial => "one_header" %>
 <% end %>
 
+<% content_for :javascripts do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      swfobject.embedSWF('<%= asset_path('/assets/home.swf') %>', 'graph', '750', '250', '9.0.0', 'expressInstall.swf', {}, { wmode: 'opaque' }, {});
+    });
+  <% end %>
+<% end %>
+
 <div id="highlights">
   <div id="graph">
     <h1>Descarga Adobe Flash para ver correctamente esta página.</h1>
@@ -20,7 +28,7 @@
         <p> <%=t("home_5")%> <span class="big"><%=t("home_6")%></span> </p>
         <p> <%=t("home_7")%> <span class="big"><%=t("home_8")%></span></p>
       </div>
-      <div class="btn"><% link_to :action => "p_funcionamiento" do %><%=t("home_9")%><% end %></div>
+      <div class="btn"><%= link_to t("home_9"), :action => "p_funcionamiento" %></div>
     </div>
     <div id="creator">
       <div id="text">
@@ -29,12 +37,9 @@
         <p><span class="big"><%=t("home_13")%></span> <%=t("home_14")%><span class="big"><%=t("home_15")%></span> <%=t("home_16")%> </p>
         <p><span class="big"><%=t("home_17")%></span><%=t("home_18")%></p>
       </div>
-      <div class="btn"><% link_to :action => "c_funcionamiento" do %><%=t("home_9")%><% end %></div>
+      <div class="btn"><%= link_to t("home_9"), :action => "c_funcionamiento" %></div>
     </div>
   </div>
   <div id="register"><%= link_to t("register"), new_user_registration_path %></div>
   <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
 </div>
-<script type="text/javascript">
-  swfobject.embedSWF("images/home.swf", "graph", "750", "250", "9.0.0", "expressInstall.swf", {}, { wmode: "opaque" }, {});
-</script>

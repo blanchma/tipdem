@@ -10,10 +10,10 @@
 <div id="detail">
   <div id="desc">
     <h1>Términos y Condiciones Generales</h1>
-    <%= t("terms_and_conditions") %>
+    <%= t("terms_and_conditions").html_safe %>
     <br />
     <br />
-  
+
   </div>
   <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
   <div id="register"><%= link_to "Registrarse", new_user_registration_path %></div>

@@ -78,12 +78,6 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      //hide the all of the element with class msg_body
-      $("#tree, #tree2").hide();
-    </script>
-
-
     <%= get_time_zone unless current_user.time_zone && current_user.dst %>
     <%= javascript_include_tag 'jquery.tools.min.js', 'application'  %>
     <%= yield :bottom %>
@@ -91,14 +85,12 @@
     <script type="text/javascript">
 
       $(document).ready(function()  {
-       
+
         //toggle the componenet with class msg_body
-        $("#root, #root2").click(function()
-        {
+        $("#root, #root2").click(function() {
           $(this).next("#tree, #tree2").slideToggle(300);
         });
 
- 
         // select all desired input fields and attach tooltips to them
         $("#campaing img[title], #point-choosed img[title], #create_landing_page img[title], .tabla img[title], .tabla th[alt]").tooltip({
           // place tooltip on the right edge
@@ -110,9 +102,9 @@
           // custom opacity setting
           opacity: 0.7
         });
-        
+
       });
     </script>
 
-  </body>  
+  </body>
 </html>

@@ -3,8 +3,6 @@
 
 set :whenever_command, "bundle exec whenever"
 
-
-
 set :output, {:error => 'log/cron_error.log', :standard => 'log/cron.log'}
 
 #set :output, {:error => 'log/cron_error.log', :standard => 'log/cron.log'}

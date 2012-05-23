@@ -20,14 +20,14 @@ class CategoriesController < ApplicationController
       flash[:notice]="Sus Preferencias han sido actualizadas."
       render :action => :user_edit, :layout => params[:layout]
     elsif @campaign
-      
+
       if @campaign.categories.count > 0 && @campaign.categories.count < 4
         flash[:notice]=nil
         flash[:error]=nil
         if params[:save_and_next] == 'yes'
           session[:campaign_id]=@campaign.id
           redirect_to step_budget_path(:campaign_id => @campaign.id)
-        else          
+        else
           render :action => :campaign_edit
           return
         end
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
     else
       #Impossible path
     end
-    
+
   end
 
   private
@@ -59,5 +59,5 @@ class CategoriesController < ApplicationController
     params[:layout] || "panel"
   end
 
-  
+
 end

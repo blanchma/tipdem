@@ -1,9 +1,8 @@
 # -*- encoding : utf-8 -*-
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   include GoogleVisualization
 
-  def facebook_oauth    
+  def facebook_oauth
     MiniFB.oauth_url(APP_CONFIG['facebook_app_id'], APP_CONFIG['callback_facebook'], :scope=>MiniFB.scopes.join("user_about_me,email,read_insights,read_stream,publish_stream,offline_access"))
   end
 
@@ -31,15 +30,15 @@ module ApplicationHelper
   end
 
   def get_time_zone
-    
+
     "<script type='text/javascript' >
       $.getScript('/javascripts/lib/detect_timezone.js', function(data, status) {
         var timezone = jstz.determine_timezone().name();
         var dst = jstz.determine_timezone().dst();
         $.post('/time_zone', {'time_zone': timezone, 'daylight': dst});
         });
-      </script>"    
-    
+      </script>".html_safe
+
   end
 
   def sortable(column, title = nil)

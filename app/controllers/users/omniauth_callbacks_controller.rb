@@ -34,7 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     elsif current_user #agregar nuevas cuentas
       current_user.apply_omniauth(omniauth)
       current_user.save
-      Delayed::Job.enqueue(CountFriendsJob.new(current_user))
+      Resque.enqueue(CountFriendsJob.new(current_user))
       flash[:notice]="Cuenta de #{t omniauth["provider"]} vinculada exitosamente"
       redirect_to my_accounts_path
     else
@@ -53,7 +53,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:"#{:user}_signed_up"] = true
         @user.chain!(session["click"] ||cookies["click"])
         set_flash_message :notice, :signed_up
-        #ContactMailer.deliver_welcome_email(@user)
+        #ContactMailer.welcome_email(@user).deliver
 
         if @user.chained?
           sign_in(:user, @user)

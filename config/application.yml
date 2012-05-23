@@ -1,4 +1,9 @@
+default: &default
+  notification_from: "do-not-reply@tipdem.com"
+
+
 development:
+    <<: *default
     domain: http://localhost:3000
 
     twitter_key: gZJ8SdlkcxLFmbNT0zYQ6Q
@@ -17,6 +22,7 @@ development:
     linkedin_secret: reSG0CDYdat9dQHF
 
 test:
+    <<: *default
     domain: http://127.0.0.1:3000
 
     twitter_key: gZJ8SdlkcxLFmbNT0zYQ6Q
@@ -32,6 +38,7 @@ test:
     callback_facebook: http://localhost:3000/oauth/facebook
 
 stage:
+    <<: *default
     domain: http://livechainsdev.com
 
     #owner account: gauchosolitarioar@gmail.com
@@ -53,6 +60,7 @@ stage:
     linkedin_secret: reSG0CDYdat9dQHF
 
 production:
+    <<: *default
     domain: http://tipdem.com
 
     #owner account: gauchosolitarioar@gmail.com

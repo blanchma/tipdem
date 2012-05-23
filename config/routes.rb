@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 Tipdem::Application.routes.draw do
+
   root :to => 'welcome#home'
   match '/', :to => 'welcome#home'
 
@@ -89,7 +90,9 @@ Tipdem::Application.routes.draw do
   match '/visit/:id' => 'landing_pages#client_page', :as => :visit
   match '/admin' => 'admin#default', :as => :admin
   match '/adminify' => 'admin#adminify', :as => :adminify
-  match '/restart' => 'application#restart', :via => :post
+
+#  mount Resque::Server.new, :at => "/resque"
+
   match '/:controller(/:action(/:id))'
 end
 

@@ -4,12 +4,13 @@
 
 <div id="highlights"></div>
     <div id="detail">
-   		<div id="desc"><h1><%= t("services.title") %></h1>
-                  <br/><br/>
-  <%= t("services.table") %>
-
-
-  </div>
-  <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
-    <div id="register"><%= link_to t("register"), new_user_registration_path %></div>
+   		<div id="desc">
+        <h1><%= t("services.title").html_safe %></h1>
+        <br/><br/>
+        <%= t("services.table").html_safe %>
+      </div>
+      <%= render :partial => "last_campaigns", :locals => {:last_campaigns => @last_campaigns} %>
+    <div id="register">
+      <%= link_to t("register"), new_user_registration_path %>
+    </div>
   </div>

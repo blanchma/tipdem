@@ -1,9 +1,6 @@
 # -*- encoding : utf-8 -*-
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 module PanelHelper
-  
+
   def fb_login_button_with_permissions(options={})
     options = {:result_url => "/facebook_connect", :permissions => 'publish_stream'}.update(options)
     fb_login_button("javascript:FB.Connect.showPermissionDialog('#{options[:permissions]}', function(perms){window.location='#{options[:result_url]}';})")
@@ -43,6 +40,6 @@ module PanelHelper
     page << "$('#promotion_msg').html('');$('#promotion_msg').html('<span>#{message}</span>').effect('highlight', {}, 3000);"
   end
 
- 
-  
+
+
 end

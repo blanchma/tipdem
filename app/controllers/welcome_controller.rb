@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class WelcomeController < ApplicationController
 
-before_filter :last_campaigns
+  before_filter :last_campaigns
 
   def last_campaigns
     @last_campaigns = Campaign.active.all(:limit => 5, :order => "created_at DESC")
@@ -28,7 +28,7 @@ before_filter :last_campaigns
   def send_contact
     puts "procesando mensaje"
     puts params[:contact]['name']
-    ContactMailer.delay.deliver_contact_email(params[:contact][:email] , params[:contact][:message])
+    ContactMailer.contact_email(params[:contact][:email] , params[:contact][:message]).deliver!
     redirect_to root_path
   end
 

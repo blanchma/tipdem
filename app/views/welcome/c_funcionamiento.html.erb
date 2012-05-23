@@ -7,8 +7,8 @@
   <div id="desc"><h1><%= t("howitwork.creator.title") %></h1>
     <br/><br/>
     <h2><%= t("howitwork.creator.subtitle") %></h2>
-    <%= t("howitwork.creator.text") %>
-    <%= t("howitwork.creator.graph") %>
+    <%= t("howitwork.creator.text").html_safe %>
+    <%= t("howitwork.creator.graph").html_safe %>
     <!-- #dialog is the id of a DIV defined in the code below -->
     <a href="#dialog" name="modal"><h3><%= t("howitwork.creator.btn") %></h3></a>
     <div id="boxes">
