@@ -1,14 +1,3 @@
-<% content_for(:head) do %>
-  <%= stylesheet_link_tag 'fb_styles.css', :rel=> 'stylesheet' %>
-  <%= stylesheet_link_tag 'panel_style.css', :rel=> 'stylesheet' %>
-  <%= javascript_include_tag 'pag_script' %>
-  <style type="text/css">
-    #content #detail #desc #inicio {
-      background-color: #BBB895;
-    }
-  </style>
-<% end %>
-
 <div id="campaing" style="overflow: hidden;">
   <div id="vigentes"><h3><%=  t("current.title") %></h3></div>
   <div id="campaign_details"></div>
@@ -26,8 +15,7 @@
             </div>
             <div id="more">
               <div id="btn"><%= link_to (t("current.promote")), go_campaign_tips_path(campaign.id) %></div>
-              <div id="cash"><%=  t("current.earn") %> <span id="money"><%=  number_to_currency(campaign.pay, :unit => "$", :format => "%u%n") %>  </span> <%=  t("current.type") %></div>
-            </div>
+              <div>
           </div>
         </li>
       <% end %>
@@ -37,7 +25,6 @@
 
 </div>
 <div id="extra">
-  <%= render :partial => 'shared/collected_amount' %>
   <div id="cats"><p><%=  t("categories.text") %></p>
     <div class="btn">
       <% link_to edit_user_categories_path(current_user) do %><div class="sbtn" id="datos"><%=  t("categories.button") %></div><% end %>

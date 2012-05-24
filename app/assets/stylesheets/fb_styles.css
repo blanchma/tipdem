@@ -1,0 +1,183 @@
+@charset "utf-8";
+/* CSS Document */
+
+.uiComposer{border-bottom:1px solid #ccc}
+.uiComposerTopBorder{border-top:1px solid #ccc}
+.uiComposerOpen,.no_js .uiComposer{border-bottom:none}
+.uiComposer .attachmentLoader{line-height:normal;position:absolute;right:2px;top:9px}
+.uiComposer .attachmentSentenceBar{line-height:22px;padding:3px 0 6px;position:relative;z-index:2;zoom:1}
+.uiComposer .attachmentCloseBtn{position:absolute;right:2px;top:7px}
+.uiComposer .attachmentFrame{border:1px solid #b4bbcd;border-bottom-color:#ccc}
+.uiComposerHideMessageBox .attachmentFrame,.uiComposerHideInput .attachmentFrame{border-bottom-color:#b4bbcd}
+.uiComposerHideContent .attachmentFrame{display:none}
+.uiComposerOpen .focus_target{padding-bottom:10px}
+.uiComposerHideContent .child_was_focused,.uiComposerHideInput .focus_target{border-bottom:1px solid #e9e9e9}
+.uiComposerHideMessageBox .child_was_focused{border-bottom:none}
+.uiComposer .showWhenOpen,.uiComposer .showWhenLoading,.uiComposer .showOnceInteracted,.uiComposer.async_saving .hideWhenLoading{display:none !important}
+.uiComposerOpen .showWhenOpen,.no_js .uiComposer .showWhenOpen,.uiComposerInteracted .showOnceInteracted,.uiComposer .child_was_focused .showOnceInteracted,.uiComposer.async_saving .showWhenLoading{display:block !important}
+.uiComposerAttachment .attachmentLink{outline:none}
+.uiComposerAttachment .attachmentLink:focus{text-decoration:underline}
+.uiComposerAttachment .selected,.uiComposerAttachmentSelected .normal{display:none}
+.uiComposerAttachmentSelected .selected{display:inline}
+.uiComposerAttachment .nub{background:url(http://static.ak.fbcdn.net/rsrc.php/zf/r/PfBgtiydy5U.gif) no-repeat center top;height:7px;left:2px;position:absolute;top:18px;width:11px}
+span.uiComposerAttachment{color:#333;display:inline-block}
+.uiComposerAttachments{line-height:22px;padding:3px 0 4px;position:relative;z-index:2}
+.uiComposerOpen .uiComposerAttachments{padding-bottom:6px}
+.uiComposerMessageBox{background-color:#f2f2f2;border:1px solid #b4bbcd;border-top-width:0;padding:8px;zoom:1}
+.uiComposerHideMessageBox .uiComposerMessageBox{display:none}
+.uiComposerHideContent .uiComposerMessageBox,.uiComposerHideInput .uiComposerMessageBox{background-color:#fff;border-width:0;padding:0}
+.uiComposerMessageBox .inputContainer{background-color:#fff;border:1px solid #b4bbcd;zoom:1}
+.uiComposerHideInput .uiComposerMessageBox .inputContainer{display:none}
+.uiComposerMessageBoxMentions .inputContainer{border:none;padding:0;position:relative;zoom:1}
+.uiComposerMention .inputContainer{z-index:1}
+.uiComposerMessageBox .composerTypeahead{border-bottom:1px solid !important;border-color:#b4bbcd !important}
+.uiComposerMessageBox .composerTypeahead .wrap{padding:5px !important;border-color:#b4bbcd !important}
+.uiComposerMessageBox .uiMentionsInput .highlighter{font-size:13px;left:3px;top:2px}
+.uiComposerMessageBox .uiMentionsInput .highlighter div{line-height:16px}
+.uiComposerMessageBox .input{background:transparent;border-width:0;font-size:13px;height:16px;margin:0;outline:none;padding:0;resize:none;vertical-align:bottom;width:100%}
+.uiComposerMessageBox .textBlurb{padding-top:6px}
+.UIShareComposer .UIComposer_TextArea{border:none;font-size:13px;height:21px;margin:0;outline:none;overflow:hidden;padding:0;resize:none;vertical-align:bottom;width:100%}
+.UISharer_InterstitialContainer .title_header{margin:25px 30px 0;padding:0;border-bottom:1px solid #ddd}
+.UISharer_InterstitialContainer .title_header .title_h{background:none;padding:0 0 5px}
+.UIShareComposer .UISharer_ComposerInputsAndStage .UIComposer_Pic{left:auto;top:auto;padding:0 0 0 15px}
+.UISharer_InterstitialContainer .UIShareComposer .UISharer_ComposerInputsAndStage{padding:25px 30px}
+.UISharer_InterstitialContainer .UIShareComposer .UIComposer_Content{margin:0}
+.UISharer_DialogResponse .dialog_content .dialog_body{padding:0;border:0}
+.UIShareComposer a.inline_edit{color:#000;display:block}
+.UIShareComposer a.inline_edit:hover{background:#ff9;text-decoration:none;width:auto}
+.UIShareComposer{position:relative}
+.bookmarklet .UIShareComposer{position:static}
+.UISharer_Outlined{border:1px solid #cfcfcf}
+.UIShareComposer .UIComposer_Content{padding:0}
+.UIShareComposer .UIComposer_AttachmentArea{
+    display:block;
+    border:1 solid #036;
+    margin:8px 20px 30px 75px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.UIShareComposer .UIComposer_AttachmentArea_Shadow{
+    border:1 solid #036;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.UIComposer_Comment{
+    display:block;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 11px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.UIShareComposer .UIShareStage{padding:0}
+.UIShareComposer .UISharer_ComposerInputsAndStage{padding:20px 19px 21px 4px;margin:0 auto;max-width:620px}
+.UIShareComposer .UIShareComposer_InputDL{margin:0}
+.UIShareComposer .UIShareComposer_Label{width:70px;color:#555;font-weight:bold;text-align:right;float:left;clear:left;margin:3px 5px 0 0}
+.UIShareComposer .UIShareComposer_Input{width:83%;float:left;margin:0}
+.UIShareComposer .UIComposer_InputShadow .DOMControl_placeholder{font-size:13px;height:41px}
+.UIShareComposer .uiButton{display:-moz-inline-block}
+.UIShareComposer.UIComposer_STATE_INPUT_FOCUSED .UIComposer_TextArea{height:41px}
+.UIShareComposer.UIComposer_STATE_INPUT_FOCUSED .Mentions_Input{min-height:41px}
+.UIShareComposer .UIComposer_ButtonArea{padding:8px 8px 9px;background:#f2f2f2;border-top:1px solid #ccc}
+.UIShareComposer .UIShareComposer_OptionsAndButtons{max-width:620px;margin:0 auto}
+.UIShareComposer .UIShareComposer_SharingOptions li{cursor:pointer;float:left;margin-left:4px;margin-top:5px;position:relative}
+.UIShareComposer .UIShareComposer_SharingOptions li a:hover{text-decoration:underline}
+.UIShareComposer .UIShareComposer_SendAsMessage .UIShareComposer_SharingOptions_Icon{position:absolute;left:0;top:1px;cursor:default}
+.UIShareComposer .UIShareComposer_PostToProfile .UIShareComposer_SharingOptions_Icon{position:absolute;left:0;top:-1px;cursor:default}
+.UIShareComposer .UIShareComposer_SharingOptions_Text{margin-left:22px}
+.UIShareComposer .UIShareComposer_PostToProfile,.UIShareComposer .UIShareComposer_SendAsMessage{color:#30609c}
+.UIShareComposer .UIComposer_PrivacyCallout{right:108px}
+.UIShareComposer .hidden{display:none}
+.UIShareComposer .no_visibility{visibility:hidden}
+.UIShareComposer.STATE_SEND_AS_MESSAGE li#SEND_AS_MESSAGE,.UIShareComposer.STATE_SEND_AS_MESSAGE .UIComposer_PrivacyWidget,.UIShareComposer.STATE_SEND_AS_MESSAGE .UIComposer_Pic,.UIShareComposer.STATE_POST_TO_PROFILE li#POST_TO_PROFILE,.UIShareComposer.STATE_POST_TO_PROFILE .shareMessageTokenizer,.UIShareComposer.STATE_POST_TO_PROFILE #UIShareComposer_RecipLabel{display:none}
+.UIShareComposer.STATE_SEND_AS_MESSAGE li#POST_TO_PROFILE,.UIShareComposer.STATE_SEND_AS_MESSAGE .shareMessageTokenizer,.UIShareComposer.STATE_SEND_AS_MESSAGE #UIShareComposer_RecipLabel,.UIShareComposer.STATE_SEND_AS_MESSAGE #UIShareComposer_MessageLabel,.UIShareComposer.STATE_POST_TO_PROFILE li#SEND_AS_MESSAGE,.UIShareComposer.STATE_POST_TO_PROFILE .UIComposer_PrivacyWidget,.UIShareComposer.STATE_POST_TO_PROFILE .UIComposer_Pic{display:block}
+.UIShareComposer.STATE_SEND_AS_MESSAGE .UIShareComposer_Label{visibility:visible}
+.UIShareComposer.STATE_POST_TO_PROFILE .UIShareComposer_Label{visibility:hidden}
+.UIShareComposer_Hidden{display:none}
+.bookmarklet .UIShareComposer .UIComposer_ButtonArea{position:fixed;bottom:0;width:98%}
+.UISharer_BookmarkletPage .sharer_header{margin-bottom:4px}
+.UISharer_BookmarkletPage .popup_url_form{margin:20px auto;max-width:620px;padding:0 24px}
+.UISharer_BookmarkletPage .inputtext{font-size:13px;margin-right:5px}
+.UISharer_BookmarkletPage #shareMessageTypeahead{width:506px}
+.UISharer_BookmarkletPage #share_submit{margin-top:-4px}
+.UISharer_BookmarkletPage #header_container{background:#6d84b4}
+.UISharer_BookmarkletPage #booklet #pageheader #homelink{max-width:620px;margin:0 auto}
+.UIShareStage_ShareContent{width:100%;float:left}
+.UIShareStage_HasImage .UIShareStage_ShareContent{
+    width:73%;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 11px;
+}
+.UIShareStage_HasWideImage .UIShareStage_ShareContent{width:66%}
+.UIShareStage_BottomMargin{margin:0 0 10px 0;padding:0}
+.UIShareStage_NoSpacing{margin:0}
+.UIShareStage_Hidden{display:none}
+.UIShareStage_LightText{color:#666}
+.UIShareStage_Image,.UIShareStage_WideImage{float:left;padding:0 12px 12px 0}
+.UIShareStage_Image{
+    max-width:100px;
+    min-height: 125px;
+    max-height: 150px;
+    top: 0px;
+}
+.UIShareStage_ThumbPager{
+    width:100px;
+    top: 0px;
+}
+.UIShareStage_WideImage{
+    width:130px;
+    top: 0px;
+}
+.UIShareStage_ThumbPagerControl .UIThumbPagerControl_Text{padding:0}
+.UIShareStage_ThumbPagerControl .UIThumbPagerControl_PageNumber{margin-left:8px}
+.UIShareStage_Title{
+    font-size:11px;
+    font-weight:bold;
+    color:#036;
+    text-decoration: none;
+}
+.UIShareStage_Title a:hover{
+    text-decoration: underline;
+}
+.UIShareStage_Subtitle{font-size:11px;font-weight:normal;color:#666}
+.UIShareStage_Summary{
+    margin-top:6px;
+    padding:0;
+    color: #666;
+}
+.UIShareStage_NoListStyle{list-style:none}
+.UIShareStage a.inline_edit{
+    color:#036;
+    display:inline;
+    text-decoration:none;
+    width:auto;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+.UIShareStage a.inline_edit :hover{
+    color:#036;
+    display:inline;
+    text-decoration: underline;
+}
+.UIShareStage_Attribution{margin-bottom:10px}
+.composer_fields .UIShareStage_HasImage .UIShareStage_ShareContent{width:55%}
+.UIShareStage_ThumbPager{width:100px}
+.UIShareStage_WideImage{width:130px}
+.UIShareStage_ThumbPagerControl .UIThumbPagerControl_Text{padding:0}
+.UIShareStage_ThumbPagerControl .UIThumbPagerControl_PageNumber{margin-left:8px}
+.UIThumbPager .UIThumbPager_Hidden{display:none}
+.UIThumbPager .UIThumbPager_Loader{text-align:center;}
+.UIThumbPagerControl{position:relative}
+.UIThumbPagerControl_Button{background-image:url(http://static.ak.fbcdn.net/rsrc.php/zi/r/8OjNXDy3pHp.gif);background-repeat:no-repeat;float:left;width:25px;height:22px}
+.UIThumbPagerControl_Button_Left{background-position:0 -83px}
+.UIThumbPagerControl_Button_Left:active{background-position:-100px -83px}
+.UIThumbPagerControl_First .UIThumbPagerControl_Button_Left,.UIThumbPagerControl_First .UIThumbPagerControl_Button_Left:active{cursor:default;background-position:-50px -83px}
+.UIThumbPagerControl_Button_Right{background-position:-25px -83px}
+.UIThumbPagerControl_Button_Right:active{background-position:-125px -83px}
+.UIThumbPagerControl_Last .UIThumbPagerControl_Button_Right,.UIThumbPagerControl_Last .UIThumbPagerControl_Button_Right:active{cursor:default;background-position:-75px -83px}
+.UIThumbPagerControl_Text{color:#999;line-height:22px;padding-left:57px;font-size:9px}
+.UIThumbPagerControl_PageNumber{color:#000;padding-right:9px}
+.UIThumbPagerControl_Checkbox{padding-top:3px}
+.UIThumbPagerControl_Checkbox input,.UIThumbPagerControl_Checkbox label{display:inline}
+#fb_preview_border {
+    border: 1px solid #036;
+    background-color: #CCC;
+}
+

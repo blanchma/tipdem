@@ -6,3 +6,4 @@
 //= require vendor/tiny_mce/tiny_mce
 //= require vendor/jquery.formatCurrency-1.4.0.min
 //= require vendor/jquery.formatCurrency.es-AR
+//= require vendor/detect_timezone.js

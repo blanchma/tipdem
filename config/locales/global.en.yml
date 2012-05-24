@@ -7,7 +7,7 @@
 
 
 en:
-  
+
   campaign_status:
     active: "Active"
   payment_request_status:
@@ -17,7 +17,7 @@ en:
     rejected: "Rejected"
     closed: "Closed"
 
-   
+
 
   date:
     formats:
@@ -169,10 +169,10 @@ en:
       singular: "There is the following problem: "
       plural: "There were the following problems:"
 
-    
+
     full_messages:
         format: "%{attribute} %{message}"
-        
+
     messages: &errors_messages
       inclusion: "is not included in the list"
       exclusion: "is reserved"
@@ -209,11 +209,11 @@ en:
         male: "Male"
         female: "Female"
         locale: "Language"
-      
+
       campaign:
         logo: "Logo"
         logo_file_name: "Logo"
-        
+
     errors:
       template:
         header:
@@ -222,7 +222,7 @@ en:
         body: "There were problems with the following fields:"
         singular: "the is the following problem: "
         plural: "There were the following problems:"
-        
+
       messages:
         taken: "has already been taken"
         record_invalid: "Validation failed: %{errors}"

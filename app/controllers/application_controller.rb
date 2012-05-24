@@ -1,20 +1,12 @@
 # -*- encoding : utf-8 -*-
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
+  #protect_from_forgery
 
-  helper :all # include all helpers, all the time
-  # # See ActionController::RequestForgeryProtection for details
-
-  #before_filter :login_required
-  # Scrub sensitive parameters from your log
-
+  helper :all
   before_filter  :get_locale, :url_rewrite
 
 
   def url_rewrite
-    logger.info "Rails.env is #{Rails.env}"
     unless (Rails.env == 'development')
       if ( request.host.include?('www') )
         redirect_to "#{APP_CONFIG['domain']}#{request.path}"
@@ -64,16 +56,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def restart
-    if params[:token] == "gauchogaucho1917"
-      system "/usr/bin/rake Rails.env=#{Rails.env} db:migrate >> #{Rails.root}/log/rake.log &"
-      system 'touch tmp/restart.txt'
-      head :ok
-    else
-      head "404"
-    end
-  end
-
 
   private
 
@@ -104,9 +86,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || user_root_path
   end
-
-
-
 
 
   protected

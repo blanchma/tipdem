@@ -30,15 +30,13 @@ module ApplicationHelper
   end
 
   def get_time_zone
-
     "<script type='text/javascript' >
-      $.getScript('/javascripts/lib/detect_timezone.js', function(data, status) {
+      $(document).ready(function() {
         var timezone = jstz.determine_timezone().name();
         var dst = jstz.determine_timezone().dst();
         $.post('/time_zone', {'time_zone': timezone, 'daylight': dst});
         });
       </script>".html_safe
-
   end
 
   def sortable(column, title = nil)

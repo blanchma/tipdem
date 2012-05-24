@@ -43,5 +43,7 @@ group :development do
   gem 'capistrano'
   gem 'magic_encoding', :require => false
   gem 'mail_view'
+  gem 'rails-dev-tweaks', '~> 0.6.1'
+  gem 'thin'
 end
 

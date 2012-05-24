@@ -4,10 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><%= @page_title or 'tipdem' %></title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
-    <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
-    <%= stylesheet_link_tag 'panel_style'  %>
+    <%= javascript_include_tag 'application', 'panel' %>
+    <%= stylesheet_link_tag 'panel'  %>
     <%= csrf_meta_tag %>
-
     <%= yield :head %>
   </head>
 
@@ -79,7 +78,6 @@
     </div>
 
     <%= get_time_zone unless current_user.time_zone && current_user.dst %>
-    <%= javascript_include_tag 'jquery.tools.min.js', 'application'  %>
     <%= yield :bottom %>
 
     <script type="text/javascript">
