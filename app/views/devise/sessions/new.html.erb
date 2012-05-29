@@ -12,25 +12,23 @@
 
         <h2><%= t "sign_in" %> </h2>
 
-        <%= form_for resource, :url => session_path(resource_name) do |f| %>
+          <%= form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
 
-          <p class="p1"><%= f.label :email %></p>
-          <p class="p2"><%= f.text_field :email %></p>
-          <p class="p1"><%= f.label :password %></p>
-          <p class="p2"><%= f.password_field :password %></p>
-          <% if devise_mapping.rememberable? %>
-            <p class="p2" style="text-align: left; width: 60%"><%= f.label :remember_me %> <%= f.check_box :remember_me %></p>
-            <div style="width: 100%; float: right">
-              <%= f.submit t("session.access"), :class=> "btn" %></div>
-          <% end -%>
-        <% end %>
+            <p class="p1"><%= f.label :email %></p>
+            <p class="p2"><%= f.text_field :email %></p>
+            <p class="p1"><%= f.label :password %></p>
+            <p class="p2"><%= f.password_field :password %></p>
+            <% if devise_mapping.rememberable? %>
+              <p class="p2" style="text-align: left; width: 60%"><%= f.label :remember_me %> <%= f.check_box :remember_me %></p>
+              <div style="width: 100%; float: right">
+                <%= f.submit t("session.access"), :class=> "btn" %>
+              </div>
+            <% end %>
 
-</div>
+          <% end %>
 
-
-            <%= render "links" %>
-
-
+        </div>
+        <%= render "links" %>
     </div>
   </div>
 </div>

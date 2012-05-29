@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
-require 'lib/url_tempfile'
-require 'lib/google_chart'
+require 'google_chart'
 
 class CampaignsController < ApplicationController
   layout 'panel'
@@ -9,7 +8,7 @@ class CampaignsController < ApplicationController
 
 
   def show
-    
+
   end
 
   def pay
@@ -35,7 +34,7 @@ class CampaignsController < ApplicationController
       render :text => true
     else
       render :text => false
-    end    
+    end
   end
 
   def index_inactives
@@ -43,14 +42,14 @@ class CampaignsController < ApplicationController
   end
 
   def index_actives
-    @active_campaigns = current_user.owned_campaigns.active(:include => [:chains, :landing_page_hits])    
+    @active_campaigns = current_user.owned_campaigns.active(:include => [:chains, :landing_page_hits])
   end
 
   def google_line_chart
     @test = GoogleChart.annotated_time_line(params[:campaign_id])
     render :json => @test
   end
-  
+
   def google_pie_gender_chart
     @test = GoogleChart.image_pie_chart_gender(params[:campaign_id])
     render :json => @test
@@ -68,7 +67,7 @@ class CampaignsController < ApplicationController
 
 
   def index
-    
+
   end
 
   def update
@@ -83,7 +82,7 @@ class CampaignsController < ApplicationController
         logger.error "URLTempfile Error: #{e.message}"
         @campaign.errors.add("url_tempfile", "La URL introducida no es válida")
       end
-    end    
+    end
     @campaign.save_without_validation
 
     respond_to do |format|
@@ -93,7 +92,7 @@ class CampaignsController < ApplicationController
         format.html { render :action => "edit", :layout => 'panel' }
       end
     end
-    
+
   end
 
   def expand
@@ -101,15 +100,15 @@ class CampaignsController < ApplicationController
 
 
   def new
-    
+
     campaign_id = params[:id] || params[:campaign_id]
-    if campaign_id 
+    if campaign_id
       @campaign = Campaign.find campaign_id
     else
       @campaign = Campaign.new
     end
   end
-  
+
 
   def create
     logger.info "Tipo de campaña: #{params[:campaign][:mode]}"
@@ -153,18 +152,18 @@ class CampaignsController < ApplicationController
     else
       @campaign.name=nil if params[:campaign][:name].empty?
       render :action => :new
-    end    
+    end
   end
 
-  
+
   def success
     @campaign = Campaign.find_by_id params[:id]
     logger.info "Campaign: #{@campaign.id} (#{@campaign.name}) fue abonada. Request: #{request.url}"
-    
+
     @campaign.update_attribute(:status, CampaignStatus::WaitingApproval)
     #CampaignStatusMailer.delay.deliver_paid_email(@campaign, request.url)
     Payment.create(:user_id => @campaign.user_id, :campaign_id => @campaign.id, :additional_data => request.url)
-    
+
   end
 
   def fail
@@ -177,7 +176,7 @@ class CampaignsController < ApplicationController
     if @campaign.status != CampaignStatus::Active
       @campaign.activate!
       @campaign.save
-      CampaignStatusMailer.delay.deliver_approval_email @campaign           
+      CampaignStatusMailer.delay.deliver_approval_email @campaign
     end
     render :text => @campaign.status
   end

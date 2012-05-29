@@ -8,30 +8,6 @@ class SessionsController < Devise::SessionsController
   before_filter  :is_admin?, :only => [:index, :confirm, :approve]
 
 
-  def destroy
-    if user_signed_in?
-      logger.info "User #{current_user.email} ask to destroy: #{current_user.email}"
-      @user = User.find(params[:id])
-      if current_user.id ==  @user.id
-        @user.destroy
-        cookies[:fb_token]=nil
-        sign_out_and_redirect(root_path)
-      elsif current_user.admin
-        @user.destroy
-        flash[:notice]="Usuario borrado"
-        redirect_to :back
-      else
-        logger.info "El usuario no tiene permisos para remover al usuario"
-        flash[:notice]="Usuario borrado"
-        redirect_to :back
-      end
-    else
-      flash[:alert]= t "devise.user.sessions.unauthenticated"
-      redirect_to new_user_session_path
-    end
-
-  end
-
   def create
     @user = User.new(params[:user])
     #@user.skip_confirmation! if SKIP_CONFIRM

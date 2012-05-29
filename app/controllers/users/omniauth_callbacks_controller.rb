@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     create
   end
 
-  def linked_in
+  def linkedin
     create
   end
 

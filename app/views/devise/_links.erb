@@ -4,7 +4,8 @@
     <%= link_to (image_tag("tw32.png", :alt => "tipdem en Twitter", :size => "32x32", :title => t("registration.with_tw"), :align => "absmiddle")), omniauth_authorize_path(resource_name, :twitter) %>
     <%= link_to (image_tag("fb32.png", :alt => "tipdem en Facebook", :size => "32x32", :title => t("registration.with_fb"), :align => "absmiddle")), omniauth_authorize_path(resource_name, :facebook) %>
     <%= link_to (image_tag("in32.png", :alt => "tipdem en LinkedIn", :size => "32x32",
-    :title => t("registration.with_in"), :align => "absmiddle")), omniauth_authorize_path(resource_name, :linked_in) %>
+    :title => t("registration.with_in"), :align => "absmiddle")),
+    user_omniauth_authorize_path(:linkedin)  %>
   </p>
 
   <p>

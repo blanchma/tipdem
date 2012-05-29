@@ -1,12 +1,30 @@
-<h2>Forgot your password?</h2>
+<div id="content">
+  <div id="detail">
+    <div id="desc">
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+      <%= render :partial => "shared/show_user_errors" %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+      <div id="login" style="height: 235px">
+        <div id="logo">
+          <%= link_to "/" do %>
+            <%= image_tag 'logo_lc.png', :alt => "TIPDEM", :width => "220", :height => "50", :vspace => "0", :border => "0" %>
+          <% end %>
+        </div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+        <h2>¿Olvidaste tu contraseña?</h2>
+        <br/>
+        <br/>
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :method => :post ) do |f| %>
+          <p class="p1"><%= f.label :email %></p>
+          <p class="p2"><%= f.text_field :email %></p>
+          <br/><br/>
+          <p><%= f.submit "Enviar instrucciones de reseteo de contraseña", :class=> "btn"  %></p>
+          <br/><br/>
+          <% end %>
+          <p><%= render :partial => "links" %></p>
+      </div>
 
-<%= render "links" %>
+    </div>
+  </div>
+</div>
+

@@ -224,7 +224,7 @@ Devise.setup do |config|
   config.omniauth :facebook,  APP_CONFIG['facebook_app_id'], APP_CONFIG['facebook_secret'], :scope => %(email,user_location,user_birthday,user_groups,read_stream,publish_stream,offline_access),
     :client_options => {:ssl => ssl_options}
   config.omniauth :twitter, APP_CONFIG['twitter_key'], APP_CONFIG['twitter_secret']
-  config.omniauth :linked_in, APP_CONFIG['linkedin_key'],  APP_CONFIG['linkedin_secret']
+  config.omniauth :linkedin, APP_CONFIG['linkedin_key'],  APP_CONFIG['linkedin_secret']
 
 end
 

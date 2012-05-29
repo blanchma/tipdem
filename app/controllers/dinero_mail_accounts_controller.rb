@@ -4,14 +4,14 @@ class DineroMailAccountsController < ApplicationController
 
   before_filter :authenticate_user!,:find_user
 
-  
+
   def new
     @dinero_mail_account = @user.build_dinero_mail_account
   end
 
   def create
     @dinero_mail_account = @user.build_dinero_mail_account(params[:dinero_mail_account])
-    
+
     respond_to do |format|
       if @dinero_mail_account.save
         format.html { redirect_to(my_accounts_path, :notice => 'DineroMailAccount was successfully created.') }
@@ -22,21 +22,21 @@ class DineroMailAccountsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @dinero_mail_account = @user.dinero_mail_account
-    @dinero_mail_account.destroy if @dinero_mail_account 
+    @dinero_mail_account.destroy if @dinero_mail_account
 
     respond_to do |format|
       format.html { redirect_to :back }
       format.js  { head :ok }
     end
   end
-  
+
   def edit
     @dinero_mail_account = @user.dinero_mail_account
   end
-  
+
 
   def update
     @dinero_mail_account = @user.dinero_mail_account
@@ -61,6 +61,6 @@ class DineroMailAccountsController < ApplicationController
   def set_layout
     params[:layout] || 'panel'
   end
-  
+
 
 end
