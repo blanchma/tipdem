@@ -9,13 +9,13 @@
           <td align="center" bgcolor="#CFCDB4"><strong>Confirmación de cuenta</strong></td>
         </tr>
         <tr>
-          <td colspan="2" bgcolor="#FFFFFF"><p>Hola, <%= @resource.username %>!</p>
+          <td colspan="2" bgcolor="#FFFFFF"><p>Hola, <%= @user.username %>!</p>
           </td>
         </tr>
         <tr>
           <td height="50" colspan="2" align="left" valign="middle" bgcolor="#FFFFFF"><p>Podes confirmar tu cuenta con el siguiente link:</p>
 
-            <p><%= link_to 'Confirmación de cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p></td>
+            <p><%= link_to 'Confirmación de cuenta', user_confirmation_url(:confirmation_token => @user.confirmation_token) %></p></td>
         </tr>
         <tr>
           <td colspan="2" align="center" bgcolor="#FFFFFF">&nbsp;</td>

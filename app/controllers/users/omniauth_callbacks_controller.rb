@@ -14,7 +14,33 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create
-    omniauth = request.env["omniauth.auth"]
+    account = case request.env['omniauth.auth']['provider']
+      when 'twitter' then
+        Account::Twitter.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+      when 'facebook' then
+        Account::Facebook.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+      when 'linkedin' then
+        Account::LinkedIn.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+      else
+      logger.error "Omniauth Provider unknown(#{request.env['omniauth.auth']['provider']})"
+      flash[:notice]="Something goes wrong. Try later, please."
+    end
+
+    if @user = account.user
+      sign_in_and_redirect(:user, @user)
+    else
+      @user = account.create_user
+      if chain = Chain.build(session["click"] ||cookies["click"])
+        sign_in(:user, @user)
+        redirect_to go_campaign_tips_path(chain.campaign_id)
+      else
+        sign_in_and_redirect(:user, @user)
+      end
+    end
+
+  end
+
+  def old_create
     @authentication = Authentication.find_by_provider_and_uid(omniauth["provider"], omniauth["uid"] )
 
     if @authentication && current_user
@@ -29,7 +55,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @authentication.save
 
       set_flash_message :notice, :signed_in
-      sign_in_and_redirect(:user, @authentication.user)
 
     elsif current_user #agregar nuevas cuentas
       current_user.apply_omniauth(omniauth)
@@ -55,12 +80,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         set_flash_message :notice, :signed_up
         #ContactMailer.welcome_email(@user).deliver
 
-        if @user.chained?
-          sign_in(:user, @user)
-          redirect_to go_campaign_tips_path(@user.chain.campaign_id)
-        else
-          sign_in_and_redirect(:user, @user)
-        end
 
       else
         session[:omniauth]=request.env["omniauth.auth"]

@@ -20,6 +20,17 @@ class Chain < ActiveRecord::Base
     Revenue.create(:user => self.fisher, :campaign => self.campaign, :source => self)
   end
 
+  def self.build(click)
+    return unless click
+    campaign_id = click["campaign"]
+    user_id = click["user"]
+    channel = click["channel"]
+    if user_id
+      Chain.create(:campaign_id => campaign_id, :fisher_id => user_id,
+      :fish_id => id, :channel => channel)
+    end
+  end
+
   #handle_asynchronously :create_revenue, :run_at => Proc.new { 1.minutes.from_now }
 
       #TODO mover a un callback en el model

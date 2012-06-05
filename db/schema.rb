@@ -13,19 +13,21 @@
 
 ActiveRecord::Schema.define(:version => 20111117205821) do
 
-  create_table "authentications", :force => true do |t|
+  create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "uid"
     t.string   "provider"
-    t.string   "token"
+    t.string   "access_token"
     t.string   "secret"
-    t.integer  "friends_count"
+    t.string   "login"
+    t.string   "name"
+    t.integer  "friends"
+    t.string   "auth_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "followers_count"
     t.integer  "following_count"
     t.string   "type"
-    t.string   "verify_token"
   end
 
   create_table "bank_global_accounts", :force => true do |t|
@@ -368,10 +370,8 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",          :default => 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
     t.string   "authentication_token"
+    t.string   "invitation_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"
@@ -391,6 +391,5 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
 end

@@ -2,18 +2,16 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: livechains_dev
+  database: tipdem_dev
   pool: 5
   username: root
   password: root
   host: localhost
 
-
-
 test: &test
   adapter: mysql2
   encoding: utf8
-  database: livechains_test
+  database: tipdem_test
   pool: 5
   username: root
   password: root
@@ -32,9 +30,9 @@ stage:
 production:
   adapter: mysql2
   encoding: utf8
-  database: gauchede_tipdem
-  username: gauchede_root
-  password: pingopingo1917
+  database: tipdem
+  username: tipdem_root
+  password: gauch0gauch0
   host: localhost
   pool: 5
   reconnect: true
