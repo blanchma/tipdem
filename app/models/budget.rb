@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 include ActionView::Helpers::NumberHelper
-  
+
 class Budget < ActiveRecord::Base
 
-  belongs_to :campaign
-  
+  belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
+
   validates_numericality_of :pay_per_client_page_hit, :greater_than_or_equal_to => 0.01, :if => "mode == CampaignMode::PayPerHit"
   validates_numericality_of :pay_per_landing_page_hit, :greater_than_or_equal_to => 0.01, :if => "mode == CampaignMode::PayPerClick"
   validates_numericality_of :total, :greater_than_or_equal_to => 10
@@ -69,5 +69,5 @@ class Budget < ActiveRecord::Base
     value.delete!(" ")
     value
   end
- 
+
 end

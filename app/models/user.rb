@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
-
-
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
@@ -25,7 +23,7 @@ class User < ActiveRecord::Base
   has_one  :chain, :foreign_key => "fish_id"
 
   has_many :revenues
-  has_many :owned_campaigns, :class_name => "Campaign", :dependent => :destroy
+  has_many :owned_campaigns, :class_name => "Campaign::Base", :dependent => :destroy
   has_many :promotions
   has_many :promoted_campaigns, :through => :promotions, :source => :campaign
 
@@ -122,14 +120,13 @@ class User < ActiveRecord::Base
     update_attributes(params)
   end
 
- def only_if_unconfirmed
+  def only_if_unconfirmed
     unless_confirmed {yield}
   end
 
-
   def welcome
-    #UserMailer.deliver_welcome_email(self) unless fake_email?
-    self.send_confirmation_instructions unless fake_email?
+    #UserMailer.deliver_welcome_email(self) unless ?
+    #self.send_confirmation_instructions if fake_email?
     #Delayed::Job.enqueue(CountFriendsJob.new(self)) unless accounts.empty?
   end
 

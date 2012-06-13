@@ -9,13 +9,13 @@
     <%= flash[:alert] || flash[:error] || flash[:notice]%>
   </div>
 
-  <div id="error_detail">
-    <% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-    <% end %>
-  </div>
+  <% if @user.errors.any? %>
+    <div id="error_detail">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>

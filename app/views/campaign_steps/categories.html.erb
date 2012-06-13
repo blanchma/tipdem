@@ -12,7 +12,7 @@
     <%= flash[:error] %>
   <% end %>
 
-  <% form_for [@campaign,@categories], :url => campaign_categories_path(@campaign.id), :method => :put do |f| %>
+  <% form_for [@campaign,@categories], :url => wizard_path, :method => :put do |f| %>
     <%= hidden_field_tag "save_and_next", "yes" %>
     <div class="wrapper" style="width:89%; float: left; height: 352px;">
       <p><%=  t("create.step.two.text") %></p><br/>

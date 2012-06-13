@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'panel'
 
   def index
     if params[:approved] == "false"
@@ -69,12 +70,43 @@ class UsersController < ApplicationController
     @user.update_attributes params[:user]
     if @user.save
      @user.send_confirmation_instructions
-    #@user = User.send_confirmation_instructions(params[:user])
       set_flash_message :notice, :send_instructions
       redirect_to :action => :edit
     else
       render :edit
     end
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+
+    if @user.encrypted_password.blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+      @user.update_attributes(params[:user])
+
+      @user.clean_up_passwords
+    else
+      @user.update_with_password(params[:user])
+    end
+    logger.info "Setting user locale to: #{@user.locale}"
+    cookies[:locale]=@user.locale
+
+    respond_to do |format|
+      if @user.valid?
+        flash[:notice] = t("user.updated")
+        format.html { redirect_to(:action => "edit") }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
+
+  end
+
+
 
 end

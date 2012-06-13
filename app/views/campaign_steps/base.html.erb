@@ -10,7 +10,7 @@
   </ul>
   <!--<%= image_tag 'step1.png', :alt => "tooltip", :width => "447",  :height => "35",  :border => "0", :align => "top", :class => "steps" %>-->
   <br /><br />
-  <%= form_for @campaign, :url => campaigns_path, :html => { :id => "campaings", :multipart => true } do |f| %>
+  <%= form_for @campaign, :url => wizard_path, :html => { :id => "campaings", :multipart => true } do |f| %>
 
     <%= hidden_field_tag "save_and_next", "yes" %>
     <%= hidden_field_tag(:campaign_id, @campaign.id) if @campaign.id %>

@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   before_filter :last_campaigns
 
   def last_campaigns
-    @last_campaigns = Campaign.active.all(:limit => 5, :order => "created_at DESC")
+    @last_campaigns = Campaign::Base.active.all(:limit => 5, :order => "created_at DESC")
   end
 
   def p_funcionamiento

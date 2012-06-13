@@ -1,10 +1,9 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
+  protect_from_forgery
 
   helper :all
   before_filter  :get_locale, :url_rewrite
-
 
   def url_rewrite
     unless (Rails.env == 'development')
@@ -17,10 +16,9 @@ class ApplicationController < ActionController::Base
   def confirm_user!
     unless user_signed_in? && current_user.confirmed?
       flash[:error]=:not_confirmed
-      redirect_to "/my/profile"
+      redirect_to user_root_path
     end
   end
-
 
   def is_admin?
     unless user_signed_in? && current_user.admin
@@ -56,7 +54,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   private
 
   def extract_locale_from_accept_language_header
@@ -71,8 +68,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = locale
   end
 
-
-
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
     logger.info "Logout Extended... Cleaning session data"
@@ -82,11 +77,9 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || user_root_path
   end
-
 
   protected
   def set_flash_message(key, kind, now=false)
@@ -95,10 +88,8 @@ class ApplicationController < ActionController::Base
       :scope => [:devise, controller_name.to_sym], :default => kind)
   end
 
-
 end
 
 #TODO Para customizar paginas de error
 #http://stackoverflow.com/questions/943138/how-does-one-implement-dynamic-404-500-etc-error-pages-in-rails
 #http://stackoverflow.com/questions/2238244/custom-error-pages-in-rails
-

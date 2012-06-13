@@ -1,11 +1,14 @@
 # -*- encoding : utf-8 -*-
-require 'lib/validates_url'
 
-class LandingPage < ActiveRecord::Base  
+require 'uri_validator'
+
+class LandingPage < ActiveRecord::Base
   belongs_to :campaign
 
-  validates_presence_of :title, :sub_title, :body  
-  validates_format_of_url :owner_url, :allow_nil => true, :allow_blank => true
+  validates_presence_of :title, :sub_title, :body
+  #validates url :owner_url, :allow_nil => true, :allow_blank => true
+  validates :owner_url, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+
 
   #http://railscasts.com/episodes/134-paperclip
   has_attached_file :main_image, :styles => { :thumb => "50x50",:small => "100x100", :medium => "300>300", :landing => "600x" },

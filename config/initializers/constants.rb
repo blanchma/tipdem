@@ -61,18 +61,6 @@ class RevenueParams
   Min_Payment= -1
 end
 
-class CampaignStatus
-  Incomplete= "Incomplete"
-  WaitingApproval = "Waiting approval"
-  WaitingForPay= "Waiting for pay"
-  NotApproved= "Not approved"
-  Inactive= "Inactive"
-  Expired= "Expired"
-  NotBeginYet= "Not begin yet"
-  OutOfMoney= "Out of money"
-  Active="Active"
-  Error="Error"
-end
 
 class CampaignMode
   PayPerLead = "Pay per Lead"

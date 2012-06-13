@@ -4,8 +4,6 @@ gem 'rails', '~> 3.1'
 gem 'mysql2'
 # Deploy with Capistrano
 
-gem 'bitly' #https://github.com/philnash/bitly
-gem 'mini_fb'
 gem 'devise'
 gem 'whenever', :git => 'git://github.com/kotfu/whenever.git', :require => false #https://github.com/javan/whenever
 gem 'friendly_id', '~>3.2.1'
@@ -19,14 +17,17 @@ gem 'kaminari'
 gem 'gvis'
 gem 'httparty'
 
-gem 'hoptoad_notifier'
+gem 'bitly' #https://github.com/philnash/bitly
+gem 'mini_fb'
 gem 'twitter'
+gem 'linkedin' , :git =>  'git://github.com/pengwynn/linkedin.git' ,
+:branch =>  '2-0-stable'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
-gem 'linkedin' , :git =>  'git://github.com/pengwynn/linkedin.git' ,
-:branch =>  '2-0-stable'
+
 gem 'settingslogic'
+gem 'hoptoad_notifier'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,6 +36,8 @@ group :assets do
   gem 'sass-rails', '  ~> 3.1.0'
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
+  gem 'bourbon'
 end
 
 group :development do
