@@ -4,26 +4,26 @@ class CampaignStatusMailer < ActionMailer::Base
   default :from => Settings.notification_from, :bcc => "gauchosolitarioar@gmail.com"
   layout 'mailer'
 
-  def paid_email(campaign, request=nil)
+  def paid(campaign, request=nil)
     @campaign = campaign
     mail(:to =>  "#{campaign.owner.email}",
         :subject =>  "Se pago #{campaign.name}")
   end
 
-  def approval_email(campaign)
+  def approval(campaign)
     @campaign = campaign
     mail(:to =>  "#{campaign.owner.email}",
     :subject =>  "#{campaign.name} fue aprobada")
   end
 
-  def disapproval_email(campaign, message)
+  def disapproval(campaign, message)
     @campaign, @message = campaign, message
     mail(:to => "#{campaign.owner.email}",
     :subject => "#{campaign.name} fue desaprobada")
   end
 
 
-  def out_of_money_email(campaign)
+  def out_of_money(campaign)
     @campaign = campaign
     mail(:to =>  "#{campaign.owner.email}",
     :subject =>  "#{campaign.name} se quedo sin fondos")

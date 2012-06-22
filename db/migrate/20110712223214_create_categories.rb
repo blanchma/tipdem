@@ -2,7 +2,7 @@
 class CreateCategories < ActiveRecord::Migration
   def self.up
     create_table :categories do |t|
-      t.string :name      
+      t.string :name
     end
 
     create_table :categories_users, :id => false do |t|
@@ -14,33 +14,34 @@ class CreateCategories < ActiveRecord::Migration
       t.integer :campaign_id
       t.integer :category_id
     end
-    
-    Category.create(:name =>'Alimentos')
-    Category.create(:name =>'Arte')
-    Category.create(:name =>'Autos')
-    Category.create(:name =>'Bebes & Niños')
-    Category.create(:name =>'Belleza')
-    Category.create(:name =>'Bebidas')
-    Category.create(:name =>'Celebridades')
-    Category.create(:name =>'Deals')
-    Category.create(:name =>'Deportes')
-    Category.create(:name =>'Educacion')
-    Category.create(:name =>'Electronica & Gadgets')
-    Category.create(:name =>'Empresas')
-    Category.create(:name =>'Entretenimento')
-    Category.create(:name =>'Familia')
-    Category.create(:name =>'Finanzas')
-    Category.create(:name =>'Hogar')
-    Category.create(:name =>'Jovenes')
-    Category.create(:name =>'Juegos')
-    Category.create(:name =>'Libros')
-    Category.create(:name =>'Marketing')
-    Category.create(:name =>'Musica')
-    Category.create(:name =>'Politica')
-    Category.create(:name =>'Salud')
-    Category.create(:name =>'Viajes')
-    
 
+    ActiveRecord::Base.transaction do
+      Category.create(:name => "indumentaria")
+      Category.create(:name =>'alimentos')
+      Category.create(:name =>'arte')
+      Category.create(:name =>'autos')
+      Category.create(:name =>'bebes')
+      Category.create(:name =>'belleza')
+      Category.create(:name =>'bebidas')
+      Category.create(:name =>'celebridades')
+      Category.create(:name =>'negocios')
+      Category.create(:name =>'deportes')
+      Category.create(:name =>'educacion')
+      Category.create(:name =>'electronica')
+      Category.create(:name =>'empresas')
+      Category.create(:name =>'entretenimento')
+      Category.create(:name =>'familia')
+      Category.create(:name =>'finanzas')
+      Category.create(:name =>'hogar')
+      Category.create(:name =>'jovenes')
+      Category.create(:name =>'juegos')
+      Category.create(:name =>'libros')
+      Category.create(:name =>'marketing')
+      Category.create(:name =>'musica')
+      Category.create(:name =>'politica')
+      Category.create(:name =>'salud')
+      Category.create(:name =>'viajes')
+    end
   end
 
   def self.down

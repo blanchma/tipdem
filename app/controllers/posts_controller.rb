@@ -2,9 +2,9 @@
 class PostsController < ApplicationController
   layout 'panel'
   helper_method :last_post_message, :publish_daily?
-  
+
   before_filter :authenticate_user!, :back, :find_campaign
-  
+
   rescue_from ActiveRecord::RecordNotFound, :with => :post_not_found
 
   def post_not_found
@@ -17,12 +17,12 @@ class PostsController < ApplicationController
         end
       end
     end
-    
+
   end
 
-  
+
   def go
-    if current_user.posts.not_failed.count(:conditions => {:campaign_id => @campaign.id}) > 0 
+    if current_user.posts.not_failed.count(:conditions => {:campaign_id => @campaign.id}) > 0
       redirect_to :action => :index, :campaign_id => @campaign.id
     else
       redirect_to :action => :new, :campaign_id => @campaign.id
@@ -79,10 +79,10 @@ class PostsController < ApplicationController
         end
 
       else
-       
+
         post_errors = @post.errors.full_messages.join('<br/>')
         logger.info "@post errors= #{post_errors}"
-       
+
         format.html { render :action => :new }
         format.js do
           render :update do |page|
@@ -99,10 +99,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build params[:post]
-        
+
     respond_to do |format|
       if @post.save
-        
+
         format.html { redirect_to :action => :new, :campaign_id => @campaign.id }
         format.js do
           render :update do |page|
@@ -111,7 +111,7 @@ class PostsController < ApplicationController
             page.visual_effect :highlight , "post_#{@post.id}"
           end
         end
-          
+
       else
         post_errors = @post.errors.full_messages.join('<br/>')
         logger.info "@post errors= #{post_errors}"
@@ -125,7 +125,7 @@ class PostsController < ApplicationController
             page.visual_effect :highlight, "errors_#{@post.channel}"
           end
         end
-     
+
       end
     end
 
@@ -150,7 +150,7 @@ class PostsController < ApplicationController
             page.insert_html :bottom, "errors_#{@post.channel}", "Cancelado con éxito."
             page.visual_effect :highlight , "form_#{@post.channel}"
           end
-            
+
         end
       end
     end
@@ -172,7 +172,7 @@ class PostsController < ApplicationController
   def find_campaign
     logger.info "Find campaign #{params[:campaign_id]} for budget"
     if params[:campaign_id]
-      @campaign = Campaign.find params[:campaign_id]
+      @campaign = Campaign::Base.find params[:campaign_id]
     end
   end
 
@@ -183,7 +183,7 @@ class PostsController < ApplicationController
     elsif request.referer.include? "panel"
       session[:return] = ["Inicio", request.referer]
     else
-      
+
     end
   end
 

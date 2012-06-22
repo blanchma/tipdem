@@ -1,14 +1,14 @@
 source :rubygems
 
-gem 'rails', '~> 3.1'
+gem 'rails', '~> 3.2'
 gem 'mysql2'
 # Deploy with Capistrano
 
 gem 'devise'
 gem 'whenever', :git => 'git://github.com/kotfu/whenever.git', :require => false #https://github.com/javan/whenever
 gem 'friendly_id', '~>3.2.1'
-gem 'paperclip', '2.3.10' #http://railscasts.com/episodes/134-paperclip  https://github.com/thoughtbot/paperclip
-gem 'resque'
+gem 'paperclip'
+gem 'resque', '> 1.19'
 gem 'resque_mailer'
 gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'foreman'
@@ -33,20 +33,22 @@ gem 'hoptoad_notifier'
 # in production environments by default.
 group :assets do
   gem 'jquery-rails'
-  gem 'sass-rails', '  ~> 3.1.0'
-  gem 'coffee-rails', '~> 3.1.0'
+  gem 'sass-rails', '  ~> 3.2'
+  gem 'coffee-rails', '~> 3.2'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
   gem 'bourbon'
 end
 
 group :development do
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+  # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
   gem 'debugger'
   gem 'capistrano'
   gem 'magic_encoding', :require => false
   gem 'mail_view'
+  gem 'mailcatcher'
   gem 'rails-dev-tweaks', '~> 0.6.1'
-  gem 'thin'
+  gem 'brakeman'
+  gem 'annotate'
 end
 

@@ -30,3 +30,18 @@ class RevenueCommission < ActiveRecord::Base
  
 
 end
+
+# == Schema Information
+#
+# Table name: revenue_commissions
+#
+#  id           :integer(4)      not null, primary key
+#  revenue_id   :integer(4)
+#  campaign_id  :integer(4)
+#  money        :decimal(8, 2)   default(0.0)
+#  source_class :string(255)
+#  source_id    :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

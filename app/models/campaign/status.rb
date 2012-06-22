@@ -43,8 +43,9 @@ module Campaign
         self.status != INCOMPLETE
       end
 
-      def activate!
+      def approve!
         self.status = ACTIVE
+        CampaignStatusMailer.approval(self.id).deliver if status_changed?
       end
 
       def out_of_money?
@@ -59,10 +60,8 @@ module Campaign
       end
 
       def out_of_money!
-        if self.status != CampaignStatus::OutOfMoney
-          CampaignStatusMailer.delay.deliver_out_of_money self
-          self.status = CampaignStatus::OutOfMoney
-        end
+        self.status = OUT_OF_MONEY
+        CampaignStatusMailer.out_of_money(self.id).deliver if status_changed?
       end
 
       def expired?

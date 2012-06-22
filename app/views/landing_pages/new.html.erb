@@ -1,12 +1,10 @@
 <% content_for(:head) do %>
-  <%= javascript_include_tag 'tiny_mce/tiny_mce.js' %>
+  <%= javascript_include_tag 'vendor/tiny_mce/tiny_mce.js' %>
 <% end %>
 
 <% content_for(:bottom) do %>
-  <%= javascript_include_tag 'fancybox/jquery.fancybox-1.3.4.pack' %>
+  <%= javascript_include_tag 'vendor/jquery.fancybox-1.3.4' %>
 <% end %>
-
-
 
 <div id="campaing" style="width:785px;">
   <h3><%=  t("create.step.four.title") %></h3>
@@ -22,14 +20,12 @@
     <%= flash[:error] %>
   <% end %>
 
-  <% form_for @landing_page, :url => campaign_landing_page_path(@campaign), :html => {:id => "landing_page_form", :multipart => true, :method => :post } do |f| %>
+  <%= form_for @landing_page, :url => campaign_landing_page_path(@campaign), :html => {:id => "landing_page_form", :multipart => true, :method => :post } do |f| %>
 
     <%= hidden_field_tag "campaign_logo_url", @campaign.logo.url %>
     <%= hidden_field_tag "save_and_next", "yes" %>
 
-
     <div style="width:49%; height: 371px; float: left">
-
       <ul>
         <li class="form_message" id="landing_form_message">
         </li>
@@ -41,7 +37,7 @@
 
 
         <h4><%= f.label :main_image %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.step.four.timg") %></h4>
-        <li><%=  t("create.step.four.imgtext") %>          
+        <li><%=  t("create.step.four.imgtext") %>
           <br/>
           <%= f.select :main_image_source, options_for_select(ImageSource.all.map {|p| [(t ImageSource.get(p)) , ImageSource.get(p) ] }, [(t @landing_page.main_image_source), @landing_page.main_image_source] ) %>
 
@@ -68,7 +64,11 @@
       </ul>
       <br />
           <!-- #dialog is the id of a DIV defined in the code below -->
-    <a href="#dialog" name="modal"><h4><%=  t("create.step.four.prev") %></h4></a><br/><br/>
+    <a href="#dialog" name="modal">
+      <h4><%=  t("create.step.four.prev") %></h4>
+    </a>
+    <br/>
+    <br/>
     <div id="boxes">
 
 
@@ -78,9 +78,6 @@
       <!-- close button is defined as close class -->
         <a href="#" class="close" style="float:right;"><%= image_tag 'no.png', :width => '20', :border => '0' %></a>
         <%= render 'template' %>
-      
-        
-
     </div>
 
 
@@ -89,18 +86,25 @@
     </div>
 
     <div style="width:49%; height: 371px; float: left">
-      <h4><%=  f.label :body, t("create.step.four.main"), :style => "display: inline-block" %><%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.step.four.tmain") %></h4>
+      <h4><%=  f.label :body, t("create.step.four.main"), :style => "display: inline-block" %>
+        <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",
+        :border => "0", :align => "absmiddle", :title => t("create.step.four.tmain") %></h4>
       <ul>
         <li><%=  f.text_area :body, :cols => 45, :rows => 20, :class => "mce-editor" %></li>
       </ul>
     </div>
 
     <div class="step">
-      <% if @landing_page.errors.size > 0  %>
+      <% if @landing_page.errors.size > 0 %>
         <div class="flash_error" id="first_step_error">
-          <%= error_messages_for(:landing_page, :header_message => nil, :message => nil).html_safe %>
+          <ul>
+          <%-  @landing_page.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <%- end %>
+          </ul>
         </div>
-      <% end %>
+      <%- end %>
+
       <%= link_to t("create.back"), step_budget_path(@campaign.id), :class => "back" %>
       <%= f.submit t("create.save"), :class=> "saved", :onclick => "$('#save_and_next').val('no')" %>
       <%= f.submit t("create.savenext"), :class=> "savenext", :onclick => "$('#save_and_next').val('yes')"  %>
@@ -117,9 +121,9 @@
 <script type='text/javascript'>
 
   $(document).ready(function(){
-    $('#landing_page_main_image_source').change(showMainImageSourceUploader );    
+    $('#landing_page_main_image_source').change(showMainImageSourceUploader );
     showMainImageSourceUploader();
-    
+
     $('#title_field').keyup(function(event) {
       $('#title_landing').html($('#title_field').val() );
     });
@@ -128,7 +132,7 @@
       $('#sub_title_landing').html($('#sub_title_field').val() );
     });
 
-   
+
 
     $('#main_image_url_field').change(function(event) {
       $("#image_landing").attr("src", $('#main_image_url_field').val() );
@@ -169,7 +173,7 @@
         break;
     }
   }
-  
+
   tinyMCE.init({
     mode : "textareas",
     theme : "advanced",

@@ -1,11 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Promotion < ActiveRecord::Base
   attr_reader :posts, :chains, :revenues, :landing_page_hits, :client_page_hits
-  attr_reader :per_page
-  @@per_page = 5
 
   belongs_to :user
-  belongs_to :campaign
+  belongs_to :campaign, :class_name => "Campaign::Base"
 
   scope :not_owned ,lambda {
     #{:conditions => ["user_id = ? AND user_id != ?", self.user_id , self.campaign.user_id ]}
@@ -47,4 +45,25 @@ class Promotion < ActiveRecord::Base
   end
 
 end
+
+
+# == Schema Information
+#
+# Table name: promotions
+#
+#  id                :integer(4)      not null, primary key
+#  campaign_id       :integer(4)
+#  user_id           :integer(4)
+#  landing_page_hits :integer(4)      default(0)
+#  fb_posts          :integer(4)      default(0)
+#  fb_comments       :integer(4)      default(0)
+#  fb_likes          :integer(4)      default(0)
+#  tw_posts          :integer(4)      default(0)
+#  tw_retweets       :integer(4)      default(0)
+#  count_chains      :integer(4)      default(0)
+#  current_money     :decimal(8, 2)   default(0.0)
+#  current_points    :integer(4)      default(0)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
 

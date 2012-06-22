@@ -3,7 +3,7 @@
     background-color: #BBB895;
   }
 </style>
-<% form_for [@categorizable,@categories], :url => user_categories_path(@user), :method => :put do %>
+<%= form_for @categories, :url => user_categories_path(@user), :method => :put do %>
 
   <div id="campaing" style="width:785px;">
     <h3><%=  t("mycat.title") %></h3>  <br /><br />
@@ -21,9 +21,9 @@
           <div style="display:block; float:left; margin-top: 4px">
       <span> <%=  t("mycat.susc") %></span>
       <% if current_user.email_recommendations %>
-        <%= link_to_remote t("mycat.btnoff"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations", :class =>'next'} %>
+        <%= link_to t("mycat.btnoff"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations", :class =>'next'}, :remote => true %>
       <% else %>
-          <%= link_to_remote t("mycat.btnon"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations"} %>
+          <%= link_to t("mycat.btnon"), :url => toggle_recommendations_user_path(current_user.id), :html => {:id => "email_recommendations"}, :remote => true %>
       <% end %>
 
     </div>

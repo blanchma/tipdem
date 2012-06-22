@@ -9,40 +9,60 @@
   <h4><%=  t("mynet.socnet") %></h4>
 
   <br /><br />
-  <div id="icons"><p><%= image_tag 'tw64.png', :height => '64', :align =>'absmiddle', :title =>'Twitter' %></p>
-    <% if current_user.twitter?  %>
-      <p><%= link_to t("mynet.unlink"), authentication_path(current_user.twitter_account), :confirm => "¿Está seguro?", :method => :delete %></p>
+  <div id="icons">
+    <p><%= image_tag 'tw64.png', :height => '64', :align =>'absmiddle', :title =>'Twitter' %></p>
+
+    <% if current_user.twitter  %>
+      <p><%= link_to t("mynet.unlink"), user_omniauth_authorize_path(:twitter), :confirm => "¿Está seguro?", :method => :delete %></p>
+
     <% else %>
+
       <p><%= link_to t("mynet.link"), "/auth/twitter" %></p>
-    <% end %></div>
 
-  <div id="icons"><p><%= image_tag 'fb64.png', :height => '64', :align =>'absmiddle', :title =>'Facebook'  %></p>
-    <% if current_user.facebook? %>
+    <% end %>
+  </div>
 
-      <p><%= link_to t("mynet.unlink"), authentication_path(current_user.facebook_account), :confirm => "¿Está seguro?", :method => :delete %></p>
+  <div id="icons">
+    <p><%= image_tag 'fb64.png', :height => '64', :align =>'absmiddle', :title =>'Facebook'  %></p>
 
+    <% if current_user.facebook %>
+      <p>
+        <%= link_to t("mynet.unlink"), user_omniauth_authorize_path(:facebook), :confirm => "¿Está seguro?", :method => :delete %></p>
     <% else %>
       <p><%= link_to t("mynet.link"), "/auth/facebook" %></p>
-    <% end %></div>
+    <% end %>
+  </div>
 
-  <div id="icons"><p><%= image_tag 'in64.png', :height => '64', :align =>'absmiddle', :title =>'LinkedIn' %></p>
-    <% if current_user.linked_in?  %>
-      <p><%= link_to t("mynet.unlink"), authentication_path(current_user.linked_in_account), :confirm => "¿Está seguro?", :method => :delete %></p>
+  <div id="icons">
+    <p><%= image_tag 'in64.png', :height => '64', :align =>'absmiddle', :title =>'LinkedIn' %></p>
+
+    <% if current_user.linked_in %>
+      <p><%= link_to t("mynet.unlink"), user_omniauth_authorize_path(:linkedin), :confirm => "¿Está seguro?", :method => :delete %></p>
     <% else %>
       <p><%= link_to t("mynet.link"), "/auth/linked_in" %></p>
-    <% end %></div>
+    <% end %>
+  </div>
 
   <br /><br /><br /><br /><br /><br />
+
   <h4><%=  t("mynet.pay") %></h4>
 
   <br /><br />
-  <div id="icons"><p><%= image_tag 'dm64.png', :height => '64', :align =>'absmiddle', :title =>'DineroMail' %></p>
-    <% if current_user.dinero_mail_account %>
+  <div id="icons">
+    <p><%= image_tag 'dm64.png', :height => '64', :align =>'absmiddle', :title =>'DineroMail' %></p>
+
+    <% if false && current_user.dinero_mail_account %>
+
       <%= link_to t("mynet.delete"), user_dinero_mail_accounts_path(:user_id => current_user.id), :method => :delete, :onclick => "window.location.reload();" %>
-      <%= link_to t("mynet.edit"), edit_user_dinero_mail_accounts_path(:user_id => current_user.id), :class => "fancy_popup"%>
+
+      <%= link_to t("mynet.edit"), edit_user_dinero_mail_accounts_path(:user_id => current_user.id), :class => "fancy_popup" %>
+
     <% else %>
+
       <%= link_to t("mynet.link"), new_user_dinero_mail_accounts_path(:user_id => current_user.id), :class => "fancy_popup" %>
-    <% end %></div>
+
+    <% end %>
+  </div>
 </div>
 
 <script type="text/javascript">

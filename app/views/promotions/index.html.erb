@@ -8,7 +8,7 @@
         <%= content_tag :th, t("myprom.refer") , :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.refer") %>
         <%= content_tag :th, t("myprom.click") , :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.click") %>
         <%= content_tag :th, t("myprom.hits") , :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.hits") %>
-        <%= content_tag :th, t("myprom.earn"), :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.posts") %>
+        <%= content_tag :th, t("myprom.earn"), :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.earn") %>
         <%= content_tag :th, t("myprom.post") , :alt => "tooltip" ,  :border => "0", :align => "absmiddle", :title => t("myprom.tool.post") %>
         <%= content_tag :th, t("myprom.action"), :colspan => "1" %>
       </tr>
@@ -30,15 +30,13 @@
       <% end %>
     </tbody >
   </table>
-
-
   <%= paginate @promotions %>
   <br/>
 
 
 </div>
 <div id="extra">
-<%= render :partial => 'shared/collected_amount' %>
+<%#= render :partial => 'shared/collected_amount' %>
 </div>
 <style type="text/css">
 

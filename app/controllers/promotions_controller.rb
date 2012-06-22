@@ -1,11 +1,10 @@
 # -*- encoding : utf-8 -*-
 class PromotionsController < ApplicationController
-
   before_filter :authenticate_user!
 
   def index
     #@promotions  = current_user.promotions.page :page => params[:page]
-    @promotions  = current_user.promotions.not_owned.page :per_page => 10, :page => params[:page]
+    @promotions  = current_user.promotions.not_owned.page.page(params[:page]).per(10)
     render :layout => 'panel'
   end
 
@@ -19,11 +18,8 @@ class PromotionsController < ApplicationController
   end
 
   def new
-    @campaign = Campaign.find params[:campaign_id]
+    @campaign = Campaign::Base.find params[:campaign_id]
   end
-
-
-
 
   def mini
     render :action => :campaign_details

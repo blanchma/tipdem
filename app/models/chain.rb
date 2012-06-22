@@ -4,8 +4,7 @@ class Chain < ActiveRecord::Base
   belongs_to :fish, :class_name => 'User', :foreign_key => 'fish_id'
   belongs_to :fisher, :class_name => 'User', :foreign_key => 'fisher_id'
 
-  belongs_to :campaign
-
+  belongs_to :campaign, :class_name => 'Campaign::Base'
 
   scope :facebook, :conditions => {:channel => Channel::Facebook}
   scope :twitter, :conditions => {:channel => Channel::Twitter}
@@ -49,4 +48,19 @@ class Chain < ActiveRecord::Base
 
 
 end
+
+
+# == Schema Information
+#
+# Table name: chains
+#
+#  id          :integer(4)      not null, primary key
+#  fisher_id   :integer(4)
+#  fish_id     :integer(4)
+#  campaign_id :integer(4)
+#  baits       :integer(4)      default(5)
+#  channel     :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
 

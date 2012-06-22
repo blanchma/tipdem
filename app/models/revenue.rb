@@ -173,3 +173,20 @@ class Revenue < ActiveRecord::Base
   
 end
 
+
+# == Schema Information
+#
+# Table name: revenues
+#
+#  id           :integer(4)      not null, primary key
+#  campaign_id  :integer(4)
+#  user_id      :integer(4)
+#  mode         :string(255)
+#  money        :decimal(8, 2)   default(0.0)
+#  points       :integer(4)      default(0)
+#  source_class :string(255)
+#  source_id    :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

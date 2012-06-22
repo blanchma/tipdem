@@ -1,9 +1,9 @@
-/* 
+/*
  * Original script by Josh Fraser (http://www.onlineaspect.com)
  * Continued by Jon Nylander, (jon at pageloom dot com)
- * According to both of us, you are absolutely free to do whatever 
+ * According to both of us, you are absolutely free to do whatever
  * you want with this code.
- * 
+ *
  * This code is  maintained at bitbucket.org as jsTimezoneDetect.
  */
 

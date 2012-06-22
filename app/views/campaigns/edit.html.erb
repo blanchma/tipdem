@@ -1,11 +1,11 @@
 <div id="campaing" style="width:785px;">
   <h3><%=  t("create.edit.camp.title") %></h3>
-  <br /><br />
+  <br/>
+  <br/>
 
+  <%= form_for @campaign, :method => :put, :html => { :multipart => true } do |f| %>
 
-  <%  form_for @campaign, :html => { :method => :put, :multipart => true } do |f| %>
-
-    <%= errors_for(@campaign, "Opps, unable to add new user").html_safe %>
+    <%= errors_for(@campaign).html_safe %>
 
     <div style="width:49%; float: left">
       <ul>

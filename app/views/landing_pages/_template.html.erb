@@ -2,14 +2,16 @@
 <div id="highlights"></div>
     <div id="detailand">
    		<div id="descland">
-            <% link_to(visit_path(:id => @landing_page.id), :target => "_blank") do %>
+        <% if @landing_page.id %>
+            <%= link_to visit_path(:id => @landing_page.id), :target => "_blank" do %>
               <% if @landing_page && !@landing_page.main_image_logo? && @landing_page.main_image %>
                 <%= image_tag @landing_page.main_image.url(:landing), :alt => "cargada", :id => "image_landing"%>
               <% else %>
                 <%= image_tag @campaign.logo.url(:landing), :alt => "Tu Opinión Cuenta: Con Live Chains podrás conocer, opinar y recomendar a tus amigos acerca productos y servicios de tu interés.", :id => "image_landing"  %>
               <% end %>
             <% end  %>
-          </div>
+          <% end %>
+        </div>
 
         <div id="campaingland">
         <div id="text">
@@ -21,16 +23,22 @@
           </h2><br/>
           <p><%= raw  @landing_page.body if @landing_page %></p></div>
           <div class="btn">
-            <% if @landing_page.owner_url %>
-              <%= link_to t("last_campaigns.see_more"), visit_path(:id => @landing_page.id), :target => "_blank" %>
+            <% if @landing_page.owner_url && @landing_page.id %>
+              <%= link_to_if @landing_page.id, t("last_campaigns.see_more"), visit_path(:id => @landing_page.id), :target => "_blank" %>
             <% end %>
           </div>
         </div>
+
       <div id="tpdad">
-        <div id="speaker"><%=link_to(image_tag('speaker.png', :size => '109x109', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %></div>
+        <div id="speaker">
+          <%=link_to(image_tag('speaker.png', :size => '109x109', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %>
+        </div>
         <div id="speak"><%=t("landing.text")%></div>
         <div id="linksusc">
-        <div id="btnsusc"><%= link_to t("register"), new_user_registration_path, :id => 'Panel', :class => "login_btn"%></div>
+          <div id="btnsusc">
+            <%= link_to t("register"), new_user_registration_path, :id => 'Panel',
+            :class => "login_btn"%>
+          </div>
         </div>
       </div>
       </div>

@@ -6,11 +6,11 @@ module ApplicationHelper
     MiniFB.oauth_url(APP_CONFIG['facebook_app_id'], APP_CONFIG['callback_facebook'], :scope=>MiniFB.scopes.join("user_about_me,email,read_insights,read_stream,publish_stream,offline_access"))
   end
 
-  def errors_for(object, message=nil)
+  def errors_for(object, header=nil,message=nil)
     html = ""
     unless object.errors.blank?
       html << "<div class='formErrors #{object.class.name.humanize.downcase}Errors'>\n"
-      if message.blank?
+      if message.blank? && header
         if object.new_record?
           html << "\t\t<h5>There was a problem creating the #{object.class.name.humanize.downcase}</h5>\n"
         else

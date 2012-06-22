@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <%= get_time_zone unless current_user.time_zone && current_user.dst %>
+    <%= get_time_zone unless current_user.time_zone  %>
     <%= yield :bottom %>
 
     <script type="text/javascript">

@@ -2,7 +2,6 @@
 class ChainsController < ApplicationController
 
   def create
-
     if session["click"]
       campaign_id = session["click"]["campaign"]
       user_id = session["click"]["user"]
@@ -22,7 +21,6 @@ class ChainsController < ApplicationController
       logger.info "Already exist a chain for this user to this campaign"
       redirect_to user_root_path
     end
-
   end
 
 end

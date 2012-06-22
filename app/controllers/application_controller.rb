@@ -88,6 +88,13 @@ class ApplicationController < ActionController::Base
       :scope => [:devise, controller_name.to_sym], :default => kind)
   end
 
+  def check_authorization!
+    if user_signed_in? && @campaign && !@campaign.authorized?(current_user)
+      flash[:error]=:not_authorized
+      redirect_to user_root_path
+    end
+  end
+
 end
 
 #TODO Para customizar paginas de error

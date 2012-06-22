@@ -3,7 +3,8 @@ Tipdem::Application.routes.draw do
 
   root :to => "welcome#home"
 
-  resources :promotions, :campaign_steps
+  resources :promotions, :categories
+  resource :captcha, :only => [:new]
 
   resources :chains
   resources :landing_pages do
@@ -26,20 +27,17 @@ Tipdem::Application.routes.draw do
       get :detailed
     end
     resource :landing_page
-
     resource :budget do
       get :pay, :on => :member
     end
-
-   resources :posts, :as => :tips do
+    resources :posts, :as => :tips do
       get :go, :on => :collection
       post :stop, :on => :member
-   end
-
+    end
+    resource :categories, :path => :classification, :path_names => { :edit => :choose }
   end
 
-  resource :categories
-  resource :captcha, :only => [:new]
+
 
   match "/step/setup/:campaign_id" => "campaigns#new", :as => :step_setup
   match "/step/budget/:campaign_id" => "budgets#new", :as => :step_budget

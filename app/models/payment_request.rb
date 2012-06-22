@@ -56,3 +56,26 @@ class PaymentRequest < ActiveRecord::Base
 
 end
 
+
+# == Schema Information
+#
+# Table name: payment_requests
+#
+#  id                   :integer(4)      not null, primary key
+#  user_id              :integer(4)
+#  campaign_id          :integer(4)
+#  requested_money      :decimal(8, 2)   default(0.0)
+#  paid_money           :decimal(8, 2)   default(0.0)
+#  status               :string(255)     default("payment_request_status.created")
+#  receipt_file_name    :string(255)
+#  receipt_content_type :string(255)
+#  receipt_file_size    :integer(4)
+#  receipt_updated_at   :datetime
+#  paid_at              :datetime
+#  additional_data      :text
+#  mode_pay             :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  dinero_mail_email    :string(255)
+#
+

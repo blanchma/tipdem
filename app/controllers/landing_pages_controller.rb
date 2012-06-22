@@ -12,7 +12,7 @@ class LandingPagesController < ApplicationController
     @landing_page.main_image_source = "3" if @landing_page.main_image_logo?
   end
 
-  def create    
+  def create
     @landing_page = @campaign.landing_page || @campaign.build_landing_page
     @landing_page.update_attributes(params[:landing_page])
 
@@ -20,21 +20,17 @@ class LandingPagesController < ApplicationController
 
     if  @landing_page.main_image_source  == ImageSource::URL && params[:landing_page][:main_image_url]
       begin
-        @landing_page.main_image_url = params[:landing_page][:main_image_url]        
-        @landing_page.main_image = URLTempfile.new(params[:landing_page][:main_image_url])        
+        @landing_page.main_image_url = params[:landing_page][:main_image_url]
+        @landing_page.main_image = URLTempfile.new(params[:landing_page][:main_image_url])
       rescue Exception => e
         @landing_page.main_image.clear
-        logger.error "URLTempfile Error: #{e.message}"        
+        logger.error "URLTempfile Error: #{e.message}"
       end
-    elsif @landing_page.main_image_source  == ImageSource::Logo
-      @landing_page.main_image_url=nil
-    else      
+    else
       @landing_page.main_image_url=nil
     end
 
-    @landing_page.save(false)
-
-    if @landing_page.valid?
+    if @landing_page.save
       logger.info "Landing Page Datos guardados."
       if params[:save_and_next] == 'yes'
         @campaign.completed!
@@ -44,13 +40,13 @@ class LandingPagesController < ApplicationController
         render :action => :new
         return
       end
-    else      
+    else
       render :action => :new
       return
     end
   end
 
-  def edit        
+  def edit
     @landing_page = @campaign.landing_page
     render :layout => 'panel'
   end
@@ -58,7 +54,7 @@ class LandingPagesController < ApplicationController
   def update
     @landing_page = @campaign.landing_page
     @landing_page.update_attributes(params[:landing_page])
-  
+
     unless params[:landing_page][:main_image_url].empty?
       begin
         @landing_page.main_image = URLTempfile.new(params[:landing_page][:main_image_url])
@@ -85,7 +81,7 @@ class LandingPagesController < ApplicationController
   end
 
 
-  def show          
+  def show
     @landing_page = @campaign.landing_page
     if @landing_page.owner_url && !@landing_page.owner_url.empty?
       @client_url = url_for :action => :client_page, :campaign_id => @campaign.id, :client_url => @landing_page.owner_url
@@ -97,27 +93,27 @@ class LandingPagesController < ApplicationController
     render :layout => "landing_pages"
   end
 
-  
 
-  def check_url    
+
+  def check_url
     logger.info "User-Agent: #{request.user_agent}"
     logger.info "User-Agent HEADER: #{request.env["HTTP_USER_AGENT"]} "
     if params[:link]
       params[:link].each do |value|
         @channel = value if Channel.all.include? value
         @user = User.find_by_id value unless @user
-      end      
+      end
     end
 
-    logger.info "Campaign: #{params[:campaign]}"
+    logger.info "Campaign::Base: #{params[:campaign]}"
     logger.info "User #{@user ? @user.id : "not found"}"
     logger.info "Channel #{@channel ? @channel : "not found" }"
-    
+
     begin
-      @campaign = Campaign.find params[:campaign]      
+      @campaign = Campaign::Base.find params[:campaign]
       return if params[:test]
-    rescue      
-      logger.info "Campaign with id=#{params[:campaign]} doesnt exist"
+    rescue
+      logger.info "Campaign::Base with id=#{params[:campaign]} doesnt exist"
       raise ActionController::RoutingError.new('Not Found')
     end
 
@@ -125,13 +121,13 @@ class LandingPagesController < ApplicationController
       if @user && @channel
         cookies["click_#{@campaign.id}"]={:value => "#{@campaign.id},#{@user ? @user.id : nil},#{@channel}", :expire => 1.year.from_now}
         session["click"]={"campaign" => @campaign.id, "user" => @user ? @user.id : nil, "channel" => @channel}
-      end    
+      end
       create_landing_page_hit
       logger.info "Session campaign id= #{@campaign.id}"
     else
       redirect_to inactive_landing_page_path(:id => params[:campaign])
     end
-      
+
   end
 
   def inactive
@@ -141,9 +137,9 @@ class LandingPagesController < ApplicationController
   def client_page
     @landing_page = LandingPage.find params[:id]
     campaign_id =  @landing_page.campaign_id
-      
+
     unless request.cookies.include? "hit_#{campaign_id }"
-    
+
 
       if session["click"]["campaign_id"]  == campaign_id
         user_id = session["click"]["user"]
@@ -151,7 +147,7 @@ class LandingPagesController < ApplicationController
 
       elsif request.cookies.include?"click_#{campaign_id }"
         user_id = cookies["click_#{campaign_id }"][0]
-        channel = cookies["click_#{campaign_id }"][1]    
+        channel = cookies["click_#{campaign_id }"][1]
       else
         user_id = nil
         channel = Channel::Default
@@ -168,14 +164,14 @@ class LandingPagesController < ApplicationController
       saved = clientpage_hit.save
       cookies["hit_#{campaign_id }"]={:value => true, :expire => 1.year.from_now} if saved
     end
-    
+
     redirect_to @landing_page.owner_url
   end
 
 
-  def create_landing_page_hit    
+  def create_landing_page_hit
     unless request.cookies.include? "click_#{@campaign.id}"
-     
+
       lhit = LandingPageHit.new(
         :fisher_id => (@user ? @user.id : nil),
         :channel => (@channel ? @channel : Channel::Default),
@@ -194,7 +190,7 @@ class LandingPagesController < ApplicationController
 
   private
   def find_campaign
-    @campaign = Campaign.find params[:campaign_id]
+    @campaign = Campaign::Base.find params[:campaign_id]
   end
 
 end

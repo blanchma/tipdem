@@ -41,12 +41,12 @@
 
           <td colspan="3">
             <% if campaign.editable?  %>
-              <%=  link_to image_tag("Page-Edit.png", :title => t("mycamp.inactive.tool.edit")), edit_campaign_path(campaign.id) %>
+              <%=  link_to image_tag("Page-Edit.png", :title => t("mycamp.inactive.tool.edit")), new_campaign_path(:id => campaign.id) %>
             <% else %>
               <%=  link_to image_tag("Page-Edit.png", :title => t("mycamp.inactive.tool.finish")), new_campaign_path(:id => campaign.id) %>
             <% end %>
 
-            <% if campaign.status == CampaignStatus::WaitingForPay %>
+            <% if campaign.status == Campaign::Status::WAITING_PAY %>
               <%= link_to image_tag("ico_dinero_mail_16.jpg", :title => t("mycamp.inactive.tool.pay")), pay_campaign_budget_path(:campaign_id => campaign)  %>
             <% end %>
 
@@ -74,7 +74,7 @@
 </div>
 
 <script type="text/javascript">
-  
+
   $(document).ready(function()  {
         $("#tree, #tree2").show();
   });

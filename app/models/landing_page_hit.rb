@@ -57,3 +57,20 @@ class LandingPageHit < ActiveRecord::Base
 
 end
 
+
+# == Schema Information
+#
+# Table name: landing_page_hits
+#
+#  id          :integer(4)      not null, primary key
+#  fisher_id   :integer(4)
+#  channel     :string(255)
+#  client_id   :integer(4)
+#  campaign_id :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  ip          :string(255)
+#  referrer    :string(255)
+#  user_agent  :string(255)
+#
+

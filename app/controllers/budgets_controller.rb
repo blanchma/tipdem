@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class BudgetsController < ApplicationController
   layout 'panel'
 
@@ -9,11 +8,11 @@ class BudgetsController < ApplicationController
     @budget = @campaign.budget || @campaign.build_budget
   end
 
-  def create    
-    @budget = @campaign.budget || @campaign.build_budget    
+  def create
+    @budget = @campaign.budget || @campaign.build_budget
     @budget.update_attributes params[:budget]
 
-    if @budget.save            
+    if @budget.save
       flash[:notice]=nil
       flash[:error]=nil
       if params[:save_and_next] == 'yes'
@@ -29,11 +28,9 @@ class BudgetsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-
   end
 
   def pay
@@ -45,10 +42,10 @@ class BudgetsController < ApplicationController
   def find_campaign
     begin
       logger.info "Find campaign #{params[:campaign_id]} for budget"
-      @campaign = Campaign.find params[:campaign_id]
+      @campaign = Campaign::Base.find params[:campaign_id]
     rescue
       redirect_to user_root_path, :notice => "Try again later!" unless @campaign
     end
   end
-  
+
 end

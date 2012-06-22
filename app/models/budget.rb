@@ -71,3 +71,25 @@ class Budget < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: budgets
+#
+#  id                          :integer(4)      not null, primary key
+#  campaign_id                 :integer(4)
+#  pay_per_lead                :decimal(8, 2)   default(0.0)
+#  pay_per_facebook_contact    :decimal(8, 2)   default(0.0)
+#  pay_per_twitter_contact     :decimal(8, 2)   default(0.0)
+#  pay_per_landing_page_hit    :decimal(8, 2)   default(0.0)
+#  pay_per_client_page_hit     :decimal(8, 2)   default(0.0)
+#  spent                       :decimal(8, 2)   default(0.0)
+#  total                       :decimal(8, 2)   default(0.0)
+#  cost                        :decimal(8, 2)   default(0.0)
+#  created_at                  :datetime
+#  updated_at                  :datetime
+#  mode                        :string(255)
+#  commission_landing_page_hit :integer(4)
+#  commission_client_page_hit  :integer(4)
+#
+

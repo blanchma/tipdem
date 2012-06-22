@@ -17,7 +17,7 @@ module Campaign
     has_one :budget, :foreign_key => "campaign_id", :dependent => :destroy
     has_one :landing_page, :foreign_key => "campaign_id", :dependent =>  :destroy
 
-    has_many :chains
+    has_many :chains, :foreign_key => 'campaign_id'
     has_many :landing_page_hits, :foreign_key => "campaign_id"
     has_many :client_page_hits, :foreign_key => "campaign_id"
     has_many :posts, :foreign_key => "campaign_id"
@@ -55,6 +55,7 @@ module Campaign
     delegate :mode, :pay, :commission, :to => :budget, :allow_nil => true
     attr_protected :user_id
 
+    before_create :incomplete!
     after_create :build_default
     after_create :incomplete!
 
@@ -121,3 +122,25 @@ module Campaign
   end
 
 end
+# == Schema Information
+#
+# Table name: campaigns
+#
+#  id                :integer(4)      not null, primary key
+#  user_id           :integer(4)
+#  name              :string(255)
+#  description       :string(255)
+#  status            :string(255)
+#  default_message   :string(255)
+#  have_end_date     :boolean(1)
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer(4)
+#  reference_id      :integer(4)
+#  reference_type    :string(255)
+#  begin_date        :date
+#  end_date          :date
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+

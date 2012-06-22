@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-
 require 'uri_validator'
 
 class LandingPage < ActiveRecord::Base
@@ -7,7 +6,7 @@ class LandingPage < ActiveRecord::Base
 
   validates_presence_of :title, :sub_title, :body
   #validates url :owner_url, :allow_nil => true, :allow_blank => true
-  validates :owner_url, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  validates :owner_url, :allow_nil => true, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
 
 
   #http://railscasts.com/episodes/134-paperclip
@@ -21,9 +20,9 @@ class LandingPage < ActiveRecord::Base
   validate :main_image_url_validation
 
   def main_image_url_validation
-      if main_image_url? && main_image_file_name.nil?
-        errors.add(:main_image_url, "es invalida")
-      end
+    if main_image_url? && main_image_file_name.blank?
+      errors.add(:main_image_url, :invalid)
+    end
   end
 
   def main_image_logo?
@@ -40,3 +39,24 @@ class LandingPage < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: landing_pages
+#
+#  id                      :integer(4)      not null, primary key
+#  campaign_id             :integer(4)
+#  template_id             :integer(4)
+#  title                   :string(255)
+#  sub_title               :string(255)
+#  body                    :text
+#  main_image_file_name    :string(255)
+#  main_image_content_type :string(255)
+#  main_image_file_size    :integer(4)
+#  owner_url               :string(255)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  main_image_url          :string(255)
+#  main_image_source       :string(255)
+#
+

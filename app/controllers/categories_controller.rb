@@ -1,12 +1,13 @@
 # -*- encoding : utf-8 -*-
 class CategoriesController < ApplicationController
   before_filter :find_categorizable
-  layout :set_layout
+  layout 'panel'
+  #layout :set_layout
 
   def edit
     @categories = Category.all(:order => "name")
     if @user
-      render :action => :user_edit, :layout => params[:layout]
+      render :action => :user_edit
     else
       render :action => :campaign_edit
     end
@@ -20,7 +21,6 @@ class CategoriesController < ApplicationController
       flash[:notice]="Sus Preferencias han sido actualizadas."
       render :action => :user_edit, :layout => params[:layout]
     elsif @campaign
-
       if @campaign.categories.count > 0 && @campaign.categories.count < 4
         flash[:notice]=nil
         flash[:error]=nil
@@ -48,7 +48,7 @@ class CategoriesController < ApplicationController
       @categorizable = User.find params[:user_id]
       @user = @categorizable
     elsif params[:campaign_id]
-      @categorizable = Campaign.find params[:campaign_id]
+      @categorizable = Campaign::Base.find params[:campaign_id]
       @campaign = @categorizable
     else
       logger.error "Categorizable class not found"

@@ -10,7 +10,9 @@
   </ul>
   <!--<%= image_tag 'step1.png', :alt => "tooltip", :width => "447",  :height => "35",  :border => "0", :align => "top", :class => "steps" %>-->
   <br /><br />
-  <%= form_for @campaign, :url => campaigns_path, :html => { :id => "campaings", :multipart => true } do |f| %>
+
+  <%= form_for @campaign, :as => :campaign, :url => campaigns_path, :method => :post,
+    :html => { :id => "campaings", :multipart => true } do |f| %>
 
     <%= hidden_field_tag "save_and_next", "yes" %>
     <%= hidden_field_tag(:campaign_id, @campaign.id) if @campaign.id %>
@@ -18,7 +20,7 @@
     <div style="width:49%; float: left">
       <% if @campaign.errors.size > 0  %>
         <div class="flash_error" id="first_step_error">
-          <%= errors_for(@campaign, "Opps, unable to add new user").html_safe %>
+          <%= errors_for(@campaign).html_safe %>
         </div>
       <% end %>
 
@@ -29,7 +31,7 @@
         <h4><%= f.label :logo, t("create.step.one.logo") %> <%= image_tag 'tooltip.png', :alt => "tooltip", :width => "20",  :height => "20",  :border => "0", :align => "absmiddle", :title => t("create.step.one.tlogo") %></h4>
         <li>
           <span><%=  t("create.step.one.logotext") %></span>
-          <%= select_tag :logo_source, t("create.step.one.logovalue") %>
+          <%= select_tag :logo_source, t("create.step.one.logovalue").html_safe %>
           <div id="from_file" class="from_box">
             <span><b><%=  t("create.step.one.logotype") %>:</b><%= f.file_field :logo  %></span>
 
@@ -42,7 +44,7 @@
           </div>
 
           <div id="logo_img">
-            <%= image_tag @campaign.logo.url, :height => 50, :width => 50 unless @campaign.new_record?  %>
+            <%= image_tag @campaign.logo.url, :height => 50, :width => 50, :onerror => "$(this).hide()"  unless @campaign.new_record? %>
           </div>
         </li><br />
 
@@ -101,8 +103,8 @@
       $("#select_end_date").show();
     }
 
-    $("#campaign_description").limitText(210, "#description_chars")
-    $("#campaign_default_message").limitText(120, "#default_message_chars")
+    $("#campaign_description").limit(210, "#description_chars")
+    $("#campaign_default_message").limit(120, "#default_message_chars")
 
   });
 
@@ -129,6 +131,4 @@
         break;
     }
   }
-
-
 </script>

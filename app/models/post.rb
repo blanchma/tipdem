@@ -254,3 +254,34 @@ class Post < ActiveRecord::Base
 
 end
 
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer(4)      not null, primary key
+#  campaign_id :integer(4)
+#  user_id     :integer(4)
+#  channel     :string(255)
+#  message     :string(255)
+#  status      :string(255)
+#  daily       :boolean(1)      default(FALSE)
+#  hour        :integer(4)
+#  hour_utc    :integer(4)
+#  response    :string(255)
+#  post_id     :string(255)
+#  attemps     :integer(4)      default(0)
+#  more        :string(255)
+#  counter     :integer(4)      default(0)
+#  targets     :string(255)
+#  privacy     :string(255)
+#  posted_at   :datetime
+#  revenued    :boolean(1)
+#  when_post   :datetime
+#  type        :string(255)
+#  retweets    :integer(4)      default(0)
+#  likes       :integer(4)      default(0)
+#  comments    :integer(4)      default(0)
+#  now         :boolean(1)
+#
+

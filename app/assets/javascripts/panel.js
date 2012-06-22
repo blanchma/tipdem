@@ -7,3 +7,4 @@
 //= require vendor/jquery.formatCurrency-1.4.0.min
 //= require vendor/jquery.formatCurrency.es-AR
 //= require vendor/detect_timezone.js
+//= require vendor/jquery.limit.js
