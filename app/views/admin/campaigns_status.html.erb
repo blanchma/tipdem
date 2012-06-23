@@ -59,16 +59,14 @@
             <td> - </td>
           <% end %>
           <td >
-            <%= button_to_remote "Aprobar",:url => activate_campaign_path(campaign.id), :method => :post, :update => {:success => "status_#{campaign.id}"}  %>
+            <%= button_to "Aprobar",:url => activate_campaign_path(campaign.id), :method => :post, :update => {:success => "status_#{campaign.id}"}, :remote => true  %>
 
             <%= button_to_function "Desaprobar","campaign_id = #{campaign.id}; $( '#dialog-form').dialog('open');" %>
 
-    <%#= button_to_remote "Desaprobar",:url => disapprove_campaign_path(campaign.id), :method => :post  %>
-
             <% if campaign.landing_page %>
-              <%= button_to_function "Landing",  "window.location.href='#{campaign.link(nil,nil,false)}?test=true'"%>
+              <%= button_to_function "Landing",  "window.location.href='#{campaign.link}?test=true'"%>
             <% end %>
-            <%= button_to_remote "Borrar",:url => campaign_path(campaign.id), :method => :delete, :success => "$('#row#{campaign.id}').remove()"  %>
+            <%= button_to "Borrar",:url => campaign_path(campaign.id), :method => :delete, :success => "$('#row#{campaign.id}').remove()", :remote => true  %>
           </td>
         </tr>
       <% end %>
@@ -78,9 +76,6 @@
 
 <br/>
 <%= paginate @campaigns %>
-<br/>
-<%= page_entries_info @campaigns %>
-
 
 <div id="dialog-form" title="Desaprobar campaña">
   <% form_tag :url => disapprove_campaign_path(1) do  %>

@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-require 'lib/simulator'
 class AdminController < ApplicationController
 
 
@@ -17,36 +16,13 @@ class AdminController < ApplicationController
       redirect_to :action => :campaigns_status
   end
 
-  def simulator
-
-  end
-
-  def simulator_back
-    fee = params[:fee].to_f
-    level = params[:level].to_i
-    ctr_facebook = params[:ctr_facebook].to_f
-    ctr_twitter = params[:ctr_twitter].to_f
-    num_seed_facebook = params[:num_seed_facebook].to_f
-    num_seed_twitter = params[:num_seed_twitter].to_f
-    num_standart_facebook = params[:num_standart_facebook].to_f
-    num_standart_twitter = params[:num_standart_twitter].to_f
-    sim = Simulator.new(fee,level,ctr_facebook, ctr_twitter,num_seed_facebook,num_seed_twitter,num_standart_facebook,num_standart_twitter)
-    render :inline => "el dinero ganado con Twitter es $ #{sim.get_twitter} , el dinero ganado con facebook es $ #{sim.get_facebook}"
-
-  end
-
   def campaigns_status
-    if params[:status]
-      @campaigns = Campaign.page :per_page => 20, :page => params[:page], :order => 'created_at DESC'
-
-    else
-      @campaigns = Campaign.page :per_page => 20, :page => params[:page], :conditions => ["status = ?", params[:status]], :order => 'created_at DESC'
-
-    end
+    @campaigns = Campaign::Base.page(params[:page]).per(20).order('created_at DESC')
+    @campaigns.where(:status => params[:status]) if params[:status]
   end
 
   def payment_requests
-   @payment_requests = PaymentRequest.page :per_page => 50, :page => params[:page], :order => "created_at DESC, status DESC"
+    @payment_requests = PaymentRequest.page(params[:page]).per(50).order("created_at DESC, status DESC")
   end
 
 
