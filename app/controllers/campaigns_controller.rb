@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 require 'google_chart'
 
-class CampaignsController < ApplicationController
+class CampaignsController < PermissionsController
   layout 'panel'
   before_filter :authenticate_user!
-  before_filter :find_campaign
   before_filter :confirm_user!, :except => [:show, :info]
+  before_filter :find_campaign
   before_filter :check_authorization!, :only => [:create, :update]
 
   def show

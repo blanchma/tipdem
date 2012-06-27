@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   CAMPAIGN_LIMIT=5
 
   attr_accessor :promotion
-  belongs_to :campaign
+  belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
   belongs_to :user
 
   validates_presence_of :user, :campaign

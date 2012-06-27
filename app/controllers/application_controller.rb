@@ -1,28 +1,49 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
+  #extend Concern::Authorization
+
   protect_from_forgery
 
   helper :all
-  before_filter  :get_locale, :url_rewrite
+  before_filter :get_locale, :url_rewrite
+
+
+   def check_authorization!
+      if user_signed_in? && @campaign && !@campaign.authorized?(current_user)
+        flash[:error]=:not_authorized
+        redirect_to user_root_path
+      end
+    end
+
+    def confirm_user!
+      unless user_signed_in? && current_user.confirmed?
+        flash[:error]=:not_confirmed
+        redirect_to user_root_path
+      end
+    end
+
+    def is_admin?
+      unless user_signed_in? && current_user.admin?
+        redirect_to :action => :login
+      end
+    end
+
+    def authenticate_admin_user!
+      render_403 and return if user_signed_in? && !current_user.admin?
+      authenticate_user!
+    end
+
+    def current_admin_user
+      return nil if user_signed_in? && !current_user.admin?
+      current_user
+    end
+
 
   def url_rewrite
     unless (Rails.env == 'development')
       if ( request.host.include?('www') )
         redirect_to "#{APP_CONFIG['domain']}#{request.path}"
       end
-    end
-  end
-
-  def confirm_user!
-    unless user_signed_in? && current_user.confirmed?
-      flash[:error]=:not_confirmed
-      redirect_to user_root_path
-    end
-  end
-
-  def is_admin?
-    unless user_signed_in? && current_user.admin
-      redirect_to :action => :login
     end
   end
 
@@ -88,12 +109,7 @@ class ApplicationController < ActionController::Base
       :scope => [:devise, controller_name.to_sym], :default => kind)
   end
 
-  def check_authorization!
-    if user_signed_in? && @campaign && !@campaign.authorized?(current_user)
-      flash[:error]=:not_authorized
-      redirect_to user_root_path
-    end
-  end
+
 
 end
 

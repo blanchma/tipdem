@@ -2,7 +2,7 @@
 require 'uri_validator'
 
 class LandingPage < ActiveRecord::Base
-  belongs_to :campaign
+  belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
 
   validates_presence_of :title, :sub_title, :body
   #validates url :owner_url, :allow_nil => true, :allow_blank => true

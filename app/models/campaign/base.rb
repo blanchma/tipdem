@@ -3,11 +3,6 @@ module Campaign
     set_table_name "campaigns"
     include Campaign::Status
 
-    scope :active, :conditions => ["status = ?",Campaign::Status::ACTIVE]
-    scope :incomplete, :conditions => {:status => Campaign::Status::INCOMPLETE}
-    scope :non_active, :conditions => ["status != ?",Campaign::Status::ACTIVE]
-    scope :out_of_money, :conditions => ["status != ?",Campaign::Status::OUT_OF_MONEY ]
-
     #Invocar attr_accesible
     has_friendly_id :name, :allow_nil => true, :use_slug => true, :approximate_ascii => true
 
@@ -58,6 +53,8 @@ module Campaign
     before_create :incomplete!
     after_create :build_default
     after_create :incomplete!
+
+    attr_accessor :tute
 
     def validate_dates
       if have_end_date && begin_date > end_date

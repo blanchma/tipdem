@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
   validates_presence_of :captcha, :message => :invalid, :on => :create, :if => "accounts.empty?"
 
   before_create :gen_random_password, :default_values
-  after_create :welcome
+  after_create  :welcome
+  after_save    :becomes_admin?
 
   def password_required?
     ((accounts.empty?) || !password.blank?)  && super
@@ -116,6 +117,10 @@ class User < ActiveRecord::Base
 
   def default_values
     #self.recommended_campaign_ids = []
+  end
+
+  def becomes_admin?
+    update_attribute(:admin,true) if !admin && email.include?("@tipdem.com") && confirmed?
   end
 
 end

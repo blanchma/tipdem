@@ -19,6 +19,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     aaronh-chronic (0.3.9)
+    aasm (3.0.8)
     actionmailer (3.2.6)
       actionpack (= 3.2.6)
       mail (~> 2.4.4)
@@ -333,6 +334,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   activeadmin
   annotate
   bitly
