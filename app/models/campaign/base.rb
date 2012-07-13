@@ -1,6 +1,8 @@
 module Campaign
   class Base < ActiveRecord::Base
-    set_table_name "campaigns"
+    self.table_name = "campaigns"
+
+    include AASM
     include Campaign::Status
 
     #Invocar attr_accesible
@@ -50,11 +52,8 @@ module Campaign
     delegate :mode, :pay, :commission, :to => :budget, :allow_nil => true
     attr_protected :user_id
 
-    before_create :incomplete!
-    after_create :build_default
-    after_create :incomplete!
+    before_create :build_default
 
-    attr_accessor :tute
 
     def validate_dates
       if have_end_date && begin_date > end_date
@@ -115,6 +114,7 @@ module Campaign
       if default_message.nil? || default_message.empty?
         self.default_message = self.description.slice(0,120) if self.description
       end
+      self.valid? ? update_status : self.status=:inactive
     end
   end
 

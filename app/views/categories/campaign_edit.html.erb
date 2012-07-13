@@ -18,7 +18,7 @@
       <p><%=  t("create.step.two.text") %></p><br/>
       <ul id="category_list">
         <% for category in @categories  %>
-          <li> <%=  check_box_tag("categories[]", category.id, (@campaign.categories.exists? category.id) ) %> &nbsp; &nbsp; <%=  label_tag t("category.#{category.name}") %></li>
+          <li> <%=  check_box_tag("categories[]", category.id, (@campaign.categories.exists? category.id), :id => category.id ) %> &nbsp; &nbsp; <%=  label_tag category.id, t("category.#{category.name}") %></li>
         <%  end %>
       </ul>
     </div>

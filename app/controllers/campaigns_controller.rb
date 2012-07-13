@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'google_chart'
 
-class CampaignsController < PermissionsController
+class CampaignsController < ApplicationController
   layout 'panel'
   before_filter :authenticate_user!
   before_filter :confirm_user!, :except => [:show, :info]

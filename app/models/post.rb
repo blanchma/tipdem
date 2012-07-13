@@ -120,11 +120,7 @@ class Post < ActiveRecord::Base
       time_mod += 86400 if time_now.hour >= self.hour
       self.when_post =  time_mod
     else
-
     end
-
-
-
     self.hour_utc = self.when_post.hour
   end
 
@@ -217,11 +213,14 @@ class Post < ActiveRecord::Base
   def publish!
     case self.channel
     when Channel::LinkedIn
+      LinkedInService.publish(self)
       self.user.linked_in_account.publish(self)
     when Channel::Facebook
-      self.user.facebook_account.publish(self)
+      FacebookService.publish(self)
+      #self.user.facebook_account.publish(self)
     when Channel::Twitter
-      self.user.twitter_account.publish(self)
+      TwitterService.publish(self)
+      #self.user.twitter_account.publish(self)
     end
   end
 
@@ -229,11 +228,14 @@ class Post < ActiveRecord::Base
   def retrieve_data
     case channel
     when Channel::LinkedIn
-      self.user.linked_in_account.retrieve_data(self)
+      LinkedInService.analyze(self)
+      #self.user.linked_in_account.retrieve_data(self)
     when Channel::Facebook
-      self.user.facebook_account.retrieve_data(self)
+      FacebookService.analyze(self)
+      #self.user.facebook_account.retrieve_data(self)
     when Channel::Twitter
-      self.user.twitter_account.retrieve_data(self)
+      TwitterService.analyze(self)
+      #self.user.twitter_account.retrieve_data(self)
     end
   end
 

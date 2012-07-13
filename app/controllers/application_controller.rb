@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
   #extend Concern::Authorization
-
   protect_from_forgery
 
   helper :all

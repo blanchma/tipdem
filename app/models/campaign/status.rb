@@ -13,10 +13,9 @@ module Campaign
     ERROR             = "error"
 
     included do
-      include AASM
       aasm :column => :status do  # defaults to aasm_state
         #on creation
-        state :incomplete
+        state :incomplete, :initial => true
 
         #initial states
         state :waiting_pay
@@ -43,51 +42,43 @@ module Campaign
           transitions :to => :active, :after => :update_status, :from => [:waiting_pay, :out_of_money]
         end
       end
-      aasm_initial_state Proc.new { |campaign| campaign.valid? ? campaign.update_status() : :incomplete }
-
     end
 
-    module InstanceMethods
-
-      def unstarted?
-        Date.today < begin_date
-      end
-
-      def expired?
-        have_end_date && Date.today > end_date
-      end
-
-       def visitable?
-         active?
-       end
-
-      def editable?
-        incomplete?
-      end
-
-      def inactive?
-        return inactive? || incomplete? || waiting_approval? || waiting_pay? || not_approved? || expired? ||
-        unstarted? || out_of_money? || error?
-      end
-
-      def update_status(_update=false)
-        if valid? == false
-          status = "incomplete"
-        elsif unstarted?
-          status = "unstarted"
-        elsif expired?
-          status = "expired"
-        elsif out_of_money?
-          status = "out_of_money"
-        else
-
-        end
-        self.save if _update
-
-        return status
-      end
+    def unstarted?
+      Date.today < begin_date
     end
 
+    def expired?
+      have_end_date && Date.today > end_date
+    end
+
+     def visitable?
+       active?
+     end
+
+    def editable?
+      incomplete?
+    end
+
+    def inactive?
+      return inactive? || incomplete? || waiting_approval? || waiting_pay? || not_approved? || expired? ||
+      unstarted? || out_of_money? || error?
+    end
+
+    def update_status(_update=false)
+      if valid? == false
+        status = "incomplete"
+      elsif unstarted?
+        status = "unstarted"
+      elsif expired?
+        status = "expired"
+      elsif out_of_money?
+        status = "out_of_money"
+      else
+      end
+      self.save if _update
+      status
+    end
   end
 end
 

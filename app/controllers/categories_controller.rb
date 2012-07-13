@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
 
     if @user
       flash[:notice]="Sus Preferencias han sido actualizadas."
-      render :action => :user_edit, :layout => params[:layout]
+      render :action => :user_edit
     elsif @campaign
       if @campaign.categories.count > 0 && @campaign.categories.count < 4
         flash[:notice]=nil

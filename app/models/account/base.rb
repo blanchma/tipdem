@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 module Account
   class Base < ActiveRecord::Base
-    set_table_name "accounts"
+    self.table_name =  "accounts"
     serialize :auth_hash
     belongs_to :user
 

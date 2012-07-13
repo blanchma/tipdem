@@ -10,7 +10,7 @@
     <div class="wrapper" style="width:89%; float: left; height: 352px;">
       <ul>
         <% for category in @categories  %>
-          <li> <%=  check_box_tag("categories[]", category.id, (@categorizable.categories.exists? category.id) ) %> &nbsp; &nbsp; <%=  label_tag t("category.#{category.name}") %></li>
+          <li> <%=  check_box_tag("categories[]", category.id, (@categorizable.categories.exists? category.id), :id => category.id ) %> &nbsp; &nbsp; <%=  label_tag category.id, t("category.#{category.name}") %></li>
         <%  end %>
       </ul>
     </div>

@@ -19,7 +19,7 @@ ActiveAdmin.register Campaign::Base, :as => "Campaigns" do
     column :end_date
     column :created_at
     column :landing_page do |campaign|
-      link_to campaign.landing_page.try(:id), admin_landing_page_path(campaign.landing_page)
+      #link_to_if campaign.landing_page, "Show", admin_landing_page_path(campaign.landing_page.id)
     end
     column do |campaign|
       link_to "Approve", approve_admin_campaign_path(campaign), :method => :put

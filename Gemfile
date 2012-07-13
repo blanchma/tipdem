@@ -16,6 +16,7 @@ gem 'mailcatcher'
 gem 'kaminari'
 gem 'gvis'
 gem 'httparty'
+gem 'mail_view'
 
 gem 'bitly' #https://github.com/philnash/bitly
 gem 'mini_fb'
