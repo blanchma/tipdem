@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117205821) do
+ActiveRecord::Schema.define(:version => 20120709150753) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -22,13 +22,28 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
     t.string   "login"
     t.string   "name"
     t.integer  "friends"
-    t.string   "auth_hash"
+    t.text     "auth_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "followers_count"
     t.integer  "following_count"
     t.string   "type"
   end
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.string   "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "bank_global_accounts", :force => true do |t|
     t.datetime "created_at"
@@ -74,6 +89,11 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "campaigns_notifieds", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "campaign_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -338,6 +358,13 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
+  create_table "states", :force => true do |t|
+    t.string   "state"
+    t.string   "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "statistics", :force => true do |t|
     t.string   "landingPagePath"
     t.string   "source"
@@ -365,13 +392,10 @@ ActiveRecord::Schema.define(:version => 20111117205821) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_salt"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.string   "authentication_token"
-    t.string   "invitation_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"

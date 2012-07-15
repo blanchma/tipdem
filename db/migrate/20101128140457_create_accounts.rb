@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class CreateAuthentications < ActiveRecord::Migration
+class CreateAccounts < ActiveRecord::Migration
   def self.up
     create_table :accounts do |t|
       t.integer   :user_id

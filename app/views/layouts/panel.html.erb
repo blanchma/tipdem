@@ -40,11 +40,11 @@
         </div>
       </div>
       <div id="head">
-        <% if @panel_notice %>
+
           <div class="panel_notice">
-            <%= @panel_notice.message %>
+
           </div>
-        <% end %>
+
       </div>
       <div id="highlights">
         <% if flash[:error] %>
@@ -92,9 +92,7 @@
             <%= link_to my_accounts_path do %>
               <div class="sbtn"><%=  t("menu.mynetworks") %></div>
             <% end %>
-            <%= link_to payment_requests_path do %>
-              <div class="sbtn"><%=  t("menu.mypays") %></div>
-            <% end %>
+
           </div>
         </div>
 

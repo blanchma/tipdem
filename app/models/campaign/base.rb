@@ -1,13 +1,11 @@
 module Campaign
   class Base < ActiveRecord::Base
-    set_table_name "campaigns"
+    self.table_name = "campaigns"
+
+    include AASM
     include Campaign::Status
 
-    scope :active, :conditions => ["status = ?",Campaign::Status::ACTIVE]
-    scope :incomplete, :conditions => {:status => Campaign::Status::INCOMPLETE}
-    scope :non_active, :conditions => ["status != ?",Campaign::Status::ACTIVE]
-    scope :out_of_money, :conditions => ["status != ?",Campaign::Status::OUT_OF_MONEY ]
-
+    scope :inactive, -> { where("status != ?", "active")}
     #Invocar attr_accesible
     has_friendly_id :name, :allow_nil => true, :use_slug => true, :approximate_ascii => true
 
@@ -55,9 +53,8 @@ module Campaign
     delegate :mode, :pay, :commission, :to => :budget, :allow_nil => true
     attr_protected :user_id
 
-    before_create :incomplete!
-    after_create :build_default
-    after_create :incomplete!
+    before_create :build_default
+
 
     def validate_dates
       if have_end_date && begin_date > end_date
@@ -118,6 +115,7 @@ module Campaign
       if default_message.nil? || default_message.empty?
         self.default_message = self.description.slice(0,120) if self.description
       end
+      self.valid? ? update_status : self.status=:inactive
     end
   end
 

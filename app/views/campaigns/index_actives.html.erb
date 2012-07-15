@@ -6,11 +6,10 @@
 <div id="campaing" style="width:785px;">
 <h3><%=  t("mycamp.active.title") %></h3>
 <br /><br />
-<table class="tabla" border="0" cellpadding="0" cellspacing="0">  
+<table class="tabla" border="0" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
       <%= content_tag :th, t("mycamp.active.campaign") , :alt => "tooltip",:title => t("mycamp.active.tool.campaign")%>
-      <%= content_tag :th, t("mycamp.active.type"), :alt => "tooltip",:title => t("mycamp.active.tool.type") %>
       <%= content_tag :th, t("mycamp.active.begin") , :alt => "tooltip",:title => t("mycamp.active.tool.begin") %>
       <%= content_tag :th, t("mycamp.active.end") , :alt => "tooltip",:title => t("mycamp.active.tool.end") %>
       <!--th>Tipo</th-->
@@ -20,32 +19,22 @@
       <%= content_tag :th, t("mycamp.active.budget") , :alt => "tooltip",:title => t("mycamp.active.tool.budget") %>
       <%= content_tag :th, t("mycamp.active.cons") , :alt => "tooltip",:title => t("mycamp.active.tool.cons") %>
       <th colspan="3"><%=  t("mycamp.active.action") %></th>
-
     </tr>
   </thead>
   <tbody id="mycamps">
     <% if !@active_campaigns.nil? %>
       <% for campaign in @active_campaigns %>
         <tr id="row_<%= campaign.id %>" style="border-bottom:solid; border-bottom-width: 1px; border-bottom-color: #09F;">
-          <td><% link_to detailed_campaign_path(campaign.id) do %>
+          <td><%= link_to detailed_campaign_path(campaign.id) do %>
                 <%= raw campaign.name %>
               <%  end %>
           </td>
-          <% if  campaign.mode == CampaignMode::PayPerClick %>
-            <td>PPC</td>
-          <% elsif  campaign.mode == CampaignMode::PayPerHit %>
-            <td>PPH</td>
-          <% else %>
-            <td></td>
-          <% end %>
 
-          <td><%= campaign.begin_date %> </td>
+          <td><%= campaign.begin_date || "-" %> </td>
 
-          <% if campaign.have_end_date %>
-            <td><%= campaign.end_date %> </td>
-          <% else %>
-            <td> - </td>
-          <% end %>
+
+            <td><%= campaign.have_end_date ? campaign.end_date : "-" %> </td>
+
           <td>  <%= campaign.landing_page_hits.count %> </td>
           <td>  <%= campaign.client_page_hits.count %> </td>
           <td>  <%= campaign.chains.count %> </td>
@@ -102,7 +91,7 @@
     $("#charts_"+campaign_id).toggle();
     retrieveDataForCharts(campaign_id);
   }
- 
+
 </script>
 
 

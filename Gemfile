@@ -16,6 +16,7 @@ gem 'mailcatcher'
 gem 'kaminari'
 gem 'gvis'
 gem 'httparty'
+gem 'mail_view'
 
 gem 'bitly' #https://github.com/philnash/bitly
 gem 'mini_fb'
@@ -28,6 +29,8 @@ gem 'omniauth-linkedin'
 
 gem 'settingslogic'
 gem 'hoptoad_notifier'
+gem 'activeadmin'
+gem 'aasm'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,8 +43,10 @@ group :assets do
   gem 'bourbon'
 end
 
-group :development do
+group :development, :test do
   # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+  gem 'factory_girl_rails', '~> 3.0'
+  gem 'random_data'
   gem 'debugger'
   gem 'capistrano'
   gem 'magic_encoding', :require => false
@@ -50,5 +55,6 @@ group :development do
   gem 'rails-dev-tweaks', '~> 0.6.1'
   gem 'brakeman'
   gem 'annotate'
+  gem 'database_cleaner'
 end
 

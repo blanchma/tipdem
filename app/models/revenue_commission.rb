@@ -4,9 +4,9 @@ class RevenueCommission < ActiveRecord::Base
   belongs_to :revenue
 
 
-  
+
 #  attr_accessor :source
-  
+
 #  validates_presence_of :source_class, :source_id
 #
 ##  def source_model
@@ -27,7 +27,7 @@ class RevenueCommission < ActiveRecord::Base
 #    end
 #  end
 
- 
+
 
 end
 

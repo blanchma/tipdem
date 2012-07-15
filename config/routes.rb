@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Tipdem::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   root :to => "welcome#home"
 
   resources :promotions, :categories
@@ -9,13 +11,6 @@ Tipdem::Application.routes.draw do
   resources :chains
   resources :landing_pages do
     get :inactive, :on => :member
-  end
-
-  resources :payment_requests do
-    member do
-      get :admin_edit
-      put :admin_update
-    end
   end
 
   resources :campaigns do
@@ -30,7 +25,7 @@ Tipdem::Application.routes.draw do
     resource :budget do
       get :pay, :on => :member
     end
-    resources :posts, :as => :tips do
+    resources :posts, :path => :tips do
       get :go, :on => :collection
       post :stop, :on => :member
     end
@@ -57,13 +52,6 @@ Tipdem::Application.routes.draw do
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "sessions",
     :registrations => "registrations" }
 
-#  match "users" => "#index", :as => :devise_for
-#  match "user/:id/approve" => "users#approve", :as => :approve
-#  match "user/:id/confirm" => "users#confirm", :as => :confirm
-#  match "users/captcha" => "users#captcha", :as => :captcha
-#  match "/user/confirmation" => "confirmations#update", :as => :update_user_confirmation, :via => :put
-#  match "user/:id/send_confirmation" => "users#send_confirmation", :as => :my_confirmation
-
   resources :users do
     member do
       post :update_signup
@@ -83,8 +71,7 @@ Tipdem::Application.routes.draw do
   match "/auth/:provider/callback" => "authentications#create"
   match "/time_zone" => "application#set_timezone"
   match "/visit/:id" => "landing_pages#client_page", :as => :visit
-  match "/admin" => "admin#default", :as => :admin
-  match "/adminify" => "admin#adminify", :as => :adminify
+
 
 #  mount Resque::Server.new, :at => "/resque"
 

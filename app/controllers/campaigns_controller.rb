@@ -4,8 +4,8 @@ require 'google_chart'
 class CampaignsController < ApplicationController
   layout 'panel'
   before_filter :authenticate_user!
-  before_filter :find_campaign
   before_filter :confirm_user!, :except => [:show, :info]
+  before_filter :find_campaign
   before_filter :check_authorization!, :only => [:create, :update]
 
   def show
@@ -120,7 +120,7 @@ class CampaignsController < ApplicationController
   end
 
   def index_inactives
-    @non_active_campaigns = current_user.owned_campaigns.non_active
+    @non_active_campaigns = current_user.owned_campaigns.inactive
   end
 
   def index_actives
