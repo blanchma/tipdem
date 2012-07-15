@@ -120,7 +120,7 @@ class CampaignsController < ApplicationController
   end
 
   def index_inactives
-    @non_active_campaigns = current_user.owned_campaigns.non_active
+    @non_active_campaigns = current_user.owned_campaigns.inactive
   end
 
   def index_actives

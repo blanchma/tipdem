@@ -5,6 +5,7 @@ module Campaign
     include AASM
     include Campaign::Status
 
+    scope :inactive, -> { where("status != ?", "active")}
     #Invocar attr_accesible
     has_friendly_id :name, :allow_nil => true, :use_slug => true, :approximate_ascii => true
 

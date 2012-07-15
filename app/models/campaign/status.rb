@@ -31,7 +31,7 @@ module Campaign
         state :error
 
         event :approve do
-          transitions :to => :active, :from => [:waiting_approval]
+          transitions :to => :active, :from => [:waiting_approval, :waiting_pay]
         end
 
          event :disapprove do
@@ -42,6 +42,7 @@ module Campaign
           transitions :to => :active, :after => :update_status, :from => [:waiting_pay, :out_of_money]
         end
       end
+      aasm_initial_state Proc.new { |campaign| campaign.errors.any?  ? :incomplete : :waiting_pay  }
     end
 
     def unstarted?
@@ -61,8 +62,7 @@ module Campaign
     end
 
     def inactive?
-      return inactive? || incomplete? || waiting_approval? || waiting_pay? || not_approved? || expired? ||
-      unstarted? || out_of_money? || error?
+      status != "active"
     end
 
     def update_status(_update=false)

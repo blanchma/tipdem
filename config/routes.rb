@@ -25,7 +25,7 @@ Tipdem::Application.routes.draw do
     resource :budget do
       get :pay, :on => :member
     end
-    resources :posts, :as => :tips do
+    resources :posts, :path => :tips do
       get :go, :on => :collection
       post :stop, :on => :member
     end

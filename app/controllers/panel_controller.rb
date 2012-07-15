@@ -4,7 +4,7 @@ class PanelController < ApplicationController
   before_filter :authenticate_user!, :panel_notice
 
   def panel_notice
-    @panel_notice = PanelNotice.last
+    #@panel_notice = PanelNotice.last
   end
 
   def home

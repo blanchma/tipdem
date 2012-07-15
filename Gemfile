@@ -43,8 +43,10 @@ group :assets do
   gem 'bourbon'
 end
 
-group :development do
+group :development, :test do
   # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+  gem 'factory_girl_rails', '~> 3.0'
+  gem 'random_data'
   gem 'debugger'
   gem 'capistrano'
   gem 'magic_encoding', :require => false
@@ -53,5 +55,6 @@ group :development do
   gem 'rails-dev-tweaks', '~> 0.6.1'
   gem 'brakeman'
   gem 'annotate'
+  gem 'database_cleaner'
 end
 

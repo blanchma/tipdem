@@ -23,7 +23,7 @@ module LinkedInService
       @result
   end
 
-  def self.analize
+  def self.analize(post)
   end
 
 end
