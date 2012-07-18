@@ -1,17 +1,18 @@
-<% if current_user.send("#{Provider.from_channel(channel)}_account") %>
+<% if current_user.send("#{Provider.from_channel(channel)}") %>
 
   <div id="form_<%= channel %>" >
     <button id="btn_<%= channel %>" class="saved" style="float: right"><%= t("promote.custom") %></button>
-    <% remote_form_for :post, post, :url => campaign_posts_path(@campaign), :loaded => "$('#loading_#{channel}').hide();", :loading => "$('#loading_#{channel}').show();" do  |f| %>
+
+    <%= form_for post, :url => campaign_posts_path(@campaign), :remote => true do |f| %>
     <%= f.submit t("promote.buttons.#{channel}"), :class => 'savenext', :style => 'float:right; color:#FFF; position:relative', :id => "promote" %>
     <div class="<%= channel %>_icon32" ></div>
     <div style="width: 475px; float: left">
       <strong><%= t("promote.msg") %></strong> <%= @campaign.default_message  %>
     </div>
-    
+
 
     <div id="errors_<%= channel %>"></div>
-    
+
 
       <%= f.hidden_field :channel, :value => post.channel || channel %>
       <%= f.hidden_field :campaign_id %>
@@ -43,9 +44,9 @@
           <br/><br/>
           <%= f.submit t("promote.buttons.#{channel}"), :class => 'savenext', :style => 'float:right; color:#FFF; position:relative' %>
         </div>
-        
+
       </div>
-      
+
       <div id="loading_<%= channel %>" style="display:none">
         <%= image_tag "icons/ajax-loader_2.gif" %>
       </div>

@@ -1,25 +1,26 @@
 module FacebookService
 
   def self.publish(post)
-     token =  self.token
-      picture = "http://tipdem.com/images/logo.png"
-      picture = APP_CONFIG['domain'] + post.campaign.logo.url(:small) if Rails.env != 'development'
-
+      account = post.user.facebook
+      picture = Settings.domain + post.campaign.logo.url(:small) if Rails.env != 'development'
+      link = post.campaign.link({:user => post.user, :channel => Channel::Facebook})
       feed = {
         :message     => post.message,
         :name        => post.campaign.name,
-        :link        => post.campaign.link(post.user, Channel::Facebook,true),
+        :link        => link,
         :picture     => picture,
         :description => post.campaign.description,
-        :caption     => APP_CONFIG['domain']
+        :caption     => Settings.domain
       }
+      feed.delete(:link) if Rails.development?
+      feed.delete(:picture) if Rails.development?
+
       begin
-        fb_session = MiniFB::OAuthSession.new(token, 'es_ES')
-        self.friends_count = fb_session.me.friends.data.count
-        self.save if self.friends_count_changed?
+        fb_session = MiniFB::OAuthSession.new(account.token, 'es_ES')
+        account.friends_count = fb_session.me.friends.data.count
+        account.save if account.friends_count_changed?
         response_hash = fb_session.post('me',:type => :feed, :params => feed)
         @result = post.posted!(response_hash.id, response_hash)
-
       rescue Exception => e
         logger.error e
         @result = e.message
@@ -30,9 +31,9 @@ module FacebookService
       @result
   end
 
-  def self.analize(post)
+  def self.query(post,account)
      if post.posted?
-        response = MiniFB.get(self.token, self.post_id)
+        response = MiniFB.get(account.token, account.post_id)
         post.comments= response.comments ? response.comments[:count] : 0
         post.likes= response.likes ? response.likes[:count] :  0
         puts "Retrieved #{response.comments } comments."
@@ -41,6 +42,10 @@ module FacebookService
         post.save if changed
       end
       changed
+  end
+
+  def self.logger
+    Rails.logger
   end
 
 end

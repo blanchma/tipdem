@@ -4,8 +4,7 @@ default: &default
 
 development:
   <<: *default
-  db: 1
 
-test:
+production:
   <<: *default
-  db: 2
+

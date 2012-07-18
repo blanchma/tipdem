@@ -1,17 +1,18 @@
 module TwitterService
 
-  def self.publish
-    token = self.token
-    secret = self.secret
+  def self.publish(post)
+    account = post.user.twitter
+
     begin
-      client = Twitter::Client.new(:oauth_token => token, :oauth_token_secret => secret )
+      client = Twitter::Client.new(:oauth_token => account.token,
+        :oauth_token_secret => account.secret )
 
-      self.followers_count = client.followers.users.count
-      self.save if self.followers_count_changed?
+      account.followers_count = client.followers.users.count
+      account.save if account.followers_count_changed?
 
-      url = post.campaign.link(user, Channel::Twitter,true)
+      url = post.campaign.link({:user => post.user, :channel => Channel::Twitter})
       response_hash = client.update("#{post.message} #{url} - spon")
-      logger.info "Resp Twitter = #{response_hash}"
+      logger.info "Response from Twitter = #{response_hash} for #{post.id}"
       @result= post.posted!(response_hash.id, response_hash)
     rescue Exception => e
       logger.error e
@@ -23,7 +24,7 @@ module TwitterService
     @result
   end
 
-  def self.analize(post)
+  def self.query(post)
     if post.posted?
       retweets= self.retweets
       retweet_count = Twitter.status(self.post_id).retweet_count
@@ -31,6 +32,10 @@ module TwitterService
       self.retweets= retweet_count if retweet_count
       post.save
     end
+  end
+
+  def self.logger
+    Rails.logger
   end
 
 end

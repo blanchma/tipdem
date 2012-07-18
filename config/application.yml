@@ -1,7 +1,6 @@
 default: &default
   notification_from: "do-not-reply@tipdem.com"
 
-
 development:
     <<: *default
     domain: http://localhost:3000

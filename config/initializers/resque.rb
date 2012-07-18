@@ -1,10 +1,14 @@
 require 'yaml'
 require 'resque_scheduler'
-require 'resque_scheduler/server'
 
-resque_config = YAML.load_file(Rails.root + "config/resque.yml")
+redis_yaml = Rails.root + 'config/redis.yml'
 
-Resque.redis = resque_config[Rails.env]
-Resque.redis.namespace = "resque:tipdem:#{Rails.env}"
+unless File.exists?(redis_yaml)
+  raise "Missing Redis settings file #{redis_yaml}"
+end
 
+redis_config = YAML.load_file(redis_yaml)
+
+$redis = Redis.connect(redis_config[Rails.env])
+Resque.redis = $redis
 #Resque.schedule = YAML.load_file(Rails.root + "config/resque_schedule.yml")

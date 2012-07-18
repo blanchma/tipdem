@@ -4,6 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><%= @page_title or 'tipdem' %></title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
+    <%= content_tag :link, nil, :rel => "shortcut icon", :type => "image/ico",
+    :href => "#{image_path("favicon.ico")}" %>
+
     <%= javascript_include_tag 'application', 'panel' %>
     <%= stylesheet_link_tag 'panel'  %>
     <%= csrf_meta_tag %>

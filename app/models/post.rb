@@ -129,7 +129,7 @@ class Post < ActiveRecord::Base
   end
 
   def link
-    campaign.link(user, channel)
+    campaign.link({:user => user, :channel => channel})
   end
 
   def send_to_publish(now=false)
@@ -214,13 +214,10 @@ class Post < ActiveRecord::Base
     case self.channel
     when Channel::LinkedIn
       LinkedInService.publish(self)
-      self.user.linked_in_account.publish(self)
     when Channel::Facebook
       FacebookService.publish(self)
-      #self.user.facebook_account.publish(self)
     when Channel::Twitter
       TwitterService.publish(self)
-      #self.user.twitter_account.publish(self)
     end
   end
 
@@ -228,14 +225,11 @@ class Post < ActiveRecord::Base
   def retrieve_data
     case channel
     when Channel::LinkedIn
-      LinkedInService.analyze(self)
-      #self.user.linked_in_account.retrieve_data(self)
+      LinkedInService.query(self)
     when Channel::Facebook
-      FacebookService.analyze(self)
-      #self.user.facebook_account.retrieve_data(self)
+      FacebookService.query(self)
     when Channel::Twitter
-      TwitterService.analyze(self)
-      #self.user.twitter_account.retrieve_data(self)
+      TwitterService.query(self)
     end
   end
 
