@@ -1,17 +1,13 @@
 module TwitterService
 
   def self.publish(post)
-    account = post.user.twitter
+    account = post.user.twitter_account
+    post.destroy unless account
 
     begin
-      client = Twitter::Client.new(:oauth_token => account.token,
-        :oauth_token_secret => account.secret )
-
-      account.followers_count = client.followers.users.count
-      account.save if account.followers_count_changed?
-
+      client = post.user.twitter
       url = post.campaign.link({:user => post.user, :channel => Channel::Twitter})
-      response_hash = client.update("#{post.message} #{url} - spon")
+      response_hash = client.update("#{post.message} #{url}")
       logger.info "Response from Twitter = #{response_hash} for #{post.id}"
       @result= post.posted!(response_hash.id, response_hash)
     rescue Exception => e
@@ -26,11 +22,13 @@ module TwitterService
 
   def self.query(post)
     if post.posted?
-      retweets= self.retweets
-      retweet_count = Twitter.status(self.post_id).retweet_count
-      puts "Retrieved #{retweet_count} retweets"
-      self.retweets= retweet_count if retweet_count
-      post.save
+      begin
+        post.retweets = Twitter.status(post.post_id).retweet_count
+        logger "Retrieved #{post.retweets} retweets"
+        post.save if post.retweets_changed?
+      rescue Twitter::Error::NotFound => not_found
+        post
+      end
     end
   end
 

@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :time_zone,
-  :gender, :approved, :remember_me, :locale
+    :gender, :approved, :remember_me, :locale
 
   attr_accessor :captcha, :random_password
 
@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
   scope    :verified, :conditions => "confirmed_at IS NOT NULL"
   scope    :email_with_recommendations, :conditions => {:email_recommendations => true}
 
-  has_one  :facebook, :class_name => "Account::Facebook"
-  has_one  :twitter, :class_name => "Account::Twitter"
-  has_one  :linked_in, :class_name => "Account::LinkedIn"
+  has_one  :facebook_account, :class_name => "Account::Facebook"
+  has_one  :twitter_account, :class_name => "Account::Twitter"
+  has_one  :linked_in_account, :class_name => "Account::LinkedIn"
   has_one  :chain, :foreign_key => "fish_id"
 
   has_many :revenues
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def validate_captcha
-      errors.add(:captcha, :invalid) if accounts.empty? || self.captcha != true
+    errors.add(:captcha, :invalid) if accounts.empty? || self.captcha != true
   end
 
   def approve!
@@ -92,6 +92,22 @@ class User < ActiveRecord::Base
 
   def only_if_unconfirmed
     unless_confirmed {yield}
+  end
+
+  def twitter
+    Twitter::Client.new(oauth_token: twitter_account.token,
+                    oauth_token_secret: twitter_account.secret) if twitter_account
+  end
+
+  def facebook
+    MiniFB::OAuthSession.new(facebook_account.token) if facebook_account
+  end
+
+  def linked_in
+    if linked_in_account
+      client = LinkedIn::Client.new(Settings.linkedin_key, Settings.linkedin_secret)
+      client.authorize_from_access(linked_in_account.token, linked_in_account.secret)
+    end
   end
 
   def welcome
@@ -162,4 +178,3 @@ end
 #  email_newsletter         :boolean(1)      default(TRUE)
 #  dst                      :boolean(1)
 #
-

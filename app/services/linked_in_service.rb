@@ -2,10 +2,9 @@ module LinkedInService
 
   def self.publish(post)
     account = post.user.linked_in
+    post.destroy unless account
       begin
-        client = LinkedIn::Client.new(APP_CONFIG["linkedin_key"], APP_CONFIG["linkedin_secret"])
-        client.authorize_from_access(account.token, account.secret)
-
+        client = post.user.linked_in
         account.friends_count = client.connections.count
         account.save if account.friends_count_changed?
 
@@ -24,6 +23,10 @@ module LinkedInService
   end
 
   def self.query(post)
+  end
+
+  def self.logger
+    Rails.logger
   end
 
 end

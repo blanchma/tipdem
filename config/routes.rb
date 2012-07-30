@@ -32,8 +32,6 @@ Tipdem::Application.routes.draw do
     resource :categories, :path => :classification, :path_names => { :edit => :choose }
   end
 
-
-
   match "/step/setup/:campaign_id" => "campaigns#new", :as => :step_setup
   match "/step/budget/:campaign_id" => "budgets#new", :as => :step_budget
   match "/step/categories/:campaign_id" => "categories#edit", :as => :step_categories
@@ -60,10 +58,9 @@ Tipdem::Application.routes.draw do
     end
 
     resource :categories
-    resource :dinero_mail_accounts
+    resources :accounts
   end
 
-  match "my/accounts" => "panel#accounts", :as => :my_accounts
   match "/promote/:id" => "panel#promote_campaign", :as => :promote_campaign
   match "see/:campaign/*link" => "landing_pages#show"
   match "my/:action" => "panel#index"

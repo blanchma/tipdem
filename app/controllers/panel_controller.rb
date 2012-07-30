@@ -44,8 +44,4 @@ class PanelController < ApplicationController
       @post_form.message = @campaign.default_message unless @post_form.message
     end
   end
-
-  def accounts
-  end
-
 end

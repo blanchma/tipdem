@@ -92,7 +92,7 @@
             <div class="sbtn" id="datos"><%=  t("menu.mycategories") %></div>
             <% end %>
 
-            <%= link_to my_accounts_path do %>
+            <%= link_to user_accounts_path(current_user) do %>
               <div class="sbtn"><%=  t("menu.mynetworks") %></div>
             <% end %>
 
