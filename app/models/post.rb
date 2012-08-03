@@ -8,19 +8,16 @@ class Post < ActiveRecord::Base
   belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
   belongs_to :user
 
-  validates_presence_of :user, :campaign
-  validates_presence_of :message, :allow_blank => false, :on => :save
-  validates_inclusion_of :channel, :in => Channel.all,
-    :message => "no es valido"
-
   scope :today, :conditions => ["created_at IS NOT NULL AND created_at > ?", Date.today.to_s(:db)]
   scope :yesterday, :conditions => ["post_at IS NULL OR last_post_at < ?)", Date.today]
   scope :not_failed, :conditions => ["status != ?", PostStatus::Error]
   scope :this_week, :conditions => ["posted_at > ?", Time.now.utc - (3600 * 24 * 7)]
+
   scope :when_day,  lambda { |day|
     begin_of_day = day - (day.hour * 3600) - (day.min * 60) - day.sec
     {  :conditions => ["when_post > ?", begin_of_day] }
   }
+
   scope :time_to_post,  lambda { |time|
     {  :conditions => ["when_post < ?", time] }
   }
@@ -44,15 +41,18 @@ class Post < ActiveRecord::Base
 
   before_create :waiting!#,:define_type
 
-  after_create :promotion, :send_to_publish
+  after_create :promotion, :publish
 
-  validate :validate_spam
+  validate :validate_spam, :on => :create
+  validates_presence_of :user, :campaign
+  validates_inclusion_of :channel, :in => Channel.all
+  validates_presence_of :message, :allow_blank => false, :on => :save
 
   def validate_spam
     return unless user && campaign && channel
     set_when_post
 
-    posts = user.posts.not_failed.all(:conditions => ["channel = :channel AND campaign_id = :campaign_id",{:channel => channel, :campaign_id => campaign_id}] )
+    posts = user.posts.not_failed.where(:channel => channel, :campaign_id => campaign_id)
 
     if posts.size > CAMPAIGN_LIMIT
       errors.add(:base, "No se pueden publicar más de #{CAMPAIGN_LIMIT} posts por campaña en la misma red.")
@@ -67,10 +67,12 @@ class Post < ActiveRecord::Base
       end
     end
 
-    posts_day = user.posts.not_failed.when_day(self.when_post).all(:conditions => ["channel = :channel AND campaign_id = :campaign_id",{:channel => channel, :campaign_id => campaign_id}] )
+    posts_day = user.posts.not_failed.when_day(self.when_post).where(
+      {:channel => channel, :campaign_id => campaign_id})
+
     if posts_day.count >= DAY_LIMIT
       errors.add(:base, "No se pueden publicar más de #{DAY_LIMIT} posts por día en la misma red")
-    elsif hour
+    elsif hour_utc
       counter = 0
       posts_day.each do |post|
         counter+=1 if post.when_post.hour == hour_utc
@@ -84,21 +86,21 @@ class Post < ActiveRecord::Base
 
   def self.publish_daily?(user, campaign, channel=nil)
     if channel
-      user.posts.daily.waiting.count(:conditions => {:channel => channel, :campaign_id => campaign.id}) > 0
+      user.posts.daily.waiting.where(:channel => channel, :campaign_id => campaign.id).count > 0
     else
-      user.posts.daily.waiting.count(:conditions => {:campaign_id => self.campaign.id}) > 0
+      user.posts.daily.waiting.where(:campaign_id => self.campaign.id).count > 0
     end
   end
 
   def self.stop_publish_daily(channel)
-    posts = user.daily.posts.all(:conditions => {:campaign_id => self.campaign_id, :channel => channel})
+    posts = user.daily.posts.where(:campaign_id => self.campaign_id, :channel => channel)
     posts.each do |post|
       post.stop!
       post.save
     end
   end
 
-  def self.max_length(channel)
+  def self.max_length(channel=nil)
     if channel == Channel::Facebook
       300
     elsif channel == Channel::Twitter
@@ -129,28 +131,29 @@ class Post < ActiveRecord::Base
   end
 
   def link
-    campaign.link(user, channel)
+    campaign.link({:user => user, :channel => channel})
   end
 
-  def send_to_publish(now=false)
+  def publish(now=false)
     puts "Send to Publish: #{when_post} (#{"now" if self.now})"
 
-    self.destroy if self.campaign.nil?
+    if self.campaign
+      if self.campaign.active? && (self.when_post < Time.now || now) && !self.posted?
+        self.deliver
 
-    if self.campaign.active? && (self.when_post < Time.now || now) && !self.posted?
-      @self = cast!
-      self.publish!
-
-      if self.daily && self.counter <= CAMPAIGN_LIMIT
-        new_post = self.clone
-        new_post.counter+=1
-        new_post.now=false
-        new_post.clear!
-        puts "Clonando"
-        new_post.stop! if new_post.counter == CAMPAIGN_LIMIT
-        cloned = new_post.save
-        puts "Post duplicate #{new_post.counter} for tomorrow #{new_post.hour} hours"
+        if self.daily && self.counter <= CAMPAIGN_LIMIT
+          new_post = self.clone
+          new_post.counter+=1
+          new_post.now=false
+          new_post.clear!
+          puts "Clonando"
+          new_post.stop! if new_post.counter == CAMPAIGN_LIMIT
+          cloned = new_post.save
+          puts "Post duplicate #{new_post.counter} for tomorrow #{new_post.hour} hours"
+        end
       end
+    else
+      self.destroy
     end
   end
   #handle_asynchronously :send_to_publish#, :run_at => Proc.new { 1.minutes.from_now }
@@ -209,33 +212,14 @@ class Post < ActiveRecord::Base
     self
   end
 
-
-  def publish!
-    case self.channel
-    when Channel::LinkedIn
-      LinkedInService.publish(self)
-      self.user.linked_in_account.publish(self)
-    when Channel::Facebook
-      FacebookService.publish(self)
-      #self.user.facebook_account.publish(self)
-    when Channel::Twitter
-      TwitterService.publish(self)
-      #self.user.twitter_account.publish(self)
-    end
-  end
-
-
   def retrieve_data
     case channel
     when Channel::LinkedIn
-      LinkedInService.analyze(self)
-      #self.user.linked_in_account.retrieve_data(self)
+      LinkedInService.query(self)
     when Channel::Facebook
-      FacebookService.analyze(self)
-      #self.user.facebook_account.retrieve_data(self)
+      FacebookService.query(self)
     when Channel::Twitter
-      TwitterService.analyze(self)
-      #self.user.twitter_account.retrieve_data(self)
+      TwitterService.query(self)
     end
   end
 
@@ -245,11 +229,15 @@ class Post < ActiveRecord::Base
     posted_at
   end
 
-  def cast!
-    if self.type != nil && self.class.to_s != self.type
-      self.becomes eval(self.type)
-    else
-      self
+  private
+   def deliver
+    case self.channel
+    when Channel::LinkedIn
+      LinkedInService.publish(self)
+    when Channel::Facebook
+      FacebookService.publish(self)
+    when Channel::Twitter
+      TwitterService.publish(self)
     end
   end
 
@@ -286,4 +274,3 @@ end
 #  comments    :integer(4)      default(0)
 #  now         :boolean(1)
 #
-

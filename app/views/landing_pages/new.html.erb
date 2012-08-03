@@ -105,7 +105,7 @@
         </div>
       <%- end %>
 
-      <%= link_to t("create.back"), step_budget_path(@campaign.id), :class => "back" %>
+      <%= link_to t("create.back"), step_rewards_path(@campaign.id), :class => "back" %>
       <%= f.submit t("create.save"), :class=> "saved", :onclick => "$('#save_and_next').val('no')" %>
       <%= f.submit t("create.savenext"), :class=> "savenext", :onclick => "$('#save_and_next').val('yes')"  %>
       <% if @landing_page.valid? %>

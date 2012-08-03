@@ -5,10 +5,6 @@ module Account
     serialize :auth_hash
     belongs_to :user
 
-    def generate_token!
-      self.verify_token = ActiveSupport::SecureRandom.base64(15).tr('+/=lIO0', 'pqrsxyz')
-    end
-
     def channel
       channel = case self.provider
         when "twitter" then Channel::Twitter
@@ -52,10 +48,10 @@ module Account
     end
 
     def assign_base_info(auth_hash)
-      self.uid   = auth_hash['uid']
-      self.access_token        = auth_hash['credentials']['token']
-      self.secret = auth_hash['credentials']['secret']
-      self.provider = auth_hash['provider']
+      self.uid        = auth_hash['uid']
+      self.token      = auth_hash['credentials']['token']
+      self.secret     = auth_hash['credentials']['secret']
+      self.provider   = auth_hash['provider']
     end
 
 

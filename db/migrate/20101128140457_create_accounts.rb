@@ -5,11 +5,11 @@ class CreateAccounts < ActiveRecord::Migration
       t.integer   :user_id
       t.string    :uid
       t.string    :provider
-      t.string    :access_token
+      t.string    :token
       t.string    :secret
       t.string    :login
       t.string    :name
-      t.integer   :friends
+      t.integer   :friends_count
       t.text      :auth_hash
       t.timestamps
     end

@@ -2,9 +2,6 @@
 module ApplicationHelper
   include GoogleVisualization
 
-  def facebook_oauth
-    MiniFB.oauth_url(APP_CONFIG['facebook_app_id'], APP_CONFIG['callback_facebook'], :scope=>MiniFB.scopes.join("user_about_me,email,read_insights,read_stream,publish_stream,offline_access"))
-  end
 
   def errors_for(object, header=nil,message=nil)
     html = ""

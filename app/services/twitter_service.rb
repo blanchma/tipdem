@@ -1,17 +1,14 @@
 module TwitterService
 
-  def self.publish
-    token = self.token
-    secret = self.secret
+  def self.publish(post)
+    account = post.user.twitter_account
+    post.destroy unless account
+
     begin
-      client = Twitter::Client.new(:oauth_token => token, :oauth_token_secret => secret )
-
-      self.followers_count = client.followers.users.count
-      self.save if self.followers_count_changed?
-
-      url = post.campaign.link(user, Channel::Twitter,true)
-      response_hash = client.update("#{post.message} #{url} - spon")
-      logger.info "Resp Twitter = #{response_hash}"
+      client = post.user.twitter
+      url = post.campaign.link({:user => post.user, :channel => Channel::Twitter})
+      response_hash = client.update("#{post.message} #{url}")
+      logger.info "Response from Twitter = #{response_hash} for #{post.id}"
       @result= post.posted!(response_hash.id, response_hash)
     rescue Exception => e
       logger.error e
@@ -23,14 +20,20 @@ module TwitterService
     @result
   end
 
-  def self.analize(post)
+  def self.query(post)
     if post.posted?
-      retweets= self.retweets
-      retweet_count = Twitter.status(self.post_id).retweet_count
-      puts "Retrieved #{retweet_count} retweets"
-      self.retweets= retweet_count if retweet_count
-      post.save
+      begin
+        post.retweets = Twitter.status(post.post_id).retweet_count
+        logger "Retrieved #{post.retweets} retweets"
+        post.save if post.retweets_changed?
+      rescue Twitter::Error::NotFound => not_found
+        post
+      end
     end
+  end
+
+  def self.logger
+    Rails.logger
   end
 
 end

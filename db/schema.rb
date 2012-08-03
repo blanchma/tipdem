@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709150753) do
+ActiveRecord::Schema.define(:version => 20120802225527) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "uid"
     t.string   "provider"
-    t.string   "access_token"
+    t.string   "token"
     t.string   "secret"
     t.string   "login"
     t.string   "name"
-    t.integer  "friends"
+    t.integer  "friends_count"
     t.text     "auth_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -298,6 +298,16 @@ ActiveRecord::Schema.define(:version => 20120709150753) do
     t.boolean  "now"
   end
 
+  create_table "products", :force => true do |t|
+    t.string  "name"
+    t.string  "description"
+    t.string  "legal"
+    t.string  "picture_file_name"
+    t.string  "picture_content_type"
+    t.integer "picture_file_size"
+    t.integer "internal_stock"
+  end
+
   create_table "promotions", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
@@ -334,6 +344,14 @@ ActiveRecord::Schema.define(:version => 20120709150753) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "rewards", :force => true do |t|
+    t.integer "product_id"
+    t.integer "campaign_id"
+    t.integer "quantity"
+    t.integer "points"
+    t.string  "special"
   end
 
   create_table "sessions", :force => true do |t|

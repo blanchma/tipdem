@@ -26,7 +26,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice]="Something goes wrong. Try later, please."
     end
 
-    if @user = account.user
+    if current_user
+      account.user = current_user
+      account.save
+      redirect_to users_account_path
+    elsif @user = account.user
       sign_in_and_redirect(:user, @user)
     else
       @user = account.create_user

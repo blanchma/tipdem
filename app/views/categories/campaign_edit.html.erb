@@ -34,7 +34,7 @@
       <%= f.submit t("create.save"), :class=> "saved", :onclick => "$('#save_and_next').val('no')" %>
       <%= f.submit t("create.savenext"), :class=> "savenext", :onclick => "$('#save_and_next').val('yes')"  %>
       <% if @campaign.categories.count > 0 && @campaign.categories.count < 4 %>
-        <%= link_to t("create.next"), step_budget_path(:campaign_id => @campaign.id), :class => "next" %>
+        <%= link_to t("create.next"), step_rewards_path(:campaign_id => @campaign.id), :class => "next" %>
       <% end %>
     </div>
   <% end %>

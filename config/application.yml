@@ -1,7 +1,6 @@
 default: &default
   notification_from: "do-not-reply@tipdem.com"
 
-
 development:
     <<: *default
     domain: http://localhost:3000
@@ -21,43 +20,6 @@ development:
     linkedin_key: jpwq98tus0bt
     linkedin_secret: reSG0CDYdat9dQHF
 
-test:
-    <<: *default
-    domain: http://127.0.0.1:3000
-
-    twitter_key: gZJ8SdlkcxLFmbNT0zYQ6Q
-    twitter_secret: 4PCN1IyPoEBZnZehnTXhzVLTmnsjOZvgvzhrlISnaU
-    callback_twitter:  http://localhost:3000/oauth/twitter
-
-    bitly_username: gauchosolitarioar
-    bitly_key: R_c903c7dc5c02892ae702dacc894ce9f0
-
-    facebook_app_id: 296009581789
-    facebook_key: 155fea03be7e8a852c4de74ee2672b65
-    facebook_secret: a69ea2086540b0683bbe0131f6f5b9fc
-    callback_facebook: http://localhost:3000/oauth/facebook
-
-stage:
-    <<: *default
-    domain: http://livechainsdev.com
-
-    #owner account: gauchosolitarioar@gmail.com
-    twitter_key: vYGdvJAVKqV2vXZ51PCZ0w
-    twitter_secret: D5z1oAlFGlql3R37drDbbc0eULGp8o5Fjmnar1A23E
-    callback_twitter:  http://livechainsdev.com/oauth/twitter
-
-    bitly_username: gauchosolitarioar
-    bitly_key: R_c903c7dc5c02892ae702dacc894ce9f0
-
-    #owner account: gauchosolitarioar@gmail.com
-    facebook_app_id: 164680806938169
-    facebook_key: 90fd7c58eb18f2ef73a639b3f70b9054
-    facebook_secret: c8a90d612d6f7281e183371eacecffd6
-    callback_facebook: http://livechainsdev.com/oauth/facebook
-
-    #owner account: matiasn_b@hotmail.com
-    linkedin_key: jpwq98tus0bt
-    linkedin_secret: reSG0CDYdat9dQHF
 
 production:
     <<: *default
