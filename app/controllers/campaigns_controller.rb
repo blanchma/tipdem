@@ -3,6 +3,7 @@ require 'google_chart'
 
 class CampaignsController < ApplicationController
   layout 'panel'
+
   before_filter :authenticate_user!
   before_filter :confirm_user!, :except => [:show, :info]
   before_filter :find_campaign

@@ -8,12 +8,12 @@ GIT
 
 GIT
   remote: git://github.com/pengwynn/linkedin.git
-  revision: 78d68b0c11515170316c8d9894dab524424ff053
-  branch: 2-0-stable
+  revision: dae65d8f20558ecffdd59d36d674e7a061d9b8a0
   specs:
-    linkedin (0.2.2)
-      nokogiri (~> 1.5.0)
-      oauth (~> 0.4.0)
+    linkedin (0.3.7)
+      hashie (~> 1.2)
+      multi_json (~> 1.0)
+      oauth (~> 0.4)
 
 GEM
   remote: http://rubygems.org/
@@ -206,7 +206,6 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.4.1)
-    nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.8.0)
       faraday (~> 0.8)

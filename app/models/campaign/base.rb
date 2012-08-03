@@ -1,7 +1,6 @@
 module Campaign
   class Base < ActiveRecord::Base
     self.table_name = "campaigns"
-
     include AASM
     include Campaign::Status
 
@@ -25,10 +24,12 @@ module Campaign
     has_many :promotors, :through => :promotions, :source => :user
     has_many :payment_requests, :foreign_key => "campaign_id"
     has_many :campaign_notifieds, :foreign_key => "campaign_id"
-
     has_many :users, :through => :campaign_notifieds
 
     has_and_belongs_to_many :categories, :join_table => "categories_campaigns", :foreign_key => "campaign_id"
+
+    has_many :rewards, foreign_key: "campaign_id"
+    has_many :products, through: :rewards
 
     validates_uniqueness_of :name, :case_sensitive => true
     validates_length_of :name, :within => 5..30, :allow_nil => false, :allow_blank => false

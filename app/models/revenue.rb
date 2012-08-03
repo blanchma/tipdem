@@ -4,7 +4,7 @@ class Revenue < ActiveRecord::Base
 	belongs_to :campaign
   attr_accessor :source, :promotion
   has_one :revenue_commission
-  
+
   validates_presence_of :source_class, :source_id
 
 
@@ -15,38 +15,38 @@ class Revenue < ActiveRecord::Base
   def set_money
     logger.info "set_money: source_model= #{source_model}, mode= #{campaign.mode}"
     puts "set_money: source_model= #{source_model}, mode= #{campaign.mode}"
-    
+
     if source_model == ClientPageHit and campaign.mode == CampaignMode::PayPerHit
-      logger.info  "Source model is Chain"      
-      self.money = campaign.budget.pay_per_client_page_hit      
-    
+      logger.info  "Source model is Chain"
+      self.money = campaign.budget.pay_per_client_page_hit
+
     elsif source_model == LandingPageHit and campaign.mode == CampaignMode::PayPerClick
       logger.info  "Source model is LandingPageHit"
       self.money = campaign.budget.pay_per_landing_page_hit
-    
+
     elsif false #source_model == Post
       logger.info  "Source model is Post"
-      
+
       if source.published_to_twitter? && !source.revenued_twitter
-        logger.info "Published to Twitter"        
+        logger.info "Published to Twitter"
         money = campaign.budget.pay_per_twitter_contact * user.followers
         self.money += money > 0 ? money : 1
         source.revenued_twitter = true
       end
-      
+
       if source.published_to_facebook? && !source.revenued_facebook
-        logger.info "Published to Facebook"        
+        logger.info "Published to Facebook"
         money = campaign.budget.pay_per_facebook_contact * user.friends
         self.money += money > 0 ? money : 1
         source.revenued_facebook = true
       end
-      
-        
+
+
     else
       logger.info  "Source model is unknown #{source_model}"
       return false
     end
-    
+
     return false if self.money <= 0
   end
 
@@ -70,14 +70,14 @@ class Revenue < ActiveRecord::Base
 
   def promotion
     @promotion ||= user.promotions.find_or_create_by_campaign_id self.campaign_id
-  end 
- 
+  end
+
   def check_awards_for_money
     return if self.money == 0
-    
+
     logger.debug "Dinero en la campaña #{campaign.id}-#{campaign.name}: " , campaign.budget.current
     logger.debug "Dinero total en la campaña #{campaign.id}-#{campaign.name}: " , campaign.budget.total
-    
+
     if  campaign.budget.current > self.money
       campaign.budget.update_attribute(:spent, campaign.budget.spent + self.money)
       logger.debug "Dinero gastado luego del update por la campaña #{campaign.id}-#{campaign.name}: " , campaign.budget.spent
@@ -91,12 +91,12 @@ class Revenue < ActiveRecord::Base
   end
 
   def update_promotion_status_for_money
-    return if self.money == 0    
+    return if self.money == 0
     revenued_money  = self.money - ((self.money * campaign.commission) / 100.00)
     #promotion.update_attribute(:current_money, promotion.current_money + self.money)
     promotion.update_attribute(:current_money, promotion.current_money + revenued_money)
     #Evaluar hacer un sum en el campo current_money y no actualizar este campo
-    user.update_attribute(:current_money, user.current_money + revenued_money)    
+    user.update_attribute(:current_money, user.current_money + revenued_money)
   end
 
   def create_revenue_commision
@@ -121,8 +121,8 @@ class Revenue < ActiveRecord::Base
   end
 
   ##########DEPRECATED#############
-  def update_promotion_status_for_points        
-    promotion.update_attribute(:current_points, promotion.current_points += self.points)    
+  def update_promotion_status_for_points
+    promotion.update_attribute(:current_points, promotion.current_points += self.points)
   end
 
   #########DEPRECATED###########
@@ -168,9 +168,9 @@ class Revenue < ActiveRecord::Base
     return false if self.points < 1
   end
 
- 
 
-  
+
+
 end
 
 

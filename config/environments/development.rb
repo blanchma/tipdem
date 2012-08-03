@@ -33,5 +33,10 @@ Tipdem::Application.configure do
   config.middleware.use Rails::Rack::LogTailer
 
   Resque.inline=true
+
+  silence_warnings do
+    require 'pry'
+    IRB = Pry
+  end
 end
 

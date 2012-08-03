@@ -22,7 +22,7 @@ Tipdem::Application.routes.draw do
       get :detailed
     end
     resource :landing_page
-    resource :budget do
+    resource :rewards do
       get :pay, :on => :member
     end
     resources :posts, :path => :tips do
@@ -33,7 +33,7 @@ Tipdem::Application.routes.draw do
   end
 
   match "/step/setup/:campaign_id" => "campaigns#new", :as => :step_setup
-  match "/step/budget/:campaign_id" => "budgets#new", :as => :step_budget
+  match "/step/rewards/:campaign_id" => "rewards#new", :as => :step_rewards
   match "/step/categories/:campaign_id" => "categories#edit", :as => :step_categories
   match "/step/landing/:campaign_id" => "landing_pages#new", :as => :step_landing
   match "/step/pay/:campaign_id" => "campaigns#pay", :as => :step_pay

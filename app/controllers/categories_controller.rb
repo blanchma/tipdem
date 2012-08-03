@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
         flash[:error]=nil
         if params[:save_and_next] == 'yes'
           session[:campaign_id]=@campaign.id
-          redirect_to step_budget_path(:campaign_id => @campaign.id)
+          redirect_to step_rewards_path(:campaign_id => @campaign.id)
         else
           render :action => :campaign_edit
           return

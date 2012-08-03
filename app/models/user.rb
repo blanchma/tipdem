@@ -108,6 +108,7 @@ class User < ActiveRecord::Base
       client = LinkedIn::Client.new(Settings.linkedin_key, Settings.linkedin_secret)
       client.authorize_from_access(linked_in_account.token, linked_in_account.secret)
     end
+    client
   end
 
   def welcome

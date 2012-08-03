@@ -32,7 +32,7 @@
           <td>  <%= campaign.client_page_hits.count %> </td>
           <td>  <%= campaign.chains.count %> </td>
           <td>  <%= campaign.posts.published.count %> </td>
-          <td>  <%= number_to_currency(campaign.budget.try(:current), :unit => "$", :format => "%u%n") %> </td>
+          <td>  <%#= number_to_currency(campaign.budget.try(:current), :unit => "$", :format => "%u%n") %> </td>
 
           <td colspan="3">
             <% if campaign.editable?  %>

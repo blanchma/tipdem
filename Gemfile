@@ -21,8 +21,7 @@ gem 'airbrake'
 gem 'bitly' #https://github.com/philnash/bitly
 gem 'mini_fb'
 gem 'twitter'
-gem 'linkedin' , :git =>  'git://github.com/pengwynn/linkedin.git',
-  :branch =>  '2-0-stable'
+gem 'linkedin' , :git =>  'git://github.com/pengwynn/linkedin.git'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
@@ -34,8 +33,8 @@ gem 'aasm'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'jquery-rails'
   gem 'sass-rails', '  ~> 3.2'
+  gem 'jquery-rails'
   gem 'coffee-rails', '~> 3.2'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
