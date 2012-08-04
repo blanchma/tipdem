@@ -1,5 +1,7 @@
 class RewardsController < ApplicationController
+  layout 'panel'
   before_filter :check_authorization!
+  before_filter :find_campaign
 
   def new
     @rewards = @campaign.rewards
@@ -10,17 +12,15 @@ class RewardsController < ApplicationController
     @rewards.update_attributes params[:rewards]
 
     if @rewards.save
-      flash[:notice]=nil
-      flash[:error]=nil
+      flash.now.reset
       if params[:save_and_next] == 'yes'
         redirect_to step_landing_path(:campaign_id => @campaign.id)
       else
-        render :action => :new
+        render :new
         return
       end
     else
-      flash[:notice]= "Debe elegir al menos una modalidad de campaña"
-      render :action => :new
+      render :new
     end
   end
 
