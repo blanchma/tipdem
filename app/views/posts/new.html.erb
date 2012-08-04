@@ -20,9 +20,9 @@
     <%= render :partial => "form", :locals => {:post => @post, :channel => Channel::Twitter} %>
   </div>
 
-  <div id="in_container" class="post_container">
-    <%= render :partial => "form", :locals => {:post => @post, :channel => Channel::LinkedIn} %>
-  </div>
+  <!--div id="in_container" class="post_container">
+    <%#= render :partial => "form", :locals => {:post => @post, :channel => Channel::LinkedIn} %>
+  </div-->
 <div class="step" style="text-align:left;">
     <h4>
       <%= link_to t("promote.see"), campaign_posts_path(@campaign.id) %>

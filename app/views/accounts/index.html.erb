@@ -24,24 +24,24 @@
     <% end %>
   </div>
 
-  <div id="icons">
-    <p><%= image_tag 'in64.png', :height => '64', :align =>'absmiddle', :title =>'LinkedIn' %></p>
 
-    <% if current_user.linked_in %>
-      <p><%= link_to t("mynet.unlink"), user_omniauth_authorize_path(:linkedin), :confirm => "¿Está seguro?", :method => :delete %></p>
-    <% else %>
-      <p><%= link_to t("mynet.link"), user_omniauth_authorize_path(:linkedin) %></p>
-    <% end %>
-  </div>
+    <% if false %>
+          <div id="icons">
+            <p><%= image_tag 'in64.png', :height => '64', :align =>'absmiddle', :title =>'LinkedIn' %></p>
 
-  <br /><br /><br /><br /><br /><br />
 
-  <h4><%=  t("mynet.pay") %></h4>
+              <% if current_user.linked_in %>
+                <p><%= link_to t("mynet.unlink"), user_omniauth_authorize_path(:linkedin), :confirm => "¿Está seguro?", :method => :delete %></p>
+              <% else %>
+                <p><%= link_to t("mynet.link"), user_omniauth_authorize_path(:linkedin) %></p>
+              <% end %>
+          </div>
+  <% end %>
 
 </div>
 
 <script type="text/javascript">
   $(document).ready(function()  {
-      $("#tree2").show();
-      });
+    $("#tree2").delay(500).slideToggle(100);
+  });
 </script>

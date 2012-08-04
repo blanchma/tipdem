@@ -1,7 +1,3 @@
-# -*- encoding : utf-8 -*-
-require 'digest/md5'
-
-
 class SessionsController < Devise::SessionsController
 
   before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :accounts, :send_confirmation]

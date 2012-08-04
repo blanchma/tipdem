@@ -118,12 +118,11 @@
     <script type="text/javascript">
 
       $(document).ready(function()  {
-
         //toggle the componenet with class msg_body
         $("#root, #root2").click(function() {
           $(this).next("#tree, #tree2").slideToggle(300);
         });
-        $("#tree, #tree2").slideToggle(300);
+        $("#tree, #tree2").hide();
 
         // select all desired input fields and attach tooltips to them
         $("#campaing img[title], #point-choosed img[title], #create_landing_page img[title], .tabla img[title], .tabla th[alt]").tooltip({

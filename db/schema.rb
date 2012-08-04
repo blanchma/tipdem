@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802225527) do
+ActiveRecord::Schema.define(:version => 20120804031522) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20120802225527) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "legal_terms"
   end
 
   create_table "campaigns_notifieds", :id => false, :force => true do |t|
@@ -349,10 +350,15 @@ ActiveRecord::Schema.define(:version => 20120802225527) do
   create_table "rewards", :force => true do |t|
     t.integer "product_id"
     t.integer "campaign_id"
-    t.integer "quantity"
+    t.integer "original_quantity"
+    t.integer "current_quantity"
     t.integer "points"
-    t.string  "special"
+    t.string  "legal_conditions"
+    t.integer "quantity_per_user"
   end
+
+  add_index "rewards", ["campaign_id"], :name => "index_rewards_on_campaign_id"
+  add_index "rewards", ["product_id"], :name => "index_rewards_on_product_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -426,6 +432,7 @@ ActiveRecord::Schema.define(:version => 20120802225527) do
     t.string   "recommended_campaign_ids"
     t.boolean  "email_newsletter",         :default => true
     t.boolean  "dst"
+    t.boolean  "terms_approved"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

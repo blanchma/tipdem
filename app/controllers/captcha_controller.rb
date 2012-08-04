@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class CaptchaController < ApplicationController
   def new
     if params['want']  == 'verify'

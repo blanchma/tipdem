@@ -31,9 +31,7 @@ class Post < ActiveRecord::Base
   scope :linkedin, :conditions => ["channel =?",  Channel::LinkedIn]
   scope :email, :conditions =>    ["channel =?",  Channel::Email]
 
-  scope :daily, lambda { |hour|
-    {:conditions => ["daily = 1 AND hour_utc = ?", hour]}
-  }
+  scope :daily, where("daily = 1")
 
   scope :less_than, lambda {|quantity|
     {:conditions => ["counter < ?", quantity]}
@@ -229,7 +227,7 @@ class Post < ActiveRecord::Base
     posted_at
   end
 
-  private
+
    def deliver
     case self.channel
     when Channel::LinkedIn
