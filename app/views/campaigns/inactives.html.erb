@@ -1,8 +1,3 @@
-<style type="text/css">
-#content #detail #desc #root {
-  background-color: #BBB895;
-}
-</style>
 <div id="campaing" style="width:785px;">
 <h3><%=  t("mycamp.inactive.title") %></h3>
 <br /><br />
@@ -47,7 +42,7 @@
             <% end %>
 
             <% if campaign.status == Campaign::Status::WAITING_PAY %>
-              <%= link_to image_tag("ico_dinero_mail_16.jpg", :title => t("mycamp.inactive.tool.pay")), pay_campaign_budget_path(:campaign_id => campaign)  %>
+              <%#= link_to image_tag("ico_dinero_mail_16.jpg", :title => t("mycamp.inactive.tool.pay")), pay_campaign_budget_path(:campaign_id => campaign)  %>
             <% end %>
 
             <%= link_to image_tag("Delete-16.png", :title => t("mycamp.inactive.tool.delete")),"#", :onclick => "openRemoveCampaign(#{campaign.id})"  %>
@@ -76,7 +71,7 @@
 <script type="text/javascript">
 
   $(document).ready(function()  {
-        $("#tree, #tree2").show();
+    $("#tree").delay(500).slideToggle(100);
   });
 
   function openRemoveCampaign (id) {

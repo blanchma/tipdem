@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
 
   def update
     @categories = Category.all
-    @categorizable.category_ids=params[:categories] if params[:categories]
+    @categorizable.category_ids=params[:categories] || []
 
     if @user
       flash[:notice]="Sus Preferencias han sido actualizadas."

@@ -120,11 +120,11 @@ class CampaignsController < ApplicationController
     @campaign = Campaign::Base.find params[:id]
   end
 
-  def index_inactives
+  def inactives
     @non_active_campaigns = current_user.owned_campaigns.inactive
   end
 
-  def index_actives
+  def actives
     @active_campaigns = current_user.owned_campaigns.active(:include => [:chains, :landing_page_hits])
   end
 

@@ -9,12 +9,6 @@
 
   <div class="publicar"><%= link_to t("promote.prom"), new_campaign_post_path(@campaign.id) %></div>
 
-  <div id="posts_messages">
-    <%= error_messages_for :post,
-      :header_message => nil,
-      :message => nil  %>
-  </div>
-
   <% if publish_daily?(Channel::Facebook) %>
     <div id="automatic_fb">
       <%= link_to_remote t("promote.cancfb"),

@@ -37,8 +37,8 @@ Tipdem::Application.routes.draw do
   match "/step/categories/:campaign_id" => "categories#edit", :as => :step_categories
   match "/step/landing/:campaign_id" => "landing_pages#new", :as => :step_landing
   match "/step/pay/:campaign_id" => "campaigns#pay", :as => :step_pay
-  match "my/campaigns/actives/" => "campaigns#index_actives", :as => :my_campaigns
-  match "my/campaigns/inactives" => "campaigns#index_inactives", :as => :inactive_campaigns
+  match "my/campaigns/actives/" => "campaigns#actives", :as => :my_campaigns
+  match "my/campaigns/inactives" => "campaigns#inactives", :as => :inactive_campaigns
   match "my/links" => "chains#create", :as => :chain_user
   match "/my/panel" => "panel#home", :as => :user_root
   match "/my/profile" => "users#edit", :as => :edit_registration, :via => :get
