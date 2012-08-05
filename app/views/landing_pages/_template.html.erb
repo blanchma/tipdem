@@ -3,13 +3,13 @@
     <div id="detailand">
    		<div id="descland">
         <% if @landing_page.id %>
-            <%= link_to visit_path(:id => @landing_page.id), :target => "_blank" do %>
-              <% if @landing_page && !@landing_page.main_image_logo? && @landing_page.main_image %>
+
+              <% if @landing_page && @landing_page.main_image %>
                 <%= image_tag @landing_page.main_image.url(:landing), :alt => "cargada", :id => "image_landing"%>
               <% else %>
                 <%= image_tag @campaign.logo.url(:landing), :alt => "Tu Opinión Cuenta: Con Live Chains podrás conocer, opinar y recomendar a tus amigos acerca productos y servicios de tu interés.", :id => "image_landing"  %>
               <% end %>
-            <% end  %>
+
           <% end %>
         </div>
 

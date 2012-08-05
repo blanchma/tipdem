@@ -1,28 +1,39 @@
 # -*- encoding : utf-8 -*-
 class LandingPageHit < ActiveRecord::Base
   belongs_to :fisher, :class_name => "User", :foreign_key => "fisher_id"
-  belongs_to :campaign
-
-  BOTS = ["gnip", "bitlybot", "JS-Kit", "bot", "PostRank", "UnwindFetchor", "Bot",
-    "Python", "facebookexternalhit", "Butterfly"]
-
+  belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
 
  scope :facebook, :conditions => {:channel => Channel::Facebook}
  scope :twitter, :conditions => {:channel => Channel::Twitter}
- scope :default, :conditions => {:channel => Channel::Default}
+ scope :non_channel, where("channel IS NULL")
 
-  validates_presence_of :campaign, :channel, :user_agent
+  validates_presence_of :campaign, :user_agent
   validate :humanity
-  validate :ip_uniqueness
+  validates_uniqueness_of :ip, :scope => [:campaign_id, :fisher_id]
 
   after_create :create_revenue
 
   def create_revenue
-    if channel != Channel::Default && !fisher.nil?
-      Revenue.create(:user => self.fisher, :campaign => self.campaign, :source => self)
+    unless channel == Channel::Default && fisher.blank?
+      #Revenue.create(:user => self.fisher, :campaign => self.campaign, :source => self)
     end
   end
   #handle_asynchronously :create_revenue#, :run_at => Proc.new { 1.minutes.from_now }
+
+  def self.create_from_request(request)
+    unless request.cookies.include? "click_#{request.params[:id]}"
+      landing_page_hit = LandingPageHit.create(
+        fisher_id:    request.params[:user_id],
+        channel:      request.params[:channel],
+        campaign_id:  request.params[:id],
+        ip:           request.remote_ip,
+        referrer:     request.referrer,
+        user_agent:   request.user_agent || request.env["HTTP_USER_AGENT"])
+    else
+      return false
+    end
+    landing_page_hit.valid?
+  end
 
   def self.get_data_for_graph(id)
     h = Hash.new
@@ -39,14 +50,7 @@ class LandingPageHit < ActiveRecord::Base
   end
 
   def humanity
-    if user_agent
-      BOTS.each do |bot|
-        if user_agent.include? bot
-          errors.add(:user_agent, :invalid)
-          break;
-        end
-      end
-    end
+    AntiSpamService.human?(self.user_agent)
   end
 
   def ip_uniqueness

@@ -1,11 +1,12 @@
 # -*- encoding : utf-8 -*-
 class LandingPagesController < ApplicationController
   layout 'panel'
-
-  #En el futuro usar request.referer en vez de channel, para averiguar la procedencia
   before_filter :find_campaign, :only => [:edit, :update, :new, :create]
 
-  before_filter :check_url, :only => ['show']
+  before_filter :spam_filter, :only => [:show]
+  before_filter :retrieve_data, :only => [:show]
+
+  respond_to :html, :js
 
   def new
     @landing_page = @campaign.landing_page || @campaign.build_landing_page
@@ -37,18 +38,15 @@ class LandingPagesController < ApplicationController
         @campaign.save
         redirect_to step_pay_path(:campaign_id => @campaign.id)
       else
-        render :action => :new
-        return
+        render :new
       end
     else
-      render :action => :new
-      return
+      render :new
     end
   end
 
   def edit
     @landing_page = @campaign.landing_page
-    render :layout => 'panel'
   end
 
   def update
@@ -63,24 +61,21 @@ class LandingPagesController < ApplicationController
         #@landing_page.errors.add("url_tempfile", "La URL introducida no es valida")
       end
     end
-    if params[:main_image_source] == 3
-      @landing_page.main_image = @campaign.logo
-    end
-
+    @landing_page.main_image = @campaign.logo if params[:main_image_source] == 3
     @landing_page.save_without_validation if @landing_page.changed?
 
-    respond_to do |format|
-      if @landing_page.valid?
-        flash[:notice]='La Página Promocional fue actualizada'
-        format.html { redirect_to(:action => "edit", :layout => 'panel') }
-      else
-        @campaign = @landing_page.campaign
-        format.html { render :action => "edit", :layout => 'panel' }
-      end
+    if @landing_page.valid?
+      flash[:notice]='La Página Promocional fue actualizada'
+      render "edit"
+    else
+      @campaign = @landing_page.campaign
+      format.html { render "edit"}
     end
+
   end
 
 
+  ### Public Landing Page ###
   def show
     @landing_page = @campaign.landing_page
     if @landing_page.owner_url && !@landing_page.owner_url.empty?
@@ -95,97 +90,47 @@ class LandingPagesController < ApplicationController
 
 
 
-  def check_url
-    logger.info "User-Agent: #{request.user_agent}"
+  def spam_filter
+    user_agent = request.user_agent || request.env["HTTP_USER_AGENT"]
+    logger.info "User-Agent: #{}"
     logger.info "User-Agent HEADER: #{request.env["HTTP_USER_AGENT"]} "
-    if params[:link]
-      params[:link].each do |value|
-        @channel = value if Channel.all.include? value
-        @user = User.find_by_id value unless @user
-      end
+    unless AntiSpamService.human?(user_agent)
+      #raise ActionController::RoutingError.new('Sorry, your a bot')
     end
+  end
 
-    logger.info "Campaign::Base: #{params[:campaign]}"
-    logger.info "User #{@user ? @user.id : "not found"}"
-    logger.info "Channel #{@channel ? @channel : "not found" }"
+  def retrieve_data
+    #Find campaign
+    @campaign = Campaign::Base.find params[:id]
+    params[:id] = @campaign.id
 
-    begin
-      @campaign = Campaign::Base.find params[:campaign]
-      return if params[:test]
-    rescue
-      logger.info "Campaign::Base with id=#{params[:campaign]} doesnt exist"
-      raise ActionController::RoutingError.new('Not Found')
-    end
-
+    #Check visitable before process hit and cookie control
     if @campaign.visitable?
-      if @user && @channel
-        cookies["click_#{@campaign.id}"]={:value => "#{@campaign.id},#{@user ? @user.id : nil},#{@channel}", :expire => 1.year.from_now}
-        session["click"]={"campaign" => @campaign.id, "user" => @user ? @user.id : nil, "channel" => @channel}
+      params[:user_id] = nil unless User.exists?(params[:user_id])
+      @channel = params[:channel] if Channel.all.include? params[:channel]
+
+      if LandingPageHit.create_from_request(request)
+        cookies["click_#{@campaign.id}"] = {
+          :value => [@campaign.id, params[:user_id], params[:channel]],
+          :path => request.path,
+          :expire => 1.year.from_now
+        }
       end
-      create_landing_page_hit
-      logger.info "Session campaign id= #{@campaign.id}"
+
+      if params[:user_id]
+        session["click"] = {
+          :campaign_id => @campaign.id,
+          :user_id => params[:user_id],
+          :channel => @channel,
+          :referrer => request.referrer
+        }
+      end
     else
-      redirect_to inactive_landing_page_path(:id => params[:campaign])
+      redirect_to root_path, :notice => t("landing_page.inactive")
     end
 
-  end
-
-  def inactive
-    render :layout => 'landing_pages'
-  end
-
-  def client_page
-    @landing_page = LandingPage.find params[:id]
-    campaign_id =  @landing_page.campaign_id
-
-    unless request.cookies.include? "hit_#{campaign_id }"
-
-
-      if session["click"]["campaign_id"]  == campaign_id
-        user_id = session["click"]["user"]
-        channel = session["click"]["channel"]
-
-      elsif request.cookies.include?"click_#{campaign_id }"
-        user_id = cookies["click_#{campaign_id }"][0]
-        channel = cookies["click_#{campaign_id }"][1]
-      else
-        user_id = nil
-        channel = Channel::Default
-      end
-
-      clientpage_hit = ClientPageHit.new(
-        :fisher_id => user_id,
-        :channel => channel,
-        :campaign_id => campaign_id,
-        :url => @landing_page.owner_url,
-        :user_agent => request.user_agent || request.env["HTTP_USER_AGENT"],
-        :ip => request.remote_ip
-      )
-      saved = clientpage_hit.save
-      cookies["hit_#{campaign_id }"]={:value => true, :expire => 1.year.from_now} if saved
-    end
-
-    redirect_to @landing_page.owner_url
-  end
-
-
-  def create_landing_page_hit
-    unless request.cookies.include? "click_#{@campaign.id}"
-
-      lhit = LandingPageHit.new(
-        :fisher_id => (@user ? @user.id : nil),
-        :channel => (@channel ? @channel : Channel::Default),
-        :campaign_id => @campaign.id,
-        :ip => request.remote_ip,
-        :referrer => request.referrer,
-        :user_agent => request.user_agent || request.env["HTTP_USER_AGENT"])
-      saved = lhit.save
-      logger.info "LandingPage Hit saved: #{saved}"
-      if saved
-        cookies["click_#{@campaign.id}"]={:value => [lhit.fisher_id, lhit.channel, lhit.campaign_id ], :expire => 1.year.from_now}
-      end
-    end
-
+    rescue ActiveRecord::RecordNotFound => e
+     redirect_to root_path, :notice => t("landing_page.not_found")
   end
 
   private

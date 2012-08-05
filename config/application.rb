@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -56,6 +55,12 @@ module Tipdem
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |g|
+      g.test_framework :mini_test, :spec => true, :fixture => false
+      g.integration_tool :mini_test
+    end
+
   end
 end
 
