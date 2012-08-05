@@ -8,7 +8,6 @@ unless File.exists?(redis_yaml)
 end
 
 redis_config = YAML.load_file(redis_yaml)
-
 $redis = Redis.connect(redis_config[Rails.env])
 Resque.redis = $redis
 #Resque.schedule = YAML.load_file(Rails.root + "config/resque_schedule.yml")

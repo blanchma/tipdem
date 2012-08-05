@@ -1,19 +1,15 @@
 module Campaign
   class Base < ActiveRecord::Base
     self.table_name = "campaigns"
+    extend FriendlyId
     include AASM
     include Campaign::Status
 
-    scope :inactive, -> { where("status != ?", "active")}
-    #Invocar attr_accesible
-    has_friendly_id :name, :allow_nil => true, :use_slug => true, :approximate_ascii => true
+    friendly_id :name, use: :slugged
 
     belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
     belongs_to :reference, :polymorphic => true
-
-    has_one :budget, :foreign_key => "campaign_id", :dependent => :destroy
     has_one :landing_page, :foreign_key => "campaign_id", :dependent =>  :destroy
-
     has_many :chains, :foreign_key => 'campaign_id'
     has_many :landing_page_hits, :foreign_key => "campaign_id"
     has_many :client_page_hits, :foreign_key => "campaign_id"
@@ -25,37 +21,29 @@ module Campaign
     has_many :payment_requests, :foreign_key => "campaign_id"
     has_many :campaign_notifieds, :foreign_key => "campaign_id"
     has_many :users, :through => :campaign_notifieds
-
-    has_and_belongs_to_many :categories, :join_table => "categories_campaigns", :foreign_key => "campaign_id"
-
     has_many :rewards, foreign_key: "campaign_id"
     has_many :products, through: :rewards
+    has_and_belongs_to_many :categories, :join_table => "categories_campaigns", :foreign_key => "campaign_id"
+
+    has_attached_file :logo, :styles => { :thumb => "50x50#",:small => "100x100", :landing => "300>x300" },
+    :default_style => :small,
+    :default_url => "/images/img_logo.png",
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename"
+
+    scope :inactive, -> { where("status != ?", "active")}
 
     validates_uniqueness_of :name, :case_sensitive => true
     validates_length_of :name, :within => 5..30, :allow_nil => false, :allow_blank => false
     validates_length_of :description, :within => 10..350
     validates_length_of :default_message, :within => 5..110
-
-    #http://railscasts.com/episodes/134-paperclip
-    has_attached_file :logo, :styles => { :thumb => "50x50#",:small => "100x100", :landing => "300>x300" },
-      :default_style => :small,
-      :default_url => "/images/img_logo.png",
-      :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
-
-    #validates_attachment_presence :logo, :message => "debe ser elegido"
     validates_attachment_size :logo, :less_than => 1.megabytes
     validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-
-    # validate_on_create :validate_begin_date
     validate :validate_dates
 
     attr_accessor :logo_url
-    delegate :mode, :pay, :commission, :to => :budget, :allow_nil => true
     attr_protected :user_id
-
     before_create :build_default
-
 
     def validate_dates
       if have_end_date && begin_date > end_date

@@ -7,8 +7,8 @@
     <%= content_tag :link, nil, :rel => "shortcut icon", :type => "image/ico",
     :href => "#{image_path("favicon.ico")}" %>
 
-    <%= javascript_include_tag 'application', 'panel' %>
-    <%= stylesheet_link_tag 'panel'  %>
+    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application'  %>
     <%= csrf_meta_tag %>
     <%= yield :head %>
   </head>
@@ -105,39 +105,11 @@
 
       </div>
 
-      <div id="footer">
-        <div id="mapa"></div>
-        <div id="legal">© Copyright 2011 - Tipdem - All rights reserved - Terms of use - Legal disclaimer</div>
 
-      </div>
     </div>
 
     <%= get_time_zone unless current_user.time_zone  %>
     <%= yield :bottom %>
-
-    <script type="text/javascript">
-
-      $(document).ready(function()  {
-        //toggle the componenet with class msg_body
-        $("#root, #root2").click(function() {
-          $(this).next("#tree, #tree2").slideToggle(300);
-        });
-        $("#tree, #tree2").hide();
-
-        // select all desired input fields and attach tooltips to them
-        $("#campaing img[title], #point-choosed img[title], #create_landing_page img[title], .tabla img[title], .tabla th[alt]").tooltip({
-          // place tooltip on the right edge
-          position: "center right",
-          // a little tweaking of the position
-          offset: [-2, 10],
-          // use the built-in fadeIn/fadeOut effect
-          effect: "fade",
-          // custom opacity setting
-          opacity: 0.7
-        });
-
-      });
-    </script>
 
   </body>
 </html>
