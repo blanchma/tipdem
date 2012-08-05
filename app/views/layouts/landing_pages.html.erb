@@ -1,8 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+  <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+  <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     
+
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
     <meta name="google-site-verification" content="gpH0zOtr4NYC8TzdvHWKA53aiKw9KJjWkQpeoOPFytQ" />
     <meta name="msvalidate.01" content="A36FC27C07E4E62622A1A55B515B5855" />
@@ -11,9 +16,7 @@
     <meta name="description" content="La mejor herramienta de recomendación boca a boca para la difusión de campañas. Súmate como Promotor y gana increíbles recompensas"/>
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Tipdem" />
-    <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
     <%= csrf_meta_tag %>
-   
     <%= yield :head %>
   </head>
 
@@ -39,6 +42,19 @@
       <%= yield :layout %>
     </div>
 
-    <%= yield :bottom %>
+    <%= javascript_include_tag 'profiling/yahoo-profiling.min.js', 'profiling/config.js' unless Rails.env.production? %>
+
+    <%- if Rails.env.production? -%>
+    <script>
+     var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+     (function(d, t) {
+      var g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      g.async = true;
+      g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g, s);
+     })(document, 'script');
+    </script>
+    <%- end -%>
   </body>
 </html>

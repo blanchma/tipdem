@@ -62,12 +62,14 @@ Tipdem::Application.routes.draw do
   end
 
   match "/promote/:id" => "panel#promote_campaign", :as => :promote_campaign
-  match "see/:campaign/*link" => "landing_pages#show"
   match "my/:action" => "panel#index"
   match "user/complete_signup" => "users#complete_signup", :as => :complete_signup
   match "/auth/:provider/callback" => "authentications#create"
   match "/time_zone" => "application#set_timezone"
-  match "/visit/:id" => "landing_pages#client_page", :as => :visit
+
+  match "see/:id", :to => "landing_pages#show"
+  match "see/:id/:user_id", :to => "landing_pages#show"
+  match "see/:id/:user_id/:channel", :to => "landing_pages#show"
 
 
 #  mount Resque::Server.new, :at => "/resque"

@@ -1,25 +1,28 @@
 default: &default
   notification_from: "do-not-reply@tipdem.com"
+  domain: http://localhost:3000
+
+  twitter_key: gZJ8SdlkcxLFmbNT0zYQ6Q
+  twitter_secret: 4PCN1IyPoEBZnZehnTXhzVLTmnsjOZvgvzhrlISnaU
+  callback_twitter:  http://localhost:3000/oauth/twitter
+
+  bitly_username: gauchosolitarioar
+  bitly_key: R_c903c7dc5c02892ae702dacc894ce9f0
+
+  facebook_app_id: 296009581789
+  facebook_key: 155fea03be7e8a852c4de74ee2672b65
+  facebook_secret: a69ea2086540b0683bbe0131f6f5b9fc
+  callback_facebook: http://localhost:3000/oauth/facebook
+
+  linkedin_key: jpwq98tus0bt
+  linkedin_secret: reSG0CDYdat9dQHF
+
 
 development:
-    <<: *default
-    domain: http://localhost:3000
+  <<: *default
 
-    twitter_key: gZJ8SdlkcxLFmbNT0zYQ6Q
-    twitter_secret: 4PCN1IyPoEBZnZehnTXhzVLTmnsjOZvgvzhrlISnaU
-    callback_twitter:  http://localhost:3000/oauth/twitter
-
-    bitly_username: gauchosolitarioar
-    bitly_key: R_c903c7dc5c02892ae702dacc894ce9f0
-
-    facebook_app_id: 296009581789
-    facebook_key: 155fea03be7e8a852c4de74ee2672b65
-    facebook_secret: a69ea2086540b0683bbe0131f6f5b9fc
-    callback_facebook: http://localhost:3000/oauth/facebook
-
-    linkedin_key: jpwq98tus0bt
-    linkedin_secret: reSG0CDYdat9dQHF
-
+test:
+  <<: *default
 
 production:
     <<: *default
