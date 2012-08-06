@@ -1,15 +1,8 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
 
   devise :database_authenticatable, :registerable, :omniauthable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :time_zone,
-    :gender, :approved, :remember_me, :locale
-
-  attr_accessor :captcha, :random_password
 
   delegate :followers_count, :following_count, :to => :twitter_account, :allow_nil => true
   delegate :friends_count, :to => :facebook_account, :allow_nil => true
@@ -22,29 +15,47 @@ class User < ActiveRecord::Base
   has_one  :linked_in_account, :class_name => "Account::LinkedIn"
   has_one  :chain, :foreign_key => "fish_id"
 
-  has_many :revenues
-  has_many :owned_campaigns, :class_name => "Campaign::Base", :dependent => :destroy
   has_many :promotions
   has_many :promoted_campaigns, :through => :promotions, :source => :campaign
-
+  has_many :owned_campaigns, :class_name => "Campaign::Base", :dependent => :destroy
   has_many :posts, :dependent => :destroy
   has_many :landing_page_hits, :foreign_key => "fisher_id"
-  has_many :client_page_hits , :foreign_key => "fisher_id"
   has_many :chains, :foreign_key => "fisher_id"
   has_many :accounts, :dependent => :destroy, :class_name => "Account::Base"
 
   has_and_belongs_to_many :categories, :join_table => "categories_users"
 
-  serialize :recommended_campaign_ids, Array
-
   validates_presence_of :captcha, :message => :invalid, :on => :create, :if => "accounts.empty?"
 
-  before_create :gen_random_password, :default_values
-  after_create  :welcome
+  before_create :default_values
   after_save    :becomes_admin?
 
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :time_zone,
+    :gender, :approved, :remember_me, :locale
+  attr_protected :admin
+  attr_accessor :captcha, :random_password
+
+  geocoded_by :current_sign_in_ip   # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinatesU
+
+  def self.create_from_omniauth(account)
+    User.create do
+      user.confirmed_at = Time.now.utc
+      user.from_omniauth(account.auth_hash)
+      user.accounts << account
+    end
+  end
+
   def password_required?
-    ((accounts.empty?) || !password.blank?)  && super
+    super && accounts.blank?
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
   end
 
   def validate_captcha
@@ -53,18 +64,18 @@ class User < ActiveRecord::Base
 
   def approve!
     self.approved = true
-    ContactMailer.deliver_approved_email(self)# unless Rails.env === 'development' || Rails.env === 'test'
+    #ContactMailer.deliver_approved_email(self)# unless Rails.env === 'development' || Rails.env === 'test'
   end
 
   def chained?
-    !self.chain.nil?
+    self.chain.present?
   end
 
   def active?
     true
   end
 
-  def assign_user_info (auth_hash)
+  def from_omniauth(auth_hash)
     self.username = auth_hash["info"]["name"] if username.blank?
     self.gender= auth_hash["info"]["gender"] if self.gender.blank?
     self.birthday= auth_hash["info"]["birthday"] if self.birthday.blank?
@@ -122,14 +133,6 @@ class User < ActiveRecord::Base
   #Incredible magical fake email by Tute
   def gen_fake_email
     self.email = "#{self.username}#{Time.now.to_i}#{Devise.friendly_token[0...2]}@please-replace.com"
-  end
-
-  def gen_random_password(force=false)
-    if force || encrypted_password.blank?
-      pwd = Devise.friendly_token
-      self.password = pwd
-      self.password_confirmation = pwd
-    end
   end
 
   def default_values

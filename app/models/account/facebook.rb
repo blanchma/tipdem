@@ -2,7 +2,8 @@
 module Account
   class Facebook < Base
 
-    def assign_account_info(auth_hash)
+    def from_omniauth(auth_hash)
+      super
       self.login               = auth_hash['info']['nickname']
       self.name                = auth_hash['info']['name']
     end

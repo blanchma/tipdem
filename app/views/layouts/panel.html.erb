@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -6,7 +6,6 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
     <%= content_tag :link, nil, :rel => "shortcut icon", :type => "image/ico",
     :href => "#{image_path("favicon.ico")}" %>
-
     <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag 'application'  %>
     <%= csrf_meta_tag %>
@@ -14,40 +13,26 @@
   </head>
 
   <body>
-    <div id="mask"></div>
     <div id="content" >
       <div id="header">
         <div id="logo">
-          <%=link_to(image_tag('logo_lc.png', :size => '200x50', :border=> '0'),
-          {:controller=> 'welcome', :action => 'home'}) %>
+          <%=link_to "home", root_path %>
         </div>
         <div id="menu"></div>
         <div id="login">
-          <div id="face">
-            <%= image_tag "face.png", :width => "50",  :height => "50" %>
-          </div>
           <div id="connected">
-            <p><strong><%=  t("header.welcome") %> <%= current_user.username || current_user.email %></strong></p>
+            <p><strong>
+              <%=  t("header.welcome") %>
+              <%= current_user.username || current_user.email %>
+            </strong></p>
             <p>
-              <%= link_to destroy_user_session_path, :method => :delete do %>
-                <%=  t("header.close") %>
-              <% end %>
+              <%= link_to "Salir", destroy_user_session_path, :method => :delete %>
             </p>
-          </div>
-          <div id="linkpanel">
-              <%=link_to(image_tag('panel_help.png', :size => '25x25', :border=> '0'),
-              {:controller=> 'welcome', :action => 'faqs'}) %>
-              <%=link_to(image_tag('panel_contact.png', :size => '25x25', :border=> '0'),
-              {:controller=> 'welcome', :action => 'contacto'}) %>
-          </div>
+            <p>
+              <%=link_to "FAQ", {:controller=> 'welcome', :action => 'faqs'} %>
+              <%=link_to "Contacto",{:controller=> 'welcome', :action => 'contacto'} %>
+            </p>
         </div>
-      </div>
-      <div id="head">
-
-          <div class="panel_notice">
-
-          </div>
-
       </div>
       <div id="highlights">
         <% if flash[:error] %>
@@ -80,7 +65,7 @@
             <% end %>
           </div>
 
-          <%= link_to  promotions_path do %>
+          <%= link_to promotions_path do %>
             <div class="botn" id="misprom"><%=  t("menu.myprom") %></div>
           <% end %>
           <div class="botn" id="root2"><%=  t("menu.myprof") %></div>
@@ -98,18 +83,13 @@
 
           </div>
         </div>
-
-
         <%= yield :layout %>
-
-
       </div>
 
 
     </div>
 
-    <%= get_time_zone unless current_user.time_zone  %>
+    <%= get_time_zone unless current_user.time_zone %>
     <%= yield :bottom %>
-
   </body>
 </html>

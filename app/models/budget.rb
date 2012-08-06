@@ -3,7 +3,6 @@ include ActionView::Helpers::NumberHelper
 
 class Budget < ActiveRecord::Base
 
-  belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
 
   validates_numericality_of :pay_per_client_page_hit, :greater_than_or_equal_to => 0.01, :if => "mode == CampaignMode::PayPerHit"
   validates_numericality_of :pay_per_landing_page_hit, :greater_than_or_equal_to => 0.01, :if => "mode == CampaignMode::PayPerClick"

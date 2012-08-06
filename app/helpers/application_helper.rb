@@ -29,11 +29,16 @@ module ApplicationHelper
   def get_time_zone
     "<script type='text/javascript' >
       $(document).ready(function() {
-        var timezone = jstz.determine_timezone().name();
-        var dst = jstz.determine_timezone().dst();
-        $.post('/time_zone', {'time_zone': timezone, 'daylight': dst});
-        });
-      </script>".html_safe
+        var timezone = jstz.determine().name();
+        console.log('time_zone: ' + timezone );
+        $.cookie('time_zone', timezone );
+      });
+    </script>".html_safe
+  end
+
+
+  def google_analytics
+    "var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23135253-2']);_gaq.push(['_trackPageview']);(function(){var b=document.createElement('script');b.type='text/javascript';b.async=true;b.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var a=document.getElementsByTagName('script')[0];a.parentNode.insertBefore(b,a)})();".html_safe
   end
 
   def sortable(column, title = nil)

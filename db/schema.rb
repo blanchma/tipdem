@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120804233536) do
+ActiveRecord::Schema.define(:version => 20120805234923) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
     t.string   "name"
     t.integer  "friends_count"
     t.text     "auth_hash"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "followers_count"
     t.integer  "following_count"
     t.string   "type"
@@ -45,50 +45,22 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "bank_global_accounts", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "cbu"
-    t.string   "bank"
-    t.string   "location"
-    t.string   "purpose"
-    t.string   "holder"
-    t.decimal  "money",      :precision => 8, :scale => 2, :default => 0.0
-  end
-
-  create_table "budgets", :force => true do |t|
-    t.integer  "campaign_id"
-    t.decimal  "pay_per_lead",                :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "pay_per_facebook_contact",    :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "pay_per_twitter_contact",     :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "pay_per_landing_page_hit",    :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "pay_per_client_page_hit",     :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "spent",                       :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "total",                       :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "cost",                        :precision => 8, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "mode"
-    t.integer  "commission_landing_page_hit"
-    t.integer  "commission_client_page_hit"
-  end
-
   create_table "campaigns", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.string   "status"
+    t.string   "current_status"
     t.string   "default_message"
+    t.integer  "mode"
     t.boolean  "have_end_date"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
-    t.integer  "reference_id"
-    t.string   "reference_type"
     t.date     "begin_date"
     t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "temp_mode"
     t.string   "legal_terms"
     t.string   "slug"
   end
@@ -120,58 +92,16 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
     t.integer  "campaign_id"
     t.integer  "baits",       :default => 5
     t.string   "channel"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "chains", ["fish_id"], :name => "index_chains_on_fish_id"
   add_index "chains", ["fisher_id"], :name => "index_chains_on_fisher_id"
 
-  create_table "client_page_hits", :force => true do |t|
-    t.integer  "fisher_id"
-    t.string   "channel"
-    t.integer  "client_id"
-    t.integer  "campaign_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "url"
-    t.string   "user_agent"
-    t.string   "ip"
-  end
-
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
-  create_table "dinero_mail_accounts", :force => true do |t|
-    t.integer  "user_id"
-    t.decimal  "balance",    :precision => 8, :scale => 2, :default => 0.0
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "dinero_mail_global_accounts", :force => true do |t|
-    t.string   "email"
-    t.decimal  "balance",    :precision => 8, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "facebook_analytics", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "facebook_groups", :force => true do |t|
@@ -187,21 +117,17 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
   end
 
   create_table "landing_page_hits", :force => true do |t|
-    t.integer  "fisher_id"
+    t.integer  "user_id"
     t.string   "channel"
-    t.integer  "client_id"
     t.integer  "campaign_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "ip"
     t.string   "referrer"
+    t.string   "ip"
     t.string   "user_agent"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  add_index "landing_page_hits", ["campaign_id"], :name => "index_landing_page_hits_on_campaign_id"
-  add_index "landing_page_hits", ["fisher_id"], :name => "index_landing_page_hits_on_fisher_id"
-  add_index "landing_page_hits", ["ip", "campaign_id", "fisher_id"], :name => "index_landing_page_hits_on_ip_and_campaign_id_and_fisher_id", :unique => true
-  add_index "landing_page_hits", ["ip"], :name => "index_landing_page_hits_on_ip"
+  add_index "landing_page_hits", ["ip", "campaign_id", "user_id"], :name => "index_landing_page_hits_on_ip_and_campaign_id_and_user_id", :unique => true
 
   create_table "landing_pages", :force => true do |t|
     t.integer  "campaign_id"
@@ -213,75 +139,29 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.string   "owner_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.string   "main_image_url"
     t.string   "main_image_source"
   end
 
-  create_table "panel_notices", :force => true do |t|
-    t.string   "message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "payment_comments", :force => true do |t|
-    t.string   "user_name"
-    t.string   "title"
-    t.integer  "payment_request_id"
-    t.boolean  "internal"
-    t.text     "message"
-    t.string   "type_message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "payment_requests", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "campaign_id"
-    t.decimal  "requested_money",      :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "paid_money",           :precision => 8, :scale => 2, :default => 0.0
-    t.string   "status",                                             :default => "payment_request_status.created"
-    t.string   "receipt_file_name"
-    t.string   "receipt_content_type"
-    t.integer  "receipt_file_size"
-    t.datetime "receipt_updated_at"
-    t.datetime "paid_at"
-    t.text     "additional_data"
-    t.string   "mode_pay"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "dinero_mail_email"
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "campaign_id"
-    t.decimal  "money",           :precision => 8, :scale => 2, :default => 0.0
-    t.datetime "paid_at"
-    t.text     "additional_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "post_forms", :force => true do |t|
+  create_table "points", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
-    t.string   "message"
-    t.boolean  "facebook",        :default => false
-    t.datetime "last_fb_post_at"
-    t.boolean  "twitter",         :default => false
-    t.datetime "last_tw_post_at"
-    t.boolean  "publish_daily"
-    t.integer  "hour"
-    t.integer  "hour_utc"
+    t.integer  "landing_page_hit_id"
+    t.integer  "value",               :default => 0
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
+
+  add_index "points", ["user_id", "campaign_id"], :name => "index_points_on_user_id_and_campaign_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
     t.string   "channel"
     t.string   "message"
+    t.boolean  "now"
     t.string   "status"
     t.boolean  "daily",       :default => false
     t.integer  "hour"
@@ -291,17 +171,18 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
     t.integer  "attemps",     :default => 0
     t.string   "more"
     t.integer  "counter",     :default => 0
-    t.string   "targets"
-    t.string   "privacy"
-    t.datetime "posted_at"
-    t.boolean  "revenued"
     t.datetime "when_post"
-    t.string   "type"
+    t.datetime "posted_at"
+    t.boolean  "removed"
     t.integer  "retweets",    :default => 0
     t.integer  "likes",       :default => 0
     t.integer  "comments",    :default => 0
-    t.boolean  "now"
   end
+
+  add_index "posts", ["hour_utc"], :name => "index_posts_on_hour_utc"
+  add_index "posts", ["posted_at"], :name => "index_posts_on_posted_at"
+  add_index "posts", ["user_id", "campaign_id"], :name => "index_posts_on_user_id_and_campaign_id"
+  add_index "posts", ["when_post"], :name => "index_posts_on_when_post"
 
   create_table "products", :force => true do |t|
     t.string  "name"
@@ -316,49 +197,21 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
   create_table "promotions", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
-    t.integer  "landing_page_hits",                               :default => 0
-    t.integer  "fb_posts",                                        :default => 0
-    t.integer  "fb_comments",                                     :default => 0
-    t.integer  "fb_likes",                                        :default => 0
-    t.integer  "tw_posts",                                        :default => 0
-    t.integer  "tw_retweets",                                     :default => 0
-    t.integer  "count_chains",                                    :default => 0
-    t.decimal  "current_money",     :precision => 8, :scale => 2, :default => 0.0
-    t.integer  "current_points",                                  :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "current_points", :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
-  create_table "revenue_commissions", :force => true do |t|
-    t.integer  "revenue_id"
-    t.integer  "campaign_id"
-    t.decimal  "money",        :precision => 8, :scale => 2, :default => 0.0
-    t.string   "source_class"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "revenues", :force => true do |t|
-    t.integer  "campaign_id"
-    t.integer  "user_id"
-    t.string   "mode"
-    t.decimal  "money",        :precision => 8, :scale => 2, :default => 0.0
-    t.integer  "points",                                     :default => 0
-    t.string   "source_class"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "promotions", ["user_id", "campaign_id"], :name => "index_promotions_on_user_id_and_campaign_id"
 
   create_table "rewards", :force => true do |t|
     t.integer "product_id"
     t.integer "campaign_id"
-    t.integer "original_quantity"
-    t.integer "current_quantity"
+    t.integer "initial_stock"
+    t.integer "current_stock"
     t.integer "points"
     t.string  "legal_conditions"
-    t.integer "quantity_per_user"
+    t.boolean "unique"
   end
 
   add_index "rewards", ["campaign_id"], :name => "index_rewards_on_campaign_id"
@@ -367,51 +220,25 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
-
-  create_table "states", :force => true do |t|
-    t.string   "state"
-    t.string   "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "statistics", :force => true do |t|
-    t.string   "landingPagePath"
-    t.string   "source"
-    t.string   "city"
-    t.datetime "date"
-    t.integer  "visits"
-    t.integer  "pageviews"
-    t.integer  "uniquepageviews"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
     t.string   "email",                    :default => "",    :null => false
     t.string   "encrypted_password",       :default => "",    :null => false
     t.string   "username"
     t.string   "locale"
-    t.boolean  "chained"
+    t.boolean  "chain_id"
     t.string   "time_zone"
+    t.string   "gender"
+    t.date     "birthday"
+    t.boolean  "admin"
+    t.boolean  "approved",                 :default => false
+    t.boolean  "dst"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -424,24 +251,18 @@ ActiveRecord::Schema.define(:version => 20120804233536) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "cached_slug"
-    t.integer  "chain_id"
-    t.string   "gender"
-    t.date     "birthday"
-    t.boolean  "admin"
-    t.boolean  "approved",                 :default => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.boolean  "email_recommendations",    :default => true
     t.string   "recommended_campaign_ids"
     t.boolean  "email_newsletter",         :default => true
-    t.boolean  "dst"
     t.boolean  "terms_approved"
     t.string   "slug"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
-  add_index "users", ["cached_slug"], :name => "index_users_on_cached_slug", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true

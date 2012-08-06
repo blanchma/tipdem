@@ -3,11 +3,11 @@ class CreateRewards < ActiveRecord::Migration
     create_table :rewards do |t|
       t.integer :product_id
       t.integer :campaign_id
-      t.integer :original_quantity
-      t.integer :current_quantity
+      t.integer :initial_stock
+      t.integer :current_stock
       t.integer :points
       t.string  :legal_conditions
-      t.integer :quantity_per_user
+      t.boolean :unique
     end
 
     add_index :rewards, :campaign_id
