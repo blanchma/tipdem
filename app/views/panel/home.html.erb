@@ -1,6 +1,10 @@
 <div id="campaing" style="overflow: hidden;">
-  <div id="vigentes"><h3><%=  t("current.title") %></h3></div>
+  <div id="vigentes">
+    <h3><%=  t("current.title") %></h3>
+  </div>
+
   <div id="campaign_details"></div>
+
   <ul>
     <% if @campaigns.empty? %>
       <span class="no_disponibles"><%=  t("current.empty") %></span>
@@ -21,9 +25,8 @@
       <% end %>
     </ul>
   <% end %>
-
-
 </div>
+
 <div id="extra">
   <div id="cats"><p><%=  t("categories.text") %></p>
     <div class="btn">
@@ -34,32 +37,4 @@
 <div id="paginate">
   <%= paginate @campaigns %>
 </div>
-
-<% content_for :bottom  do %>
-
-  <script type="text/javascript">
-    function setPromoteCookie(id) {
-      $.cookie('promote', id);
-    }
-
-    $(document).ready(function() {
-      campaign_id = $.cookie('promote');
-      if (campaign_id) {
-        $.ajax(
-        {data:'&authenticity_token=' + encodeURIComponent('<%=  form_authenticity_token  %>'),
-          success:function(request){
-            $('#campaign_details').html(request);
-          },
-          type:'post',
-          url:"<%= url_for :controller => :post_forms, :action => :new, :layout => 'false'%>&campaign_id="+campaign_id
-        })
-      }
-
-
-
-
-    });
-  </script>
-
-<% end %>
 

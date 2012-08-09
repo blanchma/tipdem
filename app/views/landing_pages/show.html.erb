@@ -1,10 +1,9 @@
 <% content_for(:head) do %>
-  <%= stylesheet_link_tag 'landing_page_style.css'   %>
   <title><%= @landing_page.title  %></title>
 
   <% if @landing_page %>
-    <meta name="subject" content="<%= @landing_page.campaign.try :name %>"/>
-    <meta name="Description" content="<%= @landing_page.campaign.try :description %>"/>
+    <meta name="subject" content="<%= @landing_page.campaign.try(:name) %>"/>
+    <meta name="Description" content="<%= @landing_page.campaign.try(:description) %>"/>
     <meta name="Classification" content="<%= @landing_page.campaign.try(:categories).join(",") %>"/>
     <meta name="Robots" content="INDEX,NOFOLLOW"/>
     <!-- meta name="Keywords" content="hhh,hhhhh"/>
@@ -12,34 +11,10 @@
     <meta name="Language" content="iiiii"/>
     <meta HTTP-EQUIV="Expires" content=""/>
     <meta name="Revisit-After" content=""/>
-    <meta name="distribution" content="Global"/>    
+    <meta name="distribution" content="Global"/>
     <meta name="country" content=""/-->
   <%  end %>
 <% end %>
 
-
-
 <%= render 'template' %>
-<div id="footer">
-  <div id="mapa"></div>
-  <div id="legal">© Copyright 2011 - Tipdem - All rights reserved - Terms of use - Legal disclaimer - Contacto</div>
 
-</div>
-
-
-<%= google_analytics %>
-
-<% content_for(:bottm) do %>
-  <%= javascript_include_tag  'lib/fancybox/jquery.fancybox-1.3.1.js'  %>
-  <%= stylesheet_link_tag     'lib/fancybox/jquery.fancybox-1.3.1.css'  %>
-<%  end %>
-
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script type="text/javascript">
-  FB.init({
-    appId  : '<%= APP_CONFIG['facebook_app_id'] %> ',
-    status : true, // check login status
-    cookie : true // enable cookies to allow the server to access the session            
-  });
-</script>

@@ -118,12 +118,14 @@ class LandingPagesController < ApplicationController
       end
 
       if params[:user_id]
-        session["click"] = {
+        chain = {
           :campaign_id => @campaign.id,
           :user_id => params[:user_id],
           :channel => @channel,
           :referrer => request.referrer
         }
+        session["chain"] = chain
+        cookies.permanent["chain"]= chain
       end
     else
       redirect_to root_path, :notice => t("landing_page.inactive")

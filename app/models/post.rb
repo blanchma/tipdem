@@ -8,20 +8,13 @@ class Post < ActiveRecord::Base
   belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
   belongs_to :user
 
-  scope :today, :conditions => ["created_at IS NOT NULL AND created_at > ?", Date.today.to_s(:db)]
-  scope :yesterday, :conditions => ["post_at IS NULL OR last_post_at < ?)", Date.today]
-  scope :not_failed, :conditions => ["status != ?", PostStatus::Error]
-  scope :this_week, :conditions => ["posted_at > ?", Time.now.utc - (3600 * 24 * 7)]
+  scope :daily, where("daily = 1")
+  scope :today, lambda { where("created_at IS NOT NULL AND posted_at > ?", Time.now.beginning_of_day ) }
+  scope :this_week, lambda { where("posted_at > ?", Time.now.beginning_of_week) }
 
-  scope :when_day,  lambda { |day|
-    begin_of_day = day - (day.hour * 3600) - (day.min * 60) - day.sec
-    {  :conditions => ["when_post > ?", begin_of_day] }
-  }
-
-  scope :time_to_post,  lambda { |time|
-    {  :conditions => ["when_post < ?", time] }
-  }
-
+  scope :not_failed, where("status != ?", PostStatus::Error)
+  scope :when_day,  lambda { |day| where(when_post: day.beginning_of_day..day.end_of_day) }
+  scope :time_to_post,  lambda { |time| where("when_post < ?", time) }
   scope :waiting, :conditions => ["status = ?", PostStatus::Waiting]
   scope :published, :conditions => ["status = ?", PostStatus::Posted]
   scope :failed, :conditions => ["status = ?", PostStatus::Error]
@@ -29,24 +22,20 @@ class Post < ActiveRecord::Base
   scope :facebook, :conditions => ["channel = ?", Channel::Facebook]
   scope :twitter, :conditions =>  ["channel =?",  Channel::Twitter]
   scope :linkedin, :conditions => ["channel =?",  Channel::LinkedIn]
-  scope :email, :conditions =>    ["channel =?",  Channel::Email]
-
-  scope :daily, where("daily = 1")
 
   scope :less_than, lambda {|quantity|
     {:conditions => ["counter < ?", quantity]}
   }
 
   before_create :waiting!#,:define_type
-
   after_create :promotion, :publish
 
-  validate :validate_spam, :on => :create
+  validate :validate_not_spam, :on => :create
   validates_presence_of :user, :campaign
   validates_inclusion_of :channel, :in => Channel.all
   validates_presence_of :message, :allow_blank => false, :on => :save
 
-  def validate_spam
+  def validate_not_spam
     return unless user && campaign && channel
     set_when_post
 
@@ -66,7 +55,7 @@ class Post < ActiveRecord::Base
     end
 
     posts_day = user.posts.not_failed.when_day(self.when_post).where(
-      {:channel => channel, :campaign_id => campaign_id})
+    {:channel => channel, :campaign_id => campaign_id})
 
     if posts_day.count >= DAY_LIMIT
       errors.add(:base, "No se pueden publicar más de #{DAY_LIMIT} posts por día en la misma red")
@@ -109,16 +98,13 @@ class Post < ActiveRecord::Base
   end
 
   def set_when_post
-    puts "when_post"
-    Time.zone = user.time_zone
-    time_now = Time.zone.now
+    now = Time.now.in_time_zone(user.time_zone)
     if now
-      self.when_post = time_now
-      self.when_post = when_post - 3600 unless user.dst
+      self.when_post = now
     elsif hour
-      time_mod = time_now  + ((self.hour - time_now.hour ) * 3600) - (time_now.min * 60)
-      time_mod += 86400 if time_now.hour >= self.hour
-      self.when_post =  time_mod
+      modificated = now.change(hour)
+      modificated = modificated.tomorrow if modificated.past?
+      self.when_post =  modificated
     else
     end
     self.hour_utc = self.when_post.hour
@@ -136,15 +122,14 @@ class Post < ActiveRecord::Base
     puts "Send to Publish: #{when_post} (#{"now" if self.now})"
 
     if self.campaign
-      if self.campaign.active? && (self.when_post < Time.now || now) && !self.posted?
-        self.deliver
+      if self.campaign.active? && (self.when_post.past? || now) && !self.posted?
+        Resque.enqueue(PublishJob, self.id)
 
         if self.daily && self.counter <= CAMPAIGN_LIMIT
           new_post = self.clone
           new_post.counter+=1
           new_post.now=false
-          new_post.clear!
-          puts "Clonando"
+          new_post.reset!
           new_post.stop! if new_post.counter == CAMPAIGN_LIMIT
           cloned = new_post.save
           puts "Post duplicate #{new_post.counter} for tomorrow #{new_post.hour} hours"
@@ -154,16 +139,13 @@ class Post < ActiveRecord::Base
       self.destroy
     end
   end
-  #handle_asynchronously :send_to_publish#, :run_at => Proc.new { 1.minutes.from_now }
 
   def posted!(post_id, response)
     self.status = PostStatus::Posted
     self.response = response
-    self.post_id = post_id
     self.counter += 1
-    self.posted_at = Time.now #- (self.user.dst ? 0 : 3600)
-    puts "Post #{self.id } posted"
-    return self.post_id
+    self.posted_at = Time.now
+    self.post_id = post_id
   end
 
   def fail?
@@ -200,7 +182,7 @@ class Post < ActiveRecord::Base
     self.status == PostStatus::Posted && self.post_id
   end
 
-  def clear!
+  def reset!
     self.posted_at = nil
     self.response = nil
     self.post_id = nil
@@ -227,8 +209,7 @@ class Post < ActiveRecord::Base
     posted_at
   end
 
-
-   def deliver
+  def deliver
     case self.channel
     when Channel::LinkedIn
       LinkedInService.publish(self)
