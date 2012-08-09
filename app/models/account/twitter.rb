@@ -2,7 +2,8 @@
 module Account
   class Twitter < Base
 
-    def assign_account_info(auth_hash)
+    def from_omniauth(auth_hash)
+      super
       self.login               = auth_hash['info']['nickname']
       #self.picture_url        = auth_hash['info']['image']
       self.name                = auth_hash['info']['name']

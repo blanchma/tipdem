@@ -7,15 +7,17 @@
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/ico" />
-    <meta name="google-site-verification" content="gpH0zOtr4NYC8TzdvHWKA53aiKw9KJjWkQpeoOPFytQ" />
-    <meta name="msvalidate.01" content="A36FC27C07E4E62622A1A55B515B5855" />
-    <link rel="image_src" href="http://www.tipdem.com/images/logofb.jpg" />
-    <meta name="keywords" content="Campañas, Promociones, Boca a boca, Anuncios, Premios, difusión, promocionar, publicidad, herramienta, gestión, reportes, ganar, dinero, redes sociales, social, marketing, word of mouth" />
-    <meta name="description" content="La mejor herramienta de recomendación boca a boca para la difusión de campañas. Súmate como Promotor y gana increíbles recompensas"/>
     <meta name="robots" content="index, follow" />
-    <meta name="author" content="Tipdem" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Tipdem" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+
     <%= csrf_meta_tag %>
     <%= yield :head %>
   </head>
@@ -24,16 +26,12 @@
     <div id="content">
       <div id="header">
         <div id="logo"><%=link_to(image_tag('logo_lc.png', :size => '200x50', :border=> '0'), {:controller=> 'welcome', :action => 'home'}) %></div>
-        <div id="menu">
-        </div>
 
         <% if user_signed_in? %>
-          <div id="login">
-            <%= link_to t("my_panel"), user_root_path, :id => 'Panel', :class => "login_btn" %>
-          </div>
-        <% end %>
-        <% unless user_signed_in? %>
-          <div id="login"><%= link_to t("sign_in"), new_user_session_path, :class => "login_btn" %></div>
+            <%= link_to t("my_panel"), user_root_path %>
+        <% else %>
+          <%= link_to "twitter",  omniauth_authorize_path(:user, :twitter)   %>
+          <%= link_to "facebook", omniauth_authorize_path(:user, :facebook)  %>
         <% end %>
       </div>
 
@@ -42,19 +40,18 @@
       <%= yield :layout %>
     </div>
 
-    <%= javascript_include_tag 'profiling/yahoo-profiling.min.js', 'profiling/config.js' unless Rails.env.production? %>
+    <% if @channel == "facebook" %>
+     <div id="fb-root"></div>
+      <script src="http://connect.facebook.net/en_US/all.js"></script>
+      <script type="text/javascript">
+        FB.init({
+          appId  : '<%= APP_CONFIG['facebook_app_id'] %> ',
+          status : true, // check login status
+          cookie : true // enable cookies to allow the server to access the session
+        });
+      </script>
+    <% end %>
 
-    <%- if Rails.env.production? -%>
-    <script>
-     var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-     (function(d, t) {
-      var g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      g.async = true;
-      g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g, s);
-     })(document, 'script');
-    </script>
-    <%- end -%>
+    <%#= google_analytics if Rails.env.production? %>
   </body>
 </html>

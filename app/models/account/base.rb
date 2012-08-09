@@ -18,36 +18,25 @@ module Account
       find_by_uid(auth_hash['uid'])
     end
 
-    def self.find_or_create_from_auth_hash(auth_hash)
+    def self.from_omniauth(auth_hash)
       if (account = find_by_uid(auth_hash['uid']))
         account.auth_hash = auth_hash
         account.assign_account_info(auth_hash)
         account.save
         account
       else
-        create_from_auth_hash(auth_hash)
+        create_from_omniauth(auth_hash)
       end
     end
 
-    def self.create_from_auth_hash(auth_hash)
+    def self.create_from_omniauth(auth_hash)
       create do |account|
         account.auth_hash = auth_hash
-        account.assign_base_info(auth_hash)
-        account.assign_account_info(auth_hash)
+        account.from_omniauth(auth_hash)
       end
     end
 
-    def create_user
-      puts "create_user"
-      user = User.new(:password => Devise.friendly_token[0...10])
-      user.confirmed_at = Time.now.utc
-      user.assign_user_info(self.auth_hash)
-      user.accounts << self
-      user.save!
-      user
-    end
-
-    def assign_base_info(auth_hash)
+    def from_omniauth(auth_hash)
       self.uid        = auth_hash['uid']
       self.token      = auth_hash['credentials']['token']
       self.secret     = auth_hash['credentials']['secret']

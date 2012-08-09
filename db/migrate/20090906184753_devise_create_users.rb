@@ -9,9 +9,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :username
       #t.decimal :current_money, :precision => 8, :scale => 2 , :default => 0.00
       t.string  :locale
-      t.boolean :chained
+      t.boolean :chain_id
       t.string  :time_zone
-
+      t.string  :gender
+      t.date    :birthday
+      t.boolean :admin
+      t.boolean :approved, :default => false
+      t.boolean :dst
 
       ## Recoverable
       t.string   :reset_password_token
@@ -41,7 +45,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
        t.string :authentication_token
 
-
       # Uncomment below if timestamps were not included in your original model.
        t.timestamps
     end
@@ -54,9 +57,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   end
 
   def self.down
-    # By default, we don't want to make any assumption about how to roll back a migration when your
-    # model already existed. Please edit below which fields you would like to remove in this migration.
-    raise ActiveRecord::IrreversibleMigration
+    drop_table :users
   end
 
 

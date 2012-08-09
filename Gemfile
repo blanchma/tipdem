@@ -12,6 +12,7 @@ gem 'dynamic_form'
 gem 'settingslogic'
 gem 'activeadmin'
 gem 'aasm'
+gem 'geocoder'
 
 
 #Social Networks

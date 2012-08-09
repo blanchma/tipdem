@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class LandingPageHit < ActiveRecord::Base
-  belongs_to :fisher, :class_name => "User", :foreign_key => "fisher_id"
+  belongs_to :user
   belongs_to :campaign, :class_name => "Campaign::Base", :foreign_key => "campaign_id"
 
  scope :facebook, :conditions => {:channel => Channel::Facebook}
@@ -9,13 +9,13 @@ class LandingPageHit < ActiveRecord::Base
 
   validates_presence_of :campaign, :user_agent
   validate :humanity
-  validates_uniqueness_of :ip, :scope => [:campaign_id, :fisher_id]
+  validates_uniqueness_of :ip, :scope => [:campaign_id, :user_id]
 
   after_create :create_revenue
 
   def create_revenue
-    unless channel == Channel::Default && fisher.blank?
-      #Revenue.create(:user => self.fisher, :campaign => self.campaign, :source => self)
+    unless channel == Channel::Default && user.blank?
+      Point.create(:user => self.user, :campaign => self.campaign, :landing_page_ => self)
     end
   end
   #handle_asynchronously :create_revenue#, :run_at => Proc.new { 1.minutes.from_now }
@@ -23,7 +23,7 @@ class LandingPageHit < ActiveRecord::Base
   def self.create_from_request(request)
     unless request.cookies.include? "click_#{request.params[:id]}"
       landing_page_hit = LandingPageHit.create(
-        fisher_id:    request.params[:user_id],
+        user_id:    request.params[:user_id],
         channel:      request.params[:channel],
         campaign_id:  request.params[:id],
         ip:           request.remote_ip,
@@ -67,7 +67,7 @@ end
 # Table name: landing_page_hits
 #
 #  id          :integer(4)      not null, primary key
-#  fisher_id   :integer(4)
+#  user_id   :integer(4)
 #  channel     :string(255)
 #  client_id   :integer(4)
 #  campaign_id :integer(4)
