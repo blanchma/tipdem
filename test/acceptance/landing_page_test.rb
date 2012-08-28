@@ -7,7 +7,7 @@ describe LandingPagesController do
     @campaign = FactoryGirl.create(:campaign)
   end
 
-  context "#show" do
+  it "#show" do
     get "/see/#{@campaign.slug}"
   end
 

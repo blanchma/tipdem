@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  def create
+  def all
     account = case request.env['omniauth.auth']['provider']
       when 'twitter' then
-        Account::Twitter.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+        Account::Twitter.from_omniauth(request.env['omniauth.auth'])
       when 'facebook' then
-        Account::Facebook.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+        Account::Facebook.from_omniauth(request.env['omniauth.auth'])
       when 'linkedin' then
         Account::LinkedIn.from_omniauth(request.env['omniauth.auth'])
       else
@@ -23,7 +23,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       logger.info "Chain: #{session["chain"].inspect}, #{cookies["chain"].inspect}"
       user = User.create_from_omniauth(account)
-      if chain = Chain.create_from_session(user,session["chain"] || cookies["chain"])
+      if chain = Chain.from_session(user,session["chain"] || cookies["chain"])
         sign_in(:user, user)
         logger.info "Chained and redirecting to campaign: #{chain.campaign.name}."
         redirect_to go_campaign_tips_path(chain.campaign_id)
@@ -32,9 +32,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     end
   end
-  alias :twitter,:all
-  alias :facebook,:all
-  alias :linkedin,:all
+  alias_method :twitter, :all
+  alias_method :facebook, :all
+  alias_method :linkedin, :all
 
 end
 

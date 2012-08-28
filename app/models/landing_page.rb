@@ -14,8 +14,8 @@ class LandingPage < ActiveRecord::Base
   validates_attachment_size :main_image, :less_than => 2.megabytes
   validates_attachment_content_type :main_image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
-  validates_presence_of :main_image_url, :unless => "main_image_file_name.present?"
-  validates_presence_of :main_image_file_name, :unless => "main_image_url.present?"
+  #validates_presence_of :main_image_url, :unless => "main_image_file_name.present?"
+  #validates_presence_of :main_image_file_name, :unless => "main_image_url.present?"
 
   def main_image_url?
     main_image_source == ImageSource::URL

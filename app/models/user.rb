@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   after_validation :geocode          # auto-fetch coordinatesU
 
   def self.create_from_omniauth(account)
-    User.create do
+    User.create do |user|
       user.confirmed_at = Time.now.utc
       user.from_omniauth(account.auth_hash)
       user.accounts << account

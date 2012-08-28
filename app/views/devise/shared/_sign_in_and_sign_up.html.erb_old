@@ -77,7 +77,7 @@
             <p class="p2"><%= f.text_field :email %></p>
             <p class="p1"><%= f.label :password %></p>
             <p class="p2"><%= f.password_field :password %></p>
-            <% if devise_mapping.rememberable? %>
+            <% if false && devise_mapping.rememberable? %>
               <p class="p2" style="text-align: left; width: 60%"><%= f.label :remember_me %> <%= f.check_box :remember_me %></p>
               <div style="width: 100%; float: right">
                 <%= f.submit t("session.access"), :class=> "btn" %>

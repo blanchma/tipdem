@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20120805234923) do
     t.date     "end_date"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.integer  "temp_mode"
     t.string   "legal_terms"
     t.string   "slug"
   end

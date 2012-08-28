@@ -9,9 +9,11 @@ class PanelController < ApplicationController
   def get_timezone
     time_zone = cookies["time_zone"]
     logger.info "TimeZone: #{time_zone}"
-    Time.zone = ActiveSupport::TimeZone[time_zone]
-    current_user.time_zone = time_zone
-    current_user.save if current_user.time_zone_changed?
+    if time_zone
+      Time.zone = ActiveSupport::TimeZone[time_zone]
+      current_user.time_zone = time_zone
+      current_user.save if current_user.time_zone_changed?
+    end
   end
 
 end

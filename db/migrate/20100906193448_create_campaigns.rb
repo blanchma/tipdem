@@ -5,7 +5,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.column :user_id,            :integer
       t.column :name,               :string
       t.column :description,        :string
-      t.column :current_status,     :string
+      t.column :status,             :string
       t.column :default_message,    :string
       t.column :mode,               :integer
       t.column :have_end_date,      :boolean

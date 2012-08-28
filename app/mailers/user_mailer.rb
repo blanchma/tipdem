@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
 
   def recommendation_email (user,campaigns)
     @user, @campaigns = user, campaigns
-    mail(:to => user.email,:subject => "Mira las nuevas campañas de Tipdem, #{user.username}"
+    mail(:to => user.email, :subject => "Mira las nuevas campañas de Tipdem, #{user.username}")
   end
 
   def confirm_authentication(email,authentication)

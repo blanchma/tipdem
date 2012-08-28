@@ -6,7 +6,7 @@ FactoryGirl.define do
     default_message   { Random.paragraphs[0...100]}
     have_end_date     false
     association(:landing_page, factory: :landing_page)
-    association(:rewards, factory: :reward)
+    before(:crete) { |campaign| campaign.rewards << Factory.create(:reward) }
     before(:create) { |campaign| campaign.categories << Category.find(Category.first.id + Random.rand(10)) }
     after(:create) { |campaign| campaign.paid! }
   end

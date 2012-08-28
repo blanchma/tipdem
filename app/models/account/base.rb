@@ -21,7 +21,7 @@ module Account
     def self.from_omniauth(auth_hash)
       if (account = find_by_uid(auth_hash['uid']))
         account.auth_hash = auth_hash
-        account.assign_account_info(auth_hash)
+        account.apply_omniauth(auth_hash)
         account.save
         account
       else
@@ -36,7 +36,7 @@ module Account
       end
     end
 
-    def from_omniauth(auth_hash)
+    def apply_omniauth(auth_hash)
       self.uid        = auth_hash['uid']
       self.token      = auth_hash['credentials']['token']
       self.secret     = auth_hash['credentials']['secret']

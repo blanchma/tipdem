@@ -43,12 +43,9 @@ Tipdem::Application.routes.draw do
   match "/my/panel" => "panel#home", :as => :user_root
   match "/my/profile" => "users#edit", :as => :edit_registration, :via => :get
   match "/my/profile" => "users#update", :as => :registration, :via => :put
-  match "/unregister/:id" => "users#destroy", :as => :unregister, :via => :delete
-  match "register" => "users#create", :as => :user_registration, :via => :post
 
   devise_for :users,
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "sessions",
-    :registrations => "registrations" }
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
 
   resources :users do
     member do

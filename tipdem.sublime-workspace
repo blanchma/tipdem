@@ -1,0 +1,236 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"Brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"browse",
+				"Preferences: Browse Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pe",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/blanchma/workspace/tipdem/app/models/landing_page.rb",
+		"/Users/blanchma/workspace/tipdem/Gemfile",
+		"/Users/blanchma/workspace/tipdem/test/acceptance/landing_page_test.rb",
+		"/Users/blanchma/workspace/tipdem/app/mailers/user_mailer.rb",
+		"/Users/blanchma/workspace/tipdem/app/jobs/google_analytics_job.rb",
+		"/Users/blanchma/workspace/tipdem/config/application.rb",
+		"/Users/blanchma/workspace/tipdem/lib/analytics.rb",
+		"/Users/blanchma/workspace/tipdem/app/controllers/users/omniauth_callbacks_controller.rb",
+		"/Users/blanchma/workspace/tipdem/test/factories/campaigns_factory.rb",
+		"/Users/blanchma/.ssh/known_hosts",
+		"/Users/blanchma/.ssh/config",
+		"/Users/blanchma/Documents/mysql root password",
+		"/Users/SCV/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"alias",
+			"trailing"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"alias_method"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"landin",
+				"app/models/landing_page.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"campaign",
+				"test/factories/campaigns_factory.rb"
+			],
+			[
+				"landing",
+				"test/acceptance/landing_page_test.rb"
+			],
+			[
+				"user_mai",
+				"app/mailers/user_mailer.rb"
+			],
+			[
+				"google",
+				"app/jobs/google_analytics_job.rb"
+			],
+			[
+				"app",
+				"config/application.rb"
+			],
+			[
+				"anal",
+				"lib/analytics.rb"
+			],
+			[
+				"om",
+				"app/controllers/users/omniauth_callbacks_controller.rb"
+			],
+			[
+				"acces",
+				"app/models/access_grant.rb"
+			],
+			[
+				"auth",
+				"lib/ayla/authentication.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 268.0,
+	"status_bar_visible": true
+}

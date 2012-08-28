@@ -52,7 +52,6 @@ group :test do
 end
 
 group :development do
-  gem 'random_data'
   gem 'debugger'
   gem 'capistrano'
   gem 'magic_encoding', :require => false
@@ -60,11 +59,13 @@ group :development do
   gem 'brakeman'
   gem 'annotate'
   gem 'pry'
+  gem 'pry-nav'
   gem 'mail_view'
   gem 'mailcatcher'
 end
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 3.0'
+  gem 'random_data'
 end
 
